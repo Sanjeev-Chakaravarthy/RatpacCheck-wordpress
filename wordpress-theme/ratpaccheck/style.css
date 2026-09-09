@@ -1,0 +1,316 @@
+/*
+Theme Name: RatpacCheck
+Theme URI: https://ratpaccheck.com
+Author: RatpacCheck Creative & Engineering Team
+Author URI: https://ratpaccheck.com
+Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
+Version: 1.0.0
+Requires at least: 5.8
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: ratpaccheck
+Tags: e-commerce, one-column, custom-colors, custom-menu, featured-images, full-width-template, theme-options
+*/
+
+/* ── Typography (Metropolis local fonts & Google Fonts fallback) ── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('assets/fonts/Metropolis-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('assets/fonts/Metropolis-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('assets/fonts/Metropolis-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('assets/fonts/Metropolis-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  src: url('assets/fonts/Metropolis-Bold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Fallback Base Styles (Main styles are compiled in assets/css/main.css) ── */
+:root {
+  --cream: #F6F1EA;
+  --cream-dark: #F9F5EF;
+  --espresso: #000000;
+  --warm-brown: #555555;
+  --gold: #C9A84C;
+  --charcoal: #1A1A1A;
+  --sage: #8A9B6E;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: 'Adobe Hebrew', 'Noto Serif', Georgia, serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+  overflow-x: clip;
+}
+
+/* ── Exact Typography & Font Hierarchy (Matching Vercel 100%) ── */
+.font-metropolis {
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+.font-adobe {
+  font-family: 'Adobe Hebrew', 'Noto Serif', Georgia, serif !important;
+}
+.font-body {
+  font-family: 'Adobe Hebrew', 'Noto Serif', Georgia, serif !important;
+}
+.font-display {
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+.section-title {
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  color: #000000 !important;
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 26px !important;
+  }
+}
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 32px !important;
+  }
+}
+
+.product-card-title {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.25 !important;
+  color: #000000 !important;
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+@media (min-width: 640px) {
+  .product-card-title {
+    font-size: 16px !important;
+  }
+}
+
+.product-card-subtitle {
+  font-size: 11px !important;
+  line-height: 1.625 !important;
+  color: #4b5563 !important;
+  font-family: 'Adobe Hebrew', 'Noto Serif', Georgia, serif !important;
+}
+@media (min-width: 640px) {
+  .product-card-subtitle {
+    font-size: 15px !important;
+  }
+}
+
+.title-text {
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  color: #000000 !important;
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+/* ── Shop By Concerns Card Widths & Layout ── */
+.concern-card {
+  width: 150px !important;
+  flex: 0 0 150px !important;
+}
+@media (min-width: 768px) {
+  .concern-card {
+    width: calc((100% - 64px) / 5) !important;
+    flex: 0 0 calc((100% - 64px) / 5) !important;
+  }
+}
+
+/* ── Reviews Carousel Card Widths (Matching Next.js 3-column layout) ── */
+.review-slide-card {
+  flex: 0 0 85% !important;
+  width: 85% !important;
+}
+@media (min-width: 640px) {
+  .review-slide-card {
+    flex: 0 0 60% !important;
+    width: 60% !important;
+  }
+}
+@media (min-width: 768px) {
+  .review-slide-card {
+    flex: 0 0 calc((100% - 48px) / 3) !important;
+    width: calc((100% - 48px) / 3) !important;
+  }
+}
+
+/* ── Product Card Square Media & Badges ── */
+.square-media-frame {
+  position: relative !important;
+  display: flex !important;
+  aspect-ratio: 1/1 !important;
+  width: 100% !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  border-radius: 0.375rem !important;
+  background-color: #f5f5f5 !important;
+}
+.square-media {
+  height: 100% !important;
+  width: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.product-card-badge-frame {
+  pointer-events: none !important;
+  position: absolute !important;
+  left: 0.5rem !important;
+  right: 0.5rem !important;
+  top: 0.5rem !important;
+  z-index: 10 !important;
+}
+.product-card-badge-row {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+}
+.product-card-badge {
+  display: inline-block !important;
+  max-width: 80% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  border-radius: 9999px !important;
+  background-color: #000000 !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+@media (min-width: 640px) {
+  .product-card-badge {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+  }
+}
+.product-card-discount {
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  border-radius: 9999px !important;
+  background-color: #000000 !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+@media (min-width: 640px) {
+  .product-card-discount {
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+  }
+}
+
+/* ── Social Card Touch Buttons ── */
+a.touch-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 8px 16px !important;
+  border: 1px solid #1a1a1a !important;
+  border-radius: 12px !important;
+  font-family: 'Adobe Hebrew', 'Noto Serif', Georgia, serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  color: #1a1a1a !important;
+  background-color: transparent !important;
+  transition: all 0.25s ease !important;
+  white-space: nowrap !important;
+}
+a.touch-button:hover {
+  background-color: #1a1a1a !important;
+  color: #ffffff !important;
+}
+
+/* ── Product Card Stack Layout (Vercel parity) ── */
+.product-card-stack {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  flex: 1 !important;
+  padding: 10px 4px 4px !important;
+}
+@media (min-width: 640px) {
+  .product-card-stack {
+    padding: 12px 6px 6px !important;
+  }
+}
+.product-price {
+  font-family: Metropolis, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+}
+@media (min-width: 640px) {
+  .product-price {
+    font-size: 17px !important;
+  }
+}
+.card-padding {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.product-card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── No scrollbar utility ── */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
