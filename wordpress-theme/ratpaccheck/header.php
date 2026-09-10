@@ -45,13 +45,10 @@ if (!defined('ABSPATH')) {
             overflow-x: clip !important;
         }
         #site-header-wrapper {
-            position: -webkit-sticky !important;
-            position: sticky !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 50 !important;
+            position: relative;
+            z-index: 50;
         }
+
         @media (min-width: 1024px) {
             #site-header-wrapper:has(.megamenu-trigger-wrap[data-menu="shop"]:hover) #megamenu-dropdown,
             #site-header-wrapper:has(.megamenu-trigger-wrap[data-menu="skincare"]:hover) #megamenu-dropdown,
@@ -82,8 +79,8 @@ if (!defined('ABSPATH')) {
         }
     </style>
 
-    <!-- ── Outer Sticky Header Wrapper (100% Vercel Match) ── -->
-    <div id="site-header-wrapper" class="sticky top-0 left-0 right-0 z-50 bg-white border-b border-[#E8E3DB]">
+    <!-- ── Outer Header Wrapper (100% Vercel Match) ── -->
+    <div id="site-header-wrapper" class="relative z-50 bg-white border-b border-[#E8E3DB]">
 
         <!-- 1. Announcement Bar (Pinned together with Header) -->
         <div style="background-color:#000000;color:#FFFFFF;min-height:34px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:6px 16px;text-align:center;flex-wrap:wrap;font-family:'Metropolis', 'Helvetica Neue', Arial, sans-serif;">
