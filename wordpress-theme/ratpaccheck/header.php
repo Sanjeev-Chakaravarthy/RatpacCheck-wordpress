@@ -91,13 +91,8 @@ if (!defined('ABSPATH')) {
         <header id="masthead" class="bg-white" style="transition:border-color 0.2s ease;overflow-x:hidden;">
             <!-- Desktop Header (lg:flex) -->
             <div class="px-4 py-3 sm:px-6 md:px-10 sm:py-0 relative hidden lg:flex" style="max-width:1280px;margin:0 auto;min-height:56px;align-items:center;justify-content:space-between">
-                <!-- Brand & WhatsApp Group -->
-                <div class="flex items-center gap-3">
-                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="whatsapp-nav-btn" aria-label="Contact RatpacCheck on WhatsApp" title="Chat on WhatsApp" style="width:34px;height:34px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true">
-                            <path d="M12.004 2c-5.518 0-9.996 4.48-9.996 10.001 0 1.765.459 3.488 1.332 5.008L2 22l5.122-1.311c1.472.802 3.13 1.226 4.882 1.226 5.518 0 10-4.48 10-10.001C22.004 6.48 17.522 2 12.004 2zm5.835 14.167c-.244.685-1.42 1.309-1.956 1.392-.518.08-1.196.113-3.447-.818-2.73-1.129-4.508-3.904-4.646-4.086-.135-.183-1.1-1.464-1.1-2.793 0-1.328.697-1.982.946-2.247.247-.266.541-.332.721-.332.181 0 .362.002.52.01.168.009.394-.064.616.471.229.551.78 1.902.848 2.042.068.14.113.305.023.487-.091.182-.136.295-.271.455-.136.16-.285.358-.408.48-.135.136-.277.283-.119.555.158.271.703 1.16 1.51 1.879 1.037.925 1.91 1.211 2.181 1.347.272.136.43.113.589-.068.158-.182.678-.792.86-1.064.181-.271.362-.226.61-.136.249.091 1.583.746 1.854.882.272.136.452.204.52.317.068.113.068.656-.176 1.341z"/>
-                        </svg>
-                    </a>
+                <!-- Brand Group -->
+                <div class="flex items-center">
                     <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:18px">
                         <span id="brand-text-desktop" class="font-metropolis" style="font-size:clamp(20px, 2vw, 20px);font-weight:800;color:#E8799A;line-height:1;white-space:nowrap;display:block;font-synthesis:none">
                             RatpacCheck.
@@ -144,28 +139,26 @@ if (!defined('ABSPATH')) {
                     </svg>
                     <span id="cart-counter-badge" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center" style="display:none;">0</span>
                 </button>
+                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="whatsapp-nav-btn" aria-label="Contact RatpacCheck on WhatsApp" title="Chat on WhatsApp" style="width:34px;height:34px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true">
+                        <path d="M12.004 2c-5.518 0-9.996 4.48-9.996 10.001 0 1.765.459 3.488 1.332 5.008L2 22l5.122-1.311c1.472.802 3.13 1.226 4.882 1.226 5.518 0 10-4.48 10-10.001C22.004 6.48 17.522 2 12.004 2zm5.835 14.167c-.244.685-1.42 1.309-1.956 1.392-.518.08-1.196.113-3.447-.818-2.73-1.129-4.508-3.904-4.646-4.086-.135-.183-1.1-1.464-1.1-2.793 0-1.328.697-1.982.946-2.247.247-.266.541-.332.721-.332.181 0 .362.002.52.01.168.009.394-.064.616.471.229.551.78 1.902.848 2.042.068.14.113.305.023.487-.091.182-.136.295-.271.455-.136.16-.285.358-.408.48-.135.136-.277.283-.119.555.158.271.703 1.16 1.51 1.879 1.037.925 1.91 1.211 2.181 1.347.272.136.43.113.589-.068.158-.182.678-.792.86-1.064.181-.271.362-.226.61-.136.249.091 1.583.746 1.854.882.272.136.452.204.52.317.068.113.068.656-.176 1.341z"/>
+                    </svg>
+                </a>
             </div>
         </div>
 
         <!-- Mobile Header (lg:hidden) -->
         <div class="lg:hidden flex flex-col">
             <div class="px-4 flex items-center justify-between" style="min-height:52px">
-                <div class="flex items-center gap-2">
-                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="whatsapp-nav-btn" aria-label="Contact RatpacCheck on WhatsApp" title="Chat on WhatsApp" style="width:30px;height:30px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-                            <path d="M12.004 2c-5.518 0-9.996 4.48-9.996 10.001 0 1.765.459 3.488 1.332 5.008L2 22l5.122-1.311c1.472.802 3.13 1.226 4.882 1.226 5.518 0 10-4.48 10-10.001C22.004 6.48 17.522 2 12.004 2zm5.835 14.167c-.244.685-1.42 1.309-1.956 1.392-.518.08-1.196.113-3.447-.818-2.73-1.129-4.508-3.904-4.646-4.086-.135-.183-1.1-1.464-1.1-2.793 0-1.328.697-1.982.946-2.247.247-.266.541-.332.721-.332.181 0 .362.002.52.01.168.009.394-.064.616.471.229.551.78 1.902.848 2.042.068.14.113.305.023.487-.091.182-.136.295-.271.455-.136.16-.285.358-.408.48-.135.136-.277.283-.119.555.158.271.703 1.16 1.51 1.879 1.037.925 1.91 1.211 2.181 1.347.272.136.43.113.589-.068.158-.182.678-.792.86-1.064.181-.271.362-.226.61-.136.249.091 1.583.746 1.854.882.272.136.452.204.52.317.068.113.068.656-.176 1.341z"/>
-                        </svg>
-                    </a>
-                    <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:17px">
-                        <span id="brand-text-mobile" class="font-metropolis" style="font-size:18px;font-weight:800;color:#E8799A;line-height:1;display:block;white-space:nowrap;font-synthesis:none">
-                            RatpacCheck.
-                        </span>
-                        <span id="tagline-text-mobile" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:8.5px;font-weight:450;color:#6B6B6B;letter-spacing:0.03em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;transform:scaleX(1)">
-                            we <span style="font-weight:800">CARE</span> about your <span style="font-weight:800">SKIN</span> &amp; <span style="font-weight:800">HAIR</span>
-                        </span>
-                    </a>
-                </div>
-                <div class="flex items-center gap-4">
+                <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:17px">
+                    <span id="brand-text-mobile" class="font-metropolis" style="font-size:18px;font-weight:800;color:#E8799A;line-height:1;display:block;white-space:nowrap;font-synthesis:none">
+                        RatpacCheck.
+                    </span>
+                    <span id="tagline-text-mobile" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:8.5px;font-weight:450;color:#6B6B6B;letter-spacing:0.03em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;transform:scaleX(1)">
+                        we <span style="font-weight:800">CARE</span> about your <span style="font-weight:800">SKIN</span> &amp; <span style="font-weight:800">HAIR</span>
+                    </span>
+                </a>
+                <div class="flex items-center gap-3">
                     <button type="button" id="mobile-search-trigger" style="background:none;border:none;cursor:pointer;color:#1A1A1A;display:flex;align-items:center;padding:4px" title="Search products">
                         <svg aria-hidden="true" class="lucide lucide-search" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
                             <path d="m21 21-4.34-4.34"></path>
@@ -186,6 +179,11 @@ if (!defined('ABSPATH')) {
                         </svg>
                         <span class="cart-counter-badge absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center" style="display:none;">0</span>
                     </button>
+                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="whatsapp-nav-btn" aria-label="Contact RatpacCheck on WhatsApp" title="Chat on WhatsApp" style="width:30px;height:30px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                            <path d="M12.004 2c-5.518 0-9.996 4.48-9.996 10.001 0 1.765.459 3.488 1.332 5.008L2 22l5.122-1.311c1.472.802 3.13 1.226 4.882 1.226 5.518 0 10-4.48 10-10.001C22.004 6.48 17.522 2 12.004 2zm5.835 14.167c-.244.685-1.42 1.309-1.956 1.392-.518.08-1.196.113-3.447-.818-2.73-1.129-4.508-3.904-4.646-4.086-.135-.183-1.1-1.464-1.1-2.793 0-1.328.697-1.982.946-2.247.247-.266.541-.332.721-.332.181 0 .362.002.52.01.168.009.394-.064.616.471.229.551.78 1.902.848 2.042.068.14.113.305.023.487-.091.182-.136.295-.271.455-.136.16-.285.358-.408.48-.135.136-.277.283-.119.555.158.271.703 1.16 1.51 1.879 1.037.925 1.91 1.211 2.181 1.347.272.136.43.113.589-.068.158-.182.678-.792.86-1.064.181-.271.362-.226.61-.136.249.091 1.583.746 1.854.882.272.136.452.204.52.317.068.113.068.656-.176 1.341z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
             <div class="border-t border-[#F0ECE6] scrollbar-hide" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
@@ -230,6 +228,10 @@ if (!defined('ABSPATH')) {
         var KEY = 'ratpaccheck_international_orders_popup_seen';
         function initIntlPopup() {
             try {
+                var urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('reset_popup') === '1' || urlParams.get('test_popup') === '1' || urlParams.get('intl_popup') === '1') {
+                    localStorage.removeItem(KEY);
+                }
                 if (localStorage.getItem(KEY)) {
                     return;
                 }
@@ -240,9 +242,10 @@ if (!defined('ABSPATH')) {
             if (!popup) return;
 
             setTimeout(function() {
+                popup.style.display = 'block';
                 popup.classList.remove('hidden');
                 popup.classList.add('intl-popup-animate');
-            }, 700);
+            }, 300);
 
             function dismiss() {
                 try {
