@@ -91,14 +91,22 @@ if (!defined('ABSPATH')) {
         <header id="masthead" class="bg-white" style="transition:border-color 0.2s ease;overflow-x:hidden;">
             <!-- Desktop Header (lg:flex) -->
             <div class="px-4 py-3 sm:px-6 md:px-10 sm:py-0 relative hidden lg:flex" style="max-width:1280px;margin:0 auto;min-height:56px;align-items:center;justify-content:space-between">
-                <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:18px">
-                    <span id="brand-text-desktop" class="font-metropolis" style="font-size:clamp(20px, 2vw, 20px);font-weight:800;color:#E8799A;line-height:1;white-space:nowrap;display:block;font-synthesis:none">
-                        RatpacCheck.
-                    </span>
-                    <span id="tagline-text-desktop" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:clamp(9px, 1vw, 10px);font-weight:450;color:#6B6B6B;letter-spacing:0.04em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;">
-                        we <span style="font-weight:800">CARE</span> about your <span style="font-weight:800">SKIN</span> &amp; <span style="font-weight:800">HAIR</span>
-                    </span>
-                </a>
+                <!-- Brand & WhatsApp Group -->
+                <div class="flex items-center gap-3">
+                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="whatsapp-nav-btn" aria-label="Contact RatpacCheck on WhatsApp" title="Chat on WhatsApp" style="width:34px;height:34px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true">
+                            <path d="M12.004 2c-5.518 0-9.996 4.48-9.996 10.001 0 1.765.459 3.488 1.332 5.008L2 22l5.122-1.311c1.472.802 3.13 1.226 4.882 1.226 5.518 0 10-4.48 10-10.001C22.004 6.48 17.522 2 12.004 2zm5.835 14.167c-.244.685-1.42 1.309-1.956 1.392-.518.08-1.196.113-3.447-.818-2.73-1.129-4.508-3.904-4.646-4.086-.135-.183-1.1-1.464-1.1-2.793 0-1.328.697-1.982.946-2.247.247-.266.541-.332.721-.332.181 0 .362.002.52.01.168.009.394-.064.616.471.229.551.78 1.902.848 2.042.068.14.113.305.023.487-.091.182-.136.295-.271.455-.136.16-.285.358-.408.48-.135.136-.277.283-.119.555.158.271.703 1.16 1.51 1.879 1.037.925 1.91 1.211 2.181 1.347.272.136.43.113.589-.068.158-.182.678-.792.86-1.064.181-.271.362-.226.61-.136.249.091 1.583.746 1.854.882.272.136.452.204.52.317.068.113.068.656-.176 1.341z"/>
+                        </svg>
+                    </a>
+                    <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:18px">
+                        <span id="brand-text-desktop" class="font-metropolis" style="font-size:clamp(20px, 2vw, 20px);font-weight:800;color:#E8799A;line-height:1;white-space:nowrap;display:block;font-synthesis:none">
+                            RatpacCheck.
+                        </span>
+                        <span id="tagline-text-desktop" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:clamp(9px, 1vw, 10px);font-weight:450;color:#6B6B6B;letter-spacing:0.04em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;">
+                            we <span style="font-weight:800">CARE</span> about your <span style="font-weight:800">SKIN</span> &amp; <span style="font-weight:800">HAIR</span>
+                        </span>
+                    </a>
+                </div>
             
             <nav class="flex items-center" style="gap:32px">
                 <div class="megamenu-trigger-wrap" data-menu="shop" style="position:relative">
@@ -142,14 +150,21 @@ if (!defined('ABSPATH')) {
         <!-- Mobile Header (lg:hidden) -->
         <div class="lg:hidden flex flex-col">
             <div class="px-4 flex items-center justify-between" style="min-height:52px">
-                <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:17px">
-                    <span id="brand-text-mobile" class="font-metropolis" style="font-size:18px;font-weight:800;color:#E8799A;line-height:1;display:block;white-space:nowrap;font-synthesis:none">
-                        RatpacCheck.
-                    </span>
-                    <span id="tagline-text-mobile" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:8.5px;font-weight:450;color:#6B6B6B;letter-spacing:0.03em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;transform:scaleX(1)">
-                        we <span style="font-weight:800">CARE</span> about your <span style="font-weight:800">SKIN</span> &amp; <span style="font-weight:800">HAIR</span>
-                    </span>
-                </a>
+                <div class="flex items-center gap-2">
+                    <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="whatsapp-nav-btn" aria-label="Contact RatpacCheck on WhatsApp" title="Chat on WhatsApp" style="width:30px;height:30px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                            <path d="M12.004 2c-5.518 0-9.996 4.48-9.996 10.001 0 1.765.459 3.488 1.332 5.008L2 22l5.122-1.311c1.472.802 3.13 1.226 4.882 1.226 5.518 0 10-4.48 10-10.001C22.004 6.48 17.522 2 12.004 2zm5.835 14.167c-.244.685-1.42 1.309-1.956 1.392-.518.08-1.196.113-3.447-.818-2.73-1.129-4.508-3.904-4.646-4.086-.135-.183-1.1-1.464-1.1-2.793 0-1.328.697-1.982.946-2.247.247-.266.541-.332.721-.332.181 0 .362.002.52.01.168.009.394-.064.616.471.229.551.78 1.902.848 2.042.068.14.113.305.023.487-.091.182-.136.295-.271.455-.136.16-.285.358-.408.48-.135.136-.277.283-.119.555.158.271.703 1.16 1.51 1.879 1.037.925 1.91 1.211 2.181 1.347.272.136.43.113.589-.068.158-.182.678-.792.86-1.064.181-.271.362-.226.61-.136.249.091 1.583.746 1.854.882.272.136.452.204.52.317.068.113.068.656-.176 1.341z"/>
+                        </svg>
+                    </a>
+                    <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:17px">
+                        <span id="brand-text-mobile" class="font-metropolis" style="font-size:18px;font-weight:800;color:#E8799A;line-height:1;display:block;white-space:nowrap;font-synthesis:none">
+                            RatpacCheck.
+                        </span>
+                        <span id="tagline-text-mobile" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:8.5px;font-weight:450;color:#6B6B6B;letter-spacing:0.03em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;transform:scaleX(1)">
+                            we <span style="font-weight:800">CARE</span> about your <span style="font-weight:800">SKIN</span> &amp; <span style="font-weight:800">HAIR</span>
+                        </span>
+                    </a>
+                </div>
                 <div class="flex items-center gap-4">
                     <button type="button" id="mobile-search-trigger" style="background:none;border:none;cursor:pointer;color:#1A1A1A;display:flex;align-items:center;padding:4px" title="Search products">
                         <svg aria-hidden="true" class="lucide lucide-search" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -184,6 +199,86 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
     </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════
+         ONE-TIME INTERNATIONAL ORDERS NOTIFICATION (Near WhatsApp / Navbar)
+         ═══════════════════════════════════════════════════════════════ -->
+    <div id="international-orders-popup" class="hidden" role="dialog" aria-modal="false" aria-labelledby="intl-popup-title">
+        <div class="intl-popup-card">
+            <span class="intl-popup-arrow"></span>
+            <button type="button" id="intl-popup-close" class="intl-popup-close-btn" aria-label="Close notification">&times;</button>
+            <div class="intl-popup-badge-row">
+                <span class="intl-popup-dot"></span>
+                <span class="intl-popup-badge">WORLDWIDE ASSISTANCE</span>
+            </div>
+            <h3 id="intl-popup-title" class="intl-popup-heading">International Orders Accepted</h3>
+            <p class="intl-popup-text">
+                We accept orders from customers outside India. Contact us on WhatsApp for international ordering and assistance.
+            </p>
+            <div class="intl-popup-action-row">
+                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" id="intl-popup-cta" class="intl-popup-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
+                        <path d="M12.004 2c-5.518 0-9.996 4.48-9.996 10.001 0 1.765.459 3.488 1.332 5.008L2 22l5.122-1.311c1.472.802 3.13 1.226 4.882 1.226 5.518 0 10-4.48 10-10.001C22.004 6.48 17.522 2 12.004 2zm5.835 14.167c-.244.685-1.42 1.309-1.956 1.392-.518.08-1.196.113-3.447-.818-2.73-1.129-4.508-3.904-4.646-4.086-.135-.183-1.1-1.464-1.1-2.793 0-1.328.697-1.982.946-2.247.247-.266.541-.332.721-.332.181 0 .362.002.52.01.168.009.394-.064.616.471.229.551.78 1.902.848 2.042.068.14.113.305.023.487-.091.182-.136.295-.271.455-.136.16-.285.358-.408.48-.135.136-.277.283-.119.555.158.271.703 1.16 1.51 1.879 1.037.925 1.91 1.211 2.181 1.347.272.136.43.113.589-.068.158-.182.678-.792.86-1.064.181-.271.362-.226.61-.136.249.091 1.583.746 1.854.882.272.136.452.204.52.317.068.113.068.656-.176 1.341z"/>
+                    </svg>
+                    <span>Chat on WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var KEY = 'ratpaccheck_international_orders_popup_seen';
+        function initIntlPopup() {
+            try {
+                if (localStorage.getItem(KEY)) {
+                    return;
+                }
+            } catch (e) {
+                return;
+            }
+            var popup = document.getElementById('international-orders-popup');
+            if (!popup) return;
+
+            setTimeout(function() {
+                popup.classList.remove('hidden');
+                popup.classList.add('intl-popup-animate');
+            }, 700);
+
+            function dismiss() {
+                try {
+                    localStorage.setItem(KEY, 'true');
+                } catch (e) {}
+                popup.style.opacity = '0';
+                popup.style.transform = 'translateY(-6px)';
+                popup.style.transition = 'all 0.25s ease';
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 260);
+            }
+
+            var closeBtn = document.getElementById('intl-popup-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    dismiss();
+                });
+            }
+
+            var ctaBtn = document.getElementById('intl-popup-cta');
+            if (ctaBtn) {
+                ctaBtn.addEventListener('click', function() {
+                    dismiss();
+                });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initIntlPopup);
+        } else {
+            initIntlPopup();
+        }
+    })();
+    </script>
 
     <!-- ══════════════════════════════════════════
          DESKTOP MEGA MENU DROPDOWN (100% Vercel Match)

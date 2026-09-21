@@ -723,4 +723,185 @@ a.touch-button:hover {
   font-size: 13px;
 }
 
+/* ── WhatsApp Navbar Button ── */
+.whatsapp-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #25D366;
+  background-color: #F0FAF3;
+  border: 1px solid #D4F4DD;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.whatsapp-nav-btn:hover {
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-color: #25D366;
+  transform: scale(1.06);
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.25);
+}
+
+.whatsapp-nav-btn:focus-visible {
+  outline: 2px solid #25D366;
+  outline-offset: 2px;
+}
+
+/* ── International Orders Notification Popup ── */
+#international-orders-popup {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 16px;
+  right: 16px;
+  max-width: 340px;
+  margin: 0 auto;
+  z-index: 60;
+}
+
+@media (min-width: 1024px) {
+  #international-orders-popup {
+    left: max(24px, calc((100vw - 1280px) / 2 + 40px));
+    right: auto;
+    margin: 0;
+    width: 320px;
+  }
+}
+
+.intl-popup-card {
+  position: relative;
+  background-color: #FFFFFF;
+  border: 1px solid #E8E1D5;
+  border-radius: 16px;
+  padding: 18px 18px 16px 18px;
+  box-shadow: 0 14px 36px -4px rgba(35, 25, 15, 0.14), 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.intl-popup-arrow {
+  position: absolute;
+  top: -6px;
+  left: 20px;
+  width: 11px;
+  height: 11px;
+  background-color: #FFFFFF;
+  border-left: 1px solid #E8E1D5;
+  border-top: 1px solid #E8E1D5;
+  transform: rotate(45deg);
+  border-top-left-radius: 2px;
+}
+
+.intl-popup-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #8C847C;
+  font-size: 20px;
+  font-family: inherit;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.intl-popup-close-btn:hover {
+  color: #1A1A1A;
+  background-color: #F5EFE6;
+}
+
+.intl-popup-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
+.intl-popup-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #E8799A;
+}
+
+.intl-popup-badge {
+  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #E8799A;
+}
+
+.intl-popup-heading {
+  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 6px;
+  line-height: 1.3;
+  padding-right: 20px;
+}
+
+.intl-popup-text {
+  font-family: 'Adobe Hebrew', 'Noto Serif', Georgia, serif;
+  font-size: 12.5px;
+  color: #5C554E;
+  line-height: 1.45;
+  margin: 0 0 14px;
+}
+
+.intl-popup-action-row {
+  display: flex;
+  align-items: center;
+}
+
+.intl-popup-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 7px 15px;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.intl-popup-btn:hover {
+  background-color: #E8799A;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(232, 121, 154, 0.25);
+}
+
+@keyframes intlPopupEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.intl-popup-animate {
+  animation: intlPopupEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+
 
