@@ -231,17 +231,21 @@ if (!defined('ABSPATH')) {
     </div>
     <script>
     (function() {
-        var KEY = 'ratpaccheck_international_orders_popup_seen';
+        var KEY = 'ratpaccheck_intl_popup_seen';
         function initIntlPopup() {
             var popup = document.getElementById('international-orders-popup');
             if (!popup) return;
 
             try {
+                // Clear any legacy permanent locks from earlier testing
+                localStorage.removeItem('ratpaccheck_international_orders_popup_seen');
+
                 var urlParams = new URLSearchParams(window.location.search);
                 if (urlParams.get('reset_popup') === '1' || urlParams.get('test_popup') === '1') {
+                    sessionStorage.removeItem(KEY);
                     localStorage.removeItem(KEY);
                 }
-                if (localStorage.getItem(KEY)) {
+                if (sessionStorage.getItem(KEY)) {
                     return;
                 }
             } catch (e) {
@@ -255,19 +259,19 @@ if (!defined('ABSPATH')) {
                 popup.classList.remove('hidden');
                 popup.classList.add('intl-popup-animate');
 
-                // Mark seen so it only appears once
+                // Mark seen so it appears only once per session
                 try {
-                    localStorage.setItem(KEY, 'true');
+                    sessionStorage.setItem(KEY, 'true');
                 } catch (e) {}
 
                 // Automatically disappear after 8 seconds
                 autoDismissTimer = setTimeout(dismiss, 8000);
-            }, 400);
+            }, 300);
 
             function dismiss() {
                 if (autoDismissTimer) clearTimeout(autoDismissTimer);
                 try {
-                    localStorage.setItem(KEY, 'true');
+                    sessionStorage.setItem(KEY, 'true');
                 } catch (e) {}
                 popup.style.opacity = '0';
                 popup.style.transform = 'translateY(-6px)';
