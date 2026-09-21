@@ -326,3 +326,269 @@ function ratpaccheck_render_product_card($product, $extra_classes = '') {
     <?php
     return ob_get_clean();
 }
+
+/**
+ * ─────────────────────────────────────────────────────────────────────────────
+ * ROUTING, REWRITE RULES & TEMPLATE DISPATCH ARCHITECTURE
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/**
+ * Register Custom Query Variables
+ */
+function ratpaccheck_register_query_vars($vars) {
+    $vars[] = 'product_detail';
+    $vars[] = 'product_id';
+    $vars[] = 'category';
+    return $vars;
+}
+add_filter('query_vars', 'ratpaccheck_register_query_vars');
+
+/**
+ * Register WordPress Rewrite Rules for Custom Endpoints
+ */
+function ratpaccheck_add_rewrite_rules() {
+    add_rewrite_tag('%product_detail%', '([^&]+)');
+    add_rewrite_tag('%product_id%', '([0-9]+)');
+
+    // Rule: /product-detail/?product_id=104 or /product-detail/
+    add_rewrite_rule('^product-detail/?$', 'index.php?product_detail=1', 'top');
+
+    // Rule: /product/{id}/ (e.g. /product/104/)
+    add_rewrite_rule('^product/([0-9]+)/?$', 'index.php?product_detail=1&product_id=$matches[1]', 'top');
+
+    // Rule: /collections/{category}/ (e.g. /collections/hair/)
+    add_rewrite_rule('^collections/([^/]+)/?$', 'index.php?pagename=collections&category=$matches[1]', 'top');
+}
+add_action('init', 'ratpaccheck_add_rewrite_rules');
+
+/**
+ * Ensure CPT template hierarchy uses single-ratpac_product.php or single-product.php
+ */
+function ratpaccheck_cpt_template_include($template) {
+    if (is_singular('ratpac_product')) {
+        $cpt_tpl = get_template_directory() . '/single-ratpac_product.php';
+        if (file_exists($cpt_tpl)) {
+            return $cpt_tpl;
+        }
+        $prod_tpl = get_template_directory() . '/single-product.php';
+        if (file_exists($prod_tpl)) {
+            return $prod_tpl;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'ratpaccheck_cpt_template_include', 20);
+
+/**
+ * Prevent WordPress canonical redirects or early 404s on known theme routes
+ */
+function ratpaccheck_pre_template_redirect() {
+    global $wp_query;
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+    $path = trim(strtok($request_uri, '?'), '/');
+    $site_path = trim(parse_url(home_url(), PHP_URL_PATH) ?? '', '/');
+    if ($site_path && strpos($path, $site_path) === 0) {
+        $path = trim(substr($path, strlen($site_path)), '/');
+    }
+
+    $target_routes = array(
+        'product-detail', 'about', 'products', 'collections', 'checkout', 'customer-help', 'track-order'
+    );
+    if (in_array($path, $target_routes, true) || preg_match('#^(product/[0-9]+|collections/[^/]+)$#', $path) || get_query_var('product_detail')) {
+        if ($wp_query && $wp_query->is_404) {
+            $wp_query->is_404 = false;
+        }
+    }
+}
+add_action('template_redirect', 'ratpaccheck_pre_template_redirect', 1);
+
+/**
+ * Universal Template & Virtual Route Dispatcher
+ *
+ * Ensures /product-detail/, /product/{id}, and all core theme pages (/about/,
+ * /products/, /collections/, /checkout/, /customer-help/, /track-order/)
+ * resolve directly to their PHP templates with HTTP 200 even on a brand-new,
+ * empty WordPress installation without requiring manual page creation.
+ */
+function ratpaccheck_template_router($template) {
+    global $wp_query;
+
+    $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+    $path = trim(strtok($request_uri, '?'), '/');
+
+    // Strip subfolder if WordPress is installed in a subdirectory
+    $site_path = trim(parse_url(home_url(), PHP_URL_PATH) ?? '', '/');
+    if ($site_path && strpos($path, $site_path) === 0) {
+        $path = trim(substr($path, strlen($site_path)), '/');
+    }
+
+    $product_detail_var = function_exists('get_query_var') ? get_query_var('product_detail') : false;
+
+    // 1. Route: Product Detail (/product-detail/ or query var product_detail or /product/{id})
+    if ($product_detail_var || $path === 'product-detail' || preg_match('#^product/([0-9]+)$#', $path, $m)) {
+        if (!empty($m[1])) {
+            $_GET['product_id'] = intval($m[1]);
+            set_query_var('product_id', intval($m[1]));
+        }
+        if ($wp_query) {
+            $wp_query->is_404 = false;
+            $wp_query->is_single = true;
+            $wp_query->is_page = false;
+        }
+        status_header(200);
+        $single_prod = get_template_directory() . '/single-product.php';
+        if (file_exists($single_prod)) {
+            return $single_prod;
+        }
+        $single_ratpac = get_template_directory() . '/single-ratpac_product.php';
+        if (file_exists($single_ratpac)) {
+            return $single_ratpac;
+        }
+    }
+
+    // 2. Route: Collections sub-categories (/collections/hair, /collections/skin)
+    if (preg_match('#^collections/([^/]+)$#', $path, $m)) {
+        $_GET['category'] = sanitize_text_field($m[1]);
+        set_query_var('category', sanitize_text_field($m[1]));
+        if ($wp_query) {
+            $wp_query->is_404 = false;
+            $wp_query->is_page = true;
+        }
+        status_header(200);
+        $col_tpl = get_template_directory() . '/page-collections.php';
+        if (file_exists($col_tpl)) {
+            return $col_tpl;
+        }
+    }
+
+    // 3. Fallback virtual routes if WP page does not exist in DB (prevents 404 on fresh installs)
+    $virtual_pages = array(
+        'about'         => '/page-about.php',
+        'products'      => '/page-products.php',
+        'collections'   => '/page-collections.php',
+        'checkout'      => '/page-checkout.php',
+        'customer-help' => '/page-customer-help.php',
+        'track-order'   => '/page-track-order.php',
+    );
+
+    if (isset($virtual_pages[$path])) {
+        $target_file = get_template_directory() . $virtual_pages[$path];
+        if (file_exists($target_file)) {
+            if ($wp_query) {
+                $wp_query->is_404 = false;
+                $wp_query->is_page = true;
+            }
+            status_header(200);
+            return $target_file;
+        }
+    }
+
+    return $template;
+}
+add_filter('template_include', 'ratpaccheck_template_router', 99);
+
+/**
+ * Safely find a page by its post_name (slug) across all WP versions
+ */
+function ratpaccheck_get_page_by_slug($slug) {
+    $pages = get_posts(array(
+        'name'        => $slug,
+        'post_type'   => 'page',
+        'post_status' => 'any',
+        'numberposts' => 1,
+    ));
+    return !empty($pages) ? $pages[0] : null;
+}
+
+/**
+ * Programmatically create required theme pages in the WordPress database
+ * (Runs safely on theme activation or one-time admin setup)
+ */
+function ratpaccheck_ensure_default_pages() {
+    $default_pages = array(
+        'about' => array(
+            'title'    => 'About Us',
+            'template' => 'page-about.php',
+        ),
+        'products' => array(
+            'title'    => 'Products Catalog',
+            'template' => 'page-products.php',
+        ),
+        'collections' => array(
+            'title'    => 'Collections',
+            'template' => 'page-collections.php',
+        ),
+        'checkout' => array(
+            'title'    => 'Checkout',
+            'template' => 'page-checkout.php',
+        ),
+        'customer-help' => array(
+            'title'    => 'Customer Help & FAQs',
+            'template' => 'page-customer-help.php',
+        ),
+        'track-order' => array(
+            'title'    => 'Track Order',
+            'template' => 'page-track-order.php',
+        ),
+        'product-detail' => array(
+            'title'    => 'Product Detail',
+            'template' => 'single-product.php',
+        ),
+    );
+
+    foreach ($default_pages as $slug => $data) {
+        $existing = ratpaccheck_get_page_by_slug($slug);
+        if (!$existing) {
+            $page_id = wp_insert_post(array(
+                'post_title'     => $data['title'],
+                'post_name'      => $slug,
+                'post_status'    => 'publish',
+                'post_type'      => 'page',
+                'comment_status' => 'closed',
+                'ping_status'    => 'closed',
+            ));
+            if ($page_id && !is_wp_error($page_id) && !empty($data['template'])) {
+                update_post_meta($page_id, '_wp_page_template', $data['template']);
+            }
+        } else {
+            // Ensure template is assigned if missing
+            $current_tpl = get_post_meta($existing->ID, '_wp_page_template', true);
+            if (empty($current_tpl) || $current_tpl === 'default') {
+                update_post_meta($existing->ID, '_wp_page_template', $data['template']);
+            }
+        }
+    }
+}
+
+/**
+ * Run safe auto-setup on theme switch
+ */
+function ratpaccheck_on_theme_activation() {
+    ratpaccheck_ensure_default_pages();
+    ratpaccheck_add_rewrite_rules();
+    flush_rewrite_rules(false);
+    update_option('ratpaccheck_pages_installed_v2', '1.0');
+}
+add_action('after_switch_theme', 'ratpaccheck_on_theme_activation');
+
+/**
+ * One-time check for fresh deployments or manual setup trigger
+ */
+function ratpaccheck_check_setup() {
+    if (get_option('ratpaccheck_pages_installed_v2') !== '1.0') {
+        ratpaccheck_ensure_default_pages();
+        ratpaccheck_add_rewrite_rules();
+        flush_rewrite_rules(false);
+        update_option('ratpaccheck_pages_installed_v2', '1.0');
+    }
+    // Allow admin to re-run setup via ?ratpaccheck_setup_pages=1
+    if (isset($_GET['ratpaccheck_setup_pages']) && current_user_can('manage_options')) {
+        ratpaccheck_ensure_default_pages();
+        ratpaccheck_add_rewrite_rules();
+        flush_rewrite_rules(false);
+        update_option('ratpaccheck_pages_installed_v2', '1.0');
+    }
+}
+add_action('init', 'ratpaccheck_check_setup', 20);
+

@@ -198,6 +198,39 @@ if (!function_exists('load_theme_textdomain')) {
 if (!function_exists('wp_kses_post')) {
     function wp_kses_post($t) { return $t; } // preview: allow already-escaped HTML
 }
+if (!function_exists('add_filter')) {
+    function add_filter() {}
+}
+if (!function_exists('add_rewrite_tag')) {
+    function add_rewrite_tag() {}
+}
+if (!function_exists('add_rewrite_rule')) {
+    function add_rewrite_rule() {}
+}
+if (!function_exists('get_option')) {
+    function get_option($o, $d = false) { return '1.0'; }
+}
+if (!function_exists('update_option')) {
+    function update_option() {}
+}
+if (!function_exists('flush_rewrite_rules')) {
+    function flush_rewrite_rules() {}
+}
+if (!function_exists('is_singular')) {
+    function is_singular() { return false; }
+}
+if (!function_exists('status_header')) {
+    function status_header() {}
+}
+if (!function_exists('get_query_var')) {
+    function get_query_var($v, $d = '') { return $d; }
+}
+if (!function_exists('set_query_var')) {
+    function set_query_var() {}
+}
+if (!function_exists('current_user_can')) {
+    function current_user_can() { return false; }
+}
 
 // Load Theme Functions
 require_once __DIR__ . '/wordpress-theme/ratpaccheck/functions.php';

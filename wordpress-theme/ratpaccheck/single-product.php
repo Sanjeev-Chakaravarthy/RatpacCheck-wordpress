@@ -13,13 +13,73 @@ if (!defined('ABSPATH')) {
 
 get_header();
 
-$product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 101;
-$product = ratpaccheck_get_product_by_id($product_id);
+$product_id = 0;
+if (isset($_GET['product_id']) && is_numeric($_GET['product_id'])) {
+    $product_id = intval($_GET['product_id']);
+} elseif (function_exists('get_query_var') && get_query_var('product_id')) {
+    $product_id = intval(get_query_var('product_id'));
+}
 
+global $post;
+$product = null;
+
+if ($product_id > 0) {
+    $product = ratpaccheck_get_product_by_id($product_id);
+}
+
+// If accessed as a WordPress CPT post (/product-item/slug/) without explicit product_id
+if (!$product && isset($post) && is_object($post) && isset($post->post_type) && $post->post_type === 'ratpac_product') {
+    $meta_product_id = get_post_meta($post->ID, '_product_id', true);
+    if ($meta_product_id) {
+        $product = ratpaccheck_get_product_by_id(intval($meta_product_id));
+    }
+    if (!$product) {
+        // Try matching by post_name (slug) or post_title against static catalog
+        $all = ratpaccheck_get_all_products();
+        foreach ($all as $p) {
+            $p_slug = isset($p['name']) ? sanitize_title($p['name']) : '';
+            if (($p_slug && $p_slug === $post->post_name) || (isset($p['name']) && strcasecmp($p['name'], $post->post_title) === 0)) {
+                $product = ratpaccheck_get_product_by_id($p['id']);
+                break;
+            }
+        }
+    }
+    // If it's a user-created database CPT not in static catalog, construct product array from post meta
+    if (!$product) {
+        $price = get_post_meta($post->ID, '_price', true);
+        $original_price = get_post_meta($post->ID, '_original_price', true);
+        $subtitle = get_post_meta($post->ID, '_subtitle', true);
+        $badge = get_post_meta($post->ID, '_badge', true);
+        $rating = get_post_meta($post->ID, '_rating', true) ?: '4.8';
+        $reviews = get_post_meta($post->ID, '_reviews', true) ?: '120';
+        $thumb_url = get_the_post_thumbnail_url($post->ID, 'full') ?: '';
+
+        $product = array(
+            'id'            => $post->ID,
+            'name'          => get_the_title($post->ID),
+            'subtitle'      => $subtitle ?: '',
+            'price'         => $price ? intval($price) : 499,
+            'originalPrice' => $original_price ? intval($original_price) : 699,
+            'image'         => $thumb_url,
+            'images'        => $thumb_url ? array($thumb_url) : array(),
+            'rating'        => floatval($rating),
+            'reviews'       => intval($reviews),
+            'badge'         => $badge ?: '',
+            'category'      => 'Skin',
+            'type'          => 'Treatment',
+            'inStock'       => true,
+            'description'   => apply_filters('the_content', $post->post_content),
+        );
+    }
+}
+
+// Fallback to default product (101) or first available
 if (!$product) {
-    // Fallback to first available product if requested ID not found
-    $all = ratpaccheck_get_all_products();
-    $product = !empty($all) ? $all[0] : null;
+    $product = ratpaccheck_get_product_by_id(101);
+    if (!$product) {
+        $all = ratpaccheck_get_all_products();
+        $product = !empty($all) ? $all[0] : null;
+    }
 }
 
 if (!$product) :

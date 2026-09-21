@@ -11,26 +11,31 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-$category = isset($_GET['category']) ? ucfirst(strtolower(sanitize_text_field($_GET['category']))) : '';
+$raw_category = isset($_GET['category']) ? $_GET['category'] : (function_exists('get_query_var') ? get_query_var('category') : '');
+$category = !empty($raw_category) ? ucfirst(strtolower(sanitize_text_field($raw_category))) : '';
 
 // Vercel routes /collections/hair -> /products?concern=Hair and /collections/skin -> /products?concern=Skin
 if ($category === 'Hair') {
-    if (!headers_sent()) {
-        $redirect_url = function_exists('home_url') ? home_url('/products?concern=Hair') : '?page=products&concern=Hair';
+    $redirect_url = function_exists('home_url') ? home_url('/products?concern=Hair') : '?page=products&concern=Hair';
+    if (function_exists('wp_safe_redirect')) {
+        wp_safe_redirect($redirect_url);
+        exit;
+    } elseif (!headers_sent()) {
         header('Location: ' . $redirect_url);
         exit;
     } else {
-        $redirect_url = function_exists('home_url') ? home_url('/products?concern=Hair') : '?page=products&concern=Hair';
         echo '<script>window.location.href="' . esc_url($redirect_url) . '";</script>';
         exit;
     }
 } elseif ($category === 'Skin') {
-    if (!headers_sent()) {
-        $redirect_url = function_exists('home_url') ? home_url('/products?concern=Skin') : '?page=products&concern=Skin';
+    $redirect_url = function_exists('home_url') ? home_url('/products?concern=Skin') : '?page=products&concern=Skin';
+    if (function_exists('wp_safe_redirect')) {
+        wp_safe_redirect($redirect_url);
+        exit;
+    } elseif (!headers_sent()) {
         header('Location: ' . $redirect_url);
         exit;
     } else {
-        $redirect_url = function_exists('home_url') ? home_url('/products?concern=Skin') : '?page=products&concern=Skin';
         echo '<script>window.location.href="' . esc_url($redirect_url) . '";</script>';
         exit;
     }
