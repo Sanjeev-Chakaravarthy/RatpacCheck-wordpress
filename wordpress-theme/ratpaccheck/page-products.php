@@ -535,8 +535,8 @@ if ($active_routine) {
                     </div>
 
                     <!-- Heading H1 (Centered above routine box & products) -->
-                    <div class="flex justify-center items-center text-center mb-7 mx-auto w-full">
-                        <h1 class="w-full text-black font-metropolis" style="font-size:clamp(32px, 3.6vw, 48px);font-weight:700;letter-spacing:-0.02em;line-height:1.15;text-align:center;">
+                    <div class="flex justify-center items-center text-center mb-5 mx-auto w-full">
+                        <h1 class="w-full text-black font-metropolis" style="font-size:clamp(24px, 2.4vw, 36px);font-weight:600;letter-spacing:-0.015em;line-height:1.25;text-align:center;">
                             <?php echo esc_html($page_title); ?>
                         </h1>
                     </div>
