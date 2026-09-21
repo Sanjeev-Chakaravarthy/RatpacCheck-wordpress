@@ -540,52 +540,10 @@ if ($active_routine) {
                      RIGHT: Products Area
                      ═══════════════════════════════════════ -->
                 <div class="flex min-h-[60vh] w-full min-w-0 flex-1 flex-col">
-                    
-                    <!-- Showing Count Bar (hidden on mobile, visible lg) -->
-                    <div class="hidden lg:flex items-center justify-between mb-4 flex-wrap gap-3">
-                        <span class="font-adobe text-sm text-[#8B8178]">
-                            Showing <?php echo $product_count; ?> product<?php echo $product_count !== 1 ? 's' : ''; ?>
-                        </span>
-                    </div>
-
-                    <?php if ($product_count > 0) : ?>
-                        <!-- Product Grid (2 cols mobile, 3 cols sm, 4 cols md/lg) -->
-                        <div class="flex justify-center w-full">
-                            <div class="grid w-full flex-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 pb-8 md:justify-start">
-                                <?php
-                                foreach ($filtered_products as $prod) {
-                                    echo ratpaccheck_render_product_card($prod);
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    <?php else : ?>
-                        <!-- Empty State -->
-                        <div class="flex flex-1 flex-col items-center justify-center text-center py-16 lg:-translate-x-[145px]">
-                            <p class="body-copy text-base text-[#8B8178] mb-4">
-                                No products match the selected filters.
-                            </p>
-                            <a href="<?php echo esc_url(home_url('/products')); ?>" class="btn-primary rounded-full px-6 py-2.5 text-sm font-semibold tracking-wide">
-                                Clear All Filters
-                            </a>
-                        </div>
-                    <?php endif; ?>
-
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</section>
 
 <?php if ($active_routine) : ?>
-<!-- ═══════════════════════════════════════════════════════════════
-     SKIN CARE ROUTINE — Single Premium Contained Box
-     ═══════════════════════════════════════════════════════════════ -->
-<section class="scr-section" aria-label="Skin Care Routine">
-    <div class="scr-container">
-        <div class="scr-box">
+                    <!-- ── Skin Care Routine Card (Top above products) ── -->
+                    <div class="scr-box mb-8" aria-label="Skin Care Routine">
 
             <!-- ── Header Inside Box ── -->
             <div class="scr-header">
@@ -666,11 +624,48 @@ if ($active_routine) {
                     <span class="scr-tagline">BEAUTY IS YOUR'S AT AFFORDABLE <span class="scr-heart">&#9829;</span></span>
                 </div>
             </div>
+                    </div>
+                    <?php endif; ?>
 
+                    <!-- Showing Count Bar (hidden on mobile, visible lg) -->
+                    <div class="hidden lg:flex items-center justify-between mb-4 flex-wrap gap-3">
+                        <span class="font-adobe text-sm text-[#8B8178]">
+                            Showing <?php echo $product_count; ?> product<?php echo $product_count !== 1 ? 's' : ''; ?>
+                        </span>
+                    </div>
+
+                    <?php if ($product_count > 0) : ?>
+                        <!-- Product Grid (2 cols mobile, 3 cols sm, 4 cols md/lg) -->
+                        <div class="flex justify-center w-full">
+                            <div class="grid w-full flex-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 pb-8 md:justify-start">
+                                <?php
+                                foreach ($filtered_products as $prod) {
+                                    echo ratpaccheck_render_product_card($prod);
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <!-- Empty State -->
+                        <div class="flex flex-1 flex-col items-center justify-center text-center py-16 lg:-translate-x-[145px]">
+                            <p class="body-copy text-base text-[#8B8178] mb-4">
+                                No products match the selected filters.
+                            </p>
+                            <a href="<?php echo esc_url(home_url('/products')); ?>" class="btn-primary rounded-full px-6 py-2.5 text-sm font-semibold tracking-wide">
+                                Clear All Filters
+                            </a>
+                        </div>
+                    <?php endif; ?>
+
+                </div>
+
+            </div>
         </div>
+
     </div>
 </section>
-<?php endif; ?>
+
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
