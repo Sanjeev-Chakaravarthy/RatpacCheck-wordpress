@@ -557,7 +557,7 @@ if ($active_routine) {
                 <div class="scr-step">
                     <div class="scr-img-wrap">
                         <img
-                            src="<?php echo esc_url($step['image']); ?>"
+                            src="<?php echo esc_url(ratpaccheck_img_url($step['image'])); ?>"
                             alt="<?php echo esc_attr($step['product_name']); ?>"
                             class="scr-img"
                             loading="lazy"
@@ -580,7 +580,7 @@ if ($active_routine) {
                     <div class="scr-special-img-col">
                         <div class="scr-special-img-wrap">
                             <img
-                                src="<?php echo esc_url($sp['image']); ?>"
+                                src="<?php echo esc_url(ratpaccheck_img_url($sp['image'])); ?>"
                                 alt="<?php echo esc_attr($sp['product_name']); ?>"
                                 class="scr-img"
                                 loading="lazy"

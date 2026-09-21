@@ -4,7 +4,7 @@ Theme URI: https://ratpaccheck.com
 Author: RatpacCheck Creative & Engineering Team
 Author URI: https://ratpaccheck.com
 Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
-Version: 1.0.0
+Version: 1.0.1
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -725,29 +725,34 @@ a.touch-button:hover {
 
 /* ── WhatsApp Navbar Button ── */
 .whatsapp-nav-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #25D366;
-  background-color: #F0FAF3;
-  border: 1px solid #D4F4DD;
+  background-color: #25D366;
+  color: #FFFFFF;
+  border: none;
   border-radius: 50%;
   text-decoration: none;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(37, 211, 102, 0.35);
 }
 
 .whatsapp-nav-btn:hover {
-  background-color: #25D366;
+  background-color: #20ba5a;
   color: #FFFFFF;
-  border-color: #25D366;
   transform: scale(1.06);
-  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.25);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.45);
 }
 
 .whatsapp-nav-btn:focus-visible {
   outline: 2px solid #25D366;
   outline-offset: 2px;
+}
+
+.whatsapp-nav-btn svg {
+  fill: currentColor;
+  display: block;
 }
 
 /* ── International Orders Notification Popup ── */

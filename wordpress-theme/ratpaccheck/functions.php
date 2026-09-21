@@ -199,17 +199,19 @@ add_action('save_post_ratpac_product', 'ratpaccheck_save_product_meta');
  * Enqueue scripts and styles.
  */
 function ratpaccheck_scripts() {
+    $theme_version = '1.0.1';
+
     // Enqueue Google Fonts (Noto Serif & Instrument Sans)
     wp_enqueue_style('ratpaccheck-fonts', 'https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap', array(), null);
 
     // Enqueue Compiled Tailwind CSS
-    wp_enqueue_style('ratpaccheck-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0');
+    wp_enqueue_style('ratpaccheck-main', get_template_directory_uri() . '/assets/css/main.css', array(), $theme_version);
 
     // Enqueue Theme Stylesheet Header
-    wp_enqueue_style('ratpaccheck-style', get_stylesheet_uri(), array('ratpaccheck-main'), '1.0.0');
+    wp_enqueue_style('ratpaccheck-style', get_stylesheet_uri(), array('ratpaccheck-main'), $theme_version);
 
     // Enqueue Interactive Vanilla JS
-    wp_enqueue_script('ratpaccheck-theme', get_template_directory_uri() . '/assets/js/theme.js', array(), '1.0.0', true);
+    wp_enqueue_script('ratpaccheck-theme', get_template_directory_uri() . '/assets/js/theme.js', array(), $theme_version, true);
 
     // Pass data to JS
     wp_localize_script('ratpaccheck-theme', 'RatpacCheckData', array(
