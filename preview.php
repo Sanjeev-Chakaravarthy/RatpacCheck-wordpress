@@ -184,6 +184,9 @@ if (!function_exists('add_meta_box')) {
 if (!function_exists('load_theme_textdomain')) {
     function load_theme_textdomain() {}
 }
+if (!function_exists('wp_kses_post')) {
+    function wp_kses_post($t) { return $t; } // preview: allow already-escaped HTML
+}
 
 // Load Theme Functions
 require_once __DIR__ . '/wordpress-theme/ratpaccheck/functions.php';

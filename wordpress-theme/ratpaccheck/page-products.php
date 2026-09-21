@@ -166,6 +166,198 @@ $skin_concerns = array("Acne", "Hyperpigmentation", "Dark Spots", "Melasma", "Ta
 $hair_concerns = array("Hairfall", "Dandruff");
 $visible_concerns = ($selected_category === 'Hair') ? $hair_concerns : ($selected_category === 'Skin' ? $skin_concerns : array_merge($skin_concerns, $hair_concerns));
 $type_options = array("Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen");
+
+// ══════════════════════════════════════════════════════════════════════════
+// SKIN CARE ROUTINE — Fully Data-Driven, Variable Step Count (3 / 4 / 5)
+// 'special' steps render as a wide horizontal card with multi-line description.
+// footer_notes[] is per-concern configurable.
+// ══════════════════════════════════════════════════════════════════════════
+$concern_routines = array(
+
+    // ── ACNE ── 3 steps ────────────────────────────────────────────────
+    'acne' => array(
+        'label'        => 'Acne',
+        'subtitle'     => 'Acne, Pimples, Very Lighter Dark Spots',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Gentle Formula even suitable for <strong>BEGINNERS</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply serum a few drops on skin & gently massage.',
+                  'product_name'=>'5% Multi-Functional Face Serum','image'=>'/images/Multi-functional%20(Face%20serum%205%25).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer (optional)',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+        ),
+    ),
+
+    // ── HYPERPIGMENTATION ── 5 steps ───────────────────────────────────
+    'hyperpigmentation' => array(
+        'label'        => 'Hyperpigmentation',
+        'subtitle'     => 'Brighten Skin, Melasma, Hyperpigmentation',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Gentle Formula even suitable for <strong>BEGINNERS</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply serum a few drops on skin & gently massage.',
+                  'product_name'=>'Deep Glow Face Serum','image'=>'/images/Deep%20glow%20(Face%20serum).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+            array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen',
+                  'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
+            array('num'=>5,'timing'=>'PM','instruction'=>'Step 5 : Exfoliating Toner (Weekly)',
+                  'description'=>"Apply toner Weekly twice or thrice only at night.\nAfter toner applied, use Our Multi Layer Hydrating Serum Strictly. No other serums.",
+                  'product_name'=>'6% Glycolic + Mulberry Exfoliating Toner','image'=>'/images/Mulberry%20(Exfoliating%20Toner).jpeg','special'=>true),
+        ),
+    ),
+
+    // ── DARK SPOTS ── 3 steps ──────────────────────────────────────────
+    'dark spots' => array(
+        'label'        => 'Dark Spots',
+        'subtitle'     => 'Dark Spots, Post-Acne Marks, Very Lighter Dark Spots',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Gentle Formula even suitable for <strong>BEGINNERS</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply serum a few drops on skin & gently massage.',
+                  'product_name'=>'5% Multi-Functional Face Serum','image'=>'/images/Multi-functional%20(Face%20serum%205%25).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer (optional)',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+        ),
+    ),
+
+    // ── MELASMA ── 5 steps ─────────────────────────────────────────────
+    'melasma' => array(
+        'label'        => 'Melasma',
+        'subtitle'     => 'Melasma, Hormonal Pigmentation, Deep Discolouration',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Consistent use recommended — results visible in <strong>4–8 weeks</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply brightening serum & gently massage.',
+                  'product_name'=>'Deep Glow Face Serum','image'=>'/images/Deep%20glow%20(Face%20serum).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+            array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen (must — prevents melasma from returning)',
+                  'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
+            array('num'=>5,'timing'=>'PM','instruction'=>'Step 5 : Exfoliating Toner (Weekly)',
+                  'description'=>"Apply toner Weekly twice or thrice only at night.\nAfter toner applied, use Our Multi Layer Hydrating Serum Strictly. No other serums.",
+                  'product_name'=>'6% Glycolic + Mulberry Exfoliating Toner','image'=>'/images/Mulberry%20(Exfoliating%20Toner).jpeg','special'=>true),
+        ),
+    ),
+
+    // ── TAN ── 4 steps ─────────────────────────────────────────────────
+    'tan' => array(
+        'label'        => 'Tan',
+        'subtitle'     => 'Sun Tan, UV-Induced Darkening, Dull & Uneven Skin',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Use <strong>Sunscreen daily</strong> for best de-tan results',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply brightening serum a few drops & massage.',
+                  'product_name'=>'Deep Glow Face Serum','image'=>'/images/Deep%20glow%20(Face%20serum).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+            array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen (must — prevents re-tanning)',
+                  'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
+        ),
+    ),
+
+    // ── BRIGHTENING SKIN ── 5 steps ────────────────────────────────────
+    'brightening skin' => array(
+        'label'        => 'Brightening Skin',
+        'subtitle'     => 'Brighten Skin, Melasma, Hyperpigmentation',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Gentle Formula even suitable for <strong>BEGINNERS</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply serum a few drops on skin & gently massage.',
+                  'product_name'=>'Deep Glow Face Serum','image'=>'/images/Deep%20glow%20(Face%20serum).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+            array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen',
+                  'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
+            array('num'=>5,'timing'=>'PM','instruction'=>'Step 5 : Exfoliating Toner (Weekly)',
+                  'description'=>"Apply toner Weekly twice or thrice only at night.\nAfter toner applied, use Our Multi Layer Hydrating Serum Strictly. No other serums.",
+                  'product_name'=>'6% Glycolic + Mulberry Exfoliating Toner','image'=>'/images/Mulberry%20(Exfoliating%20Toner).jpeg','special'=>true),
+        ),
+    ),
+
+    // ── OILINESS ── 4 steps ────────────────────────────────────────────
+    'oiliness' => array(
+        'label'        => 'Oiliness',
+        'subtitle'     => 'Excess Sebum, Oily & Shiny Skin, Enlarged Pores',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Non-comedogenic formula — <strong>will not clog pores</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face to remove excess oil.',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply oil-control serum & gently massage.',
+                  'product_name'=>'5% Multi-Functional Face Serum','image'=>'/images/Multi-functional%20(Face%20serum%205%25).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Lightweight Moisturizer',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+            array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen (non-comedogenic — AM only)',
+                  'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
+        ),
+    ),
+
+    // ── DEHYDRATED SKIN ── 3 steps ─────────────────────────────────────
+    'dehydrated skin' => array(
+        'label'        => 'Dehydrated Skin',
+        'subtitle'     => 'Dehydrated, Dry, Moisture-Lacking & Tight Skin',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Drink water & use consistently for <strong>plump hydrated skin</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face with a gentle hydrating cleanser.',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply hydrating serum to damp skin & press in gently.',
+                  'product_name'=>'Multi Layer Hydrating Serum','image'=>'/images/multi%20layer%20hydrating%20serum.png','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer to seal all hydration in.',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+        ),
+    ),
+
+); // end $concern_routines
+
+// Determine active routine
+$active_routine     = null;
+$active_concern_key = !empty($selected_concerns) ? strtolower($selected_concerns[0]) : '';
+if (!empty($active_concern_key) && isset($concern_routines[$active_concern_key])) {
+    $active_routine = $concern_routines[$active_concern_key];
+}
+
+// Pre-split steps into normal and special (wide toner card) groups
+$normal_steps  = array();
+$special_steps = array();
+if ($active_routine) {
+    foreach ($active_routine['steps'] as $step) {
+        if (!empty($step['special'])) {
+            $special_steps[] = $step;
+        } else {
+            $normal_steps[] = $step;
+        }
+    }
+}
 ?>
 
 <section class="bg-[#F6F1EA] px-3 sm:px-6 md:px-10 pt-0 lg:pt-10 pb-12" style="min-height:100vh;">
@@ -386,6 +578,112 @@ $type_options = array("Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen");
 
     </div>
 </section>
+
+<?php if ($active_routine) : ?>
+<!-- ═══════════════════════════════════════════════════════════════
+     SKIN CARE ROUTINE SECTION — Fully dynamic: variable step count,
+     per-concern data, special wide toner step, per-concern footer.
+     ═══════════════════════════════════════════════════════════════ -->
+<section class="scr-section" aria-label="Skin Care Routine">
+    <div class="scr-inner">
+
+        <!-- ── Header ── -->
+        <div class="scr-header">
+            <div class="scr-brand-row">
+                <span class="scr-brand-logo">RatpacCheck<span class="scr-brand-dot">.</span></span>
+                <span class="scr-brand-tagline">we <strong>CARE</strong> about your <strong>SKIN</strong></span>
+            </div>
+            <div class="scr-heading-col">
+                <p class="scr-eyebrow">SKIN CARE ROUTINE</p>
+                <h2 class="scr-title">Skin Care Routine for following concerns</h2>
+                <p class="scr-concern-label"><?php echo esc_html($active_routine['subtitle']); ?></p>
+            </div>
+        </div>
+
+        <!-- ── Normal Steps Row (auto-distributes: 3, 4, or 4-of-5) ── -->
+        <?php if (!empty($normal_steps)) : ?>
+        <div class="scr-steps scr-steps--count-<?php echo count($normal_steps); ?>">
+            <?php foreach ($normal_steps as $idx => $step) : ?>
+
+            <div class="scr-step">
+                <div class="scr-step-num-wrap">
+                    <span class="scr-step-pill">STEP <?php echo esc_html($step['num']); ?></span>
+                </div>
+                <div class="scr-img-wrap">
+                    <img
+                        src="<?php echo esc_url($step['image']); ?>"
+                        alt="<?php echo esc_attr($step['product_name']); ?>"
+                        class="scr-img"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="scr-step-meta">
+                    <p class="scr-timing"><?php echo esc_html($step['timing']); ?></p>
+                    <p class="scr-instruction"><?php echo esc_html($step['instruction']); ?></p>
+                </div>
+            </div>
+
+            <?php if ($idx < count($normal_steps) - 1) : ?>
+            <div class="scr-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </div>
+            <?php endif; ?>
+
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <!-- ── Special Steps (wide horizontal card — e.g. toner with special notes) ── -->
+        <?php if (!empty($special_steps)) : ?>
+        <div class="scr-special-steps">
+            <?php foreach ($special_steps as $sp) : ?>
+            <div class="scr-step-special">
+                <div class="scr-special-img-col">
+                    <div class="scr-step-num-wrap">
+                        <span class="scr-step-pill">STEP <?php echo esc_html($sp['num']); ?></span>
+                    </div>
+                    <div class="scr-special-img-wrap">
+                        <img
+                            src="<?php echo esc_url($sp['image']); ?>"
+                            alt="<?php echo esc_attr($sp['product_name']); ?>"
+                            class="scr-img"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+                <div class="scr-special-text-col">
+                    <p class="scr-timing"><?php echo esc_html($sp['timing']); ?></p>
+                    <p class="scr-instruction"><?php echo esc_html($sp['instruction']); ?></p>
+                    <?php if (!empty($sp['description'])) : ?>
+                    <div class="scr-special-desc">
+                        <?php foreach (explode("\n", $sp['description']) as $line) : ?>
+                            <?php if (trim($line) !== '') : ?>
+                            <p><?php echo esc_html(trim($line)); ?></p>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <!-- ── Footer Notes (per-concern configurable) ── -->
+        <div class="scr-footer-notes">
+            <div class="scr-notes-left">
+                <?php foreach ($active_routine['footer_notes'] as $note) : ?>
+                <p class="scr-note"><?php echo wp_kses_post($note); ?></p>
+                <?php endforeach; ?>
+            </div>
+            <div class="scr-tagline-wrap">
+                <span class="scr-tagline">BEAUTY IS YOUR'S AT AFFORDABLE <span class="scr-heart">&#9829;</span></span>
+            </div>
+        </div>
+
+    </div>
+</section>
+<?php endif; ?>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

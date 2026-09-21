@@ -92,7 +92,7 @@ if (!defined('ABSPATH')) {
             <!-- Desktop Header (lg:flex) -->
             <div class="px-4 py-3 sm:px-6 md:px-10 sm:py-0 relative hidden lg:flex" style="max-width:1280px;margin:0 auto;min-height:56px;align-items:center;justify-content:space-between">
                 <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:18px">
-                    <span id="brand-text-desktop" class="font-metropolis" style="font-size:clamp(20px, 2vw, 20px);font-weight:800;color:#E8A3A8;line-height:1;white-space:nowrap;display:block;font-synthesis:none">
+                    <span id="brand-text-desktop" class="font-metropolis" style="font-size:clamp(20px, 2vw, 20px);font-weight:800;color:#E8799A;line-height:1;white-space:nowrap;display:block;font-synthesis:none">
                         RatpacCheck.
                     </span>
                     <span id="tagline-text-desktop" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:clamp(9px, 1vw, 10px);font-weight:450;color:#6B6B6B;letter-spacing:0.04em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;">
@@ -143,7 +143,7 @@ if (!defined('ABSPATH')) {
         <div class="lg:hidden flex flex-col">
             <div class="px-4 flex items-center justify-between" style="min-height:52px">
                 <a class="hover:opacity-90 transition-opacity" href="<?php echo esc_url(home_url('/')); ?>" style="text-decoration:none;display:inline-block;position:relative;padding-bottom:17px">
-                    <span id="brand-text-mobile" class="font-metropolis" style="font-size:18px;font-weight:800;color:#E8A3A8;line-height:1;display:block;white-space:nowrap;font-synthesis:none">
+                    <span id="brand-text-mobile" class="font-metropolis" style="font-size:18px;font-weight:800;color:#E8799A;line-height:1;display:block;white-space:nowrap;font-synthesis:none">
                         RatpacCheck.
                     </span>
                     <span id="tagline-text-mobile" class="font-metropolis" style="position:absolute;left:0;bottom:0;font-size:8.5px;font-weight:450;color:#6B6B6B;letter-spacing:0.03em;white-space:nowrap;display:block;font-synthesis:none;transform-origin:left center;transform:scaleX(1)">
