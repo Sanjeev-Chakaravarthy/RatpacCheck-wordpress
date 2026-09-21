@@ -530,13 +530,13 @@ if ($active_routine) {
                 <div class="flex min-h-[60vh] w-full min-w-0 flex-1 flex-col">
 
                     <!-- Top Small Tag -->
-                    <div class="flex items-center justify-center text-center mb-1">
+                    <div class="flex items-center justify-center text-center mb-1.5">
                         <span class="text-xs tracking-[0.3em] pl-[0.3em] text-gray-500 font-adobe uppercase">SHOP</span>
                     </div>
 
                     <!-- Heading H1 (Centered above routine box & products) -->
-                    <div class="flex justify-center items-center text-center mb-6 mx-auto w-full">
-                        <h1 class="w-full text-[clamp(20px,2.4vw,34px)] font-medium tracking-tight leading-[1.2] text-center mx-auto text-black font-metropolis">
+                    <div class="flex justify-center items-center text-center mb-7 mx-auto w-full">
+                        <h1 class="w-full text-black font-metropolis" style="font-size:clamp(32px, 3.6vw, 48px);font-weight:700;letter-spacing:-0.02em;line-height:1.15;text-align:center;">
                             <?php echo esc_html($page_title); ?>
                         </h1>
                     </div>
