@@ -225,21 +225,14 @@ if (!defined('ABSPATH')) {
     </div>
     <script>
     (function() {
-        var KEY = 'ratpaccheck_international_orders_popup_seen';
         function initIntlPopup() {
-            try {
-                var urlParams = new URLSearchParams(window.location.search);
-                if (urlParams.get('reset_popup') === '1' || urlParams.get('test_popup') === '1' || urlParams.get('intl_popup') === '1') {
-                    localStorage.removeItem(KEY);
-                }
-                if (localStorage.getItem(KEY)) {
-                    return;
-                }
-            } catch (e) {
-                return;
-            }
             var popup = document.getElementById('international-orders-popup');
             if (!popup) return;
+
+            // Clear any lingering localStorage flags from previous versions
+            try {
+                localStorage.removeItem('ratpaccheck_international_orders_popup_seen');
+            } catch (e) {}
 
             setTimeout(function() {
                 popup.style.display = 'block';
@@ -248,9 +241,6 @@ if (!defined('ABSPATH')) {
             }, 300);
 
             function dismiss() {
-                try {
-                    localStorage.setItem(KEY, 'true');
-                } catch (e) {}
                 popup.style.opacity = '0';
                 popup.style.transform = 'translateY(-6px)';
                 popup.style.transition = 'all 0.25s ease';
