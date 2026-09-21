@@ -360,21 +360,8 @@ if ($active_routine) {
 }
 ?>
 
-<section class="bg-[#F6F1EA] px-3 sm:px-6 md:px-10 pt-0 lg:pt-10 pb-12" style="min-height:100vh;">
+<section class="bg-[#F6F1EA] px-3 sm:px-6 md:px-10 pt-6 lg:pt-10 pb-12" style="min-height:100vh;">
     <div class="w-full">
-        
-        <!-- Top Small Tag -->
-        <div class="flex items-center justify-center gap-4 mt-4 md:mt-0 lg:mt-4 mb-2 md:mb-0">
-            <span class="text-xs tracking-[0.3em] text-gray-500 font-adobe">SHOP</span>
-        </div>
-
-        <!-- Heading H1 (1:1 typography with Vercel) -->
-        <div class="flex justify-center items-center text-center mb-4 md:mb-2 mx-auto">
-            <h1 class="w-full whitespace-nowrap text-[clamp(11px,3.2vw,36px)] md:text-[clamp(22px,2.8vw,40px)] font-medium tracking-tight leading-[1.2] text-center mx-auto text-black px-2 md:px-4 font-metropolis">
-                <?php echo esc_html($page_title); ?>
-            </h1>
-        </div>
-
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:grid md:grid-cols-[250px_1fr] gap-6 md:gap-10">
                 
@@ -540,6 +527,18 @@ if ($active_routine) {
                      RIGHT: Products Area
                      ═══════════════════════════════════════ -->
                 <div class="flex min-h-[60vh] w-full min-w-0 flex-1 flex-col">
+
+                    <!-- Top Small Tag -->
+                    <div class="flex items-center justify-center text-center mb-1">
+                        <span class="text-xs tracking-[0.3em] pl-[0.3em] text-gray-500 font-adobe uppercase">SHOP</span>
+                    </div>
+
+                    <!-- Heading H1 (Centered above routine box & products) -->
+                    <div class="flex justify-center items-center text-center mb-6 mx-auto w-full">
+                        <h1 class="w-full text-[clamp(20px,2.4vw,34px)] font-medium tracking-tight leading-[1.2] text-center mx-auto text-black font-metropolis">
+                            <?php echo esc_html($page_title); ?>
+                        </h1>
+                    </div>
 
 <?php if ($active_routine) : ?>
                     <!-- ── Skin Care Routine Card (Top above products) ── -->
