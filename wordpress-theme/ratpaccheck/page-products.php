@@ -581,106 +581,93 @@ if ($active_routine) {
 
 <?php if ($active_routine) : ?>
 <!-- ═══════════════════════════════════════════════════════════════
-     SKIN CARE ROUTINE SECTION — Fully dynamic: variable step count,
-     per-concern data, special wide toner step, per-concern footer.
+     SKIN CARE ROUTINE — Single Premium Contained Box
      ═══════════════════════════════════════════════════════════════ -->
 <section class="scr-section" aria-label="Skin Care Routine">
-    <div class="scr-inner">
+    <div class="scr-container">
+        <div class="scr-box">
 
-        <!-- ── Header ── -->
-        <div class="scr-header">
-            <div class="scr-brand-row">
-                <span class="scr-brand-logo">RatpacCheck<span class="scr-brand-dot">.</span></span>
-                <span class="scr-brand-tagline">we <strong>CARE</strong> about your <strong>SKIN</strong></span>
-            </div>
-            <div class="scr-heading-col">
-                <p class="scr-eyebrow">SKIN CARE ROUTINE</p>
-                <h2 class="scr-title">Skin Care Routine for following concerns</h2>
-                <p class="scr-concern-label"><?php echo esc_html($active_routine['subtitle']); ?></p>
-            </div>
-        </div>
-
-        <!-- ── Normal Steps Row (auto-distributes: 3, 4, or 4-of-5) ── -->
-        <?php if (!empty($normal_steps)) : ?>
-        <div class="scr-steps scr-steps--count-<?php echo count($normal_steps); ?>">
-            <?php foreach ($normal_steps as $idx => $step) : ?>
-
-            <div class="scr-step">
-                <div class="scr-step-num-wrap">
-                    <span class="scr-step-pill">STEP <?php echo esc_html($step['num']); ?></span>
+            <!-- ── Header Inside Box ── -->
+            <div class="scr-header">
+                <div class="scr-brand-row">
+                    <span class="scr-brand-logo">RatpacCheck<span class="scr-brand-dot">.</span></span>
+                    <span class="scr-brand-tagline">we <strong>CARE</strong> about your <strong>SKIN</strong></span>
                 </div>
-                <div class="scr-img-wrap">
-                    <img
-                        src="<?php echo esc_url($step['image']); ?>"
-                        alt="<?php echo esc_attr($step['product_name']); ?>"
-                        class="scr-img"
-                        loading="lazy"
-                    />
-                </div>
-                <div class="scr-step-meta">
-                    <p class="scr-timing"><?php echo esc_html($step['timing']); ?></p>
-                    <p class="scr-instruction"><?php echo esc_html($step['instruction']); ?></p>
+                <div class="scr-heading-col">
+                    <h2 class="scr-title">SKIN CARE ROUTINE</h2>
                 </div>
             </div>
 
-            <?php if ($idx < count($normal_steps) - 1) : ?>
-            <div class="scr-arrow" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </div>
-            <?php endif; ?>
-
-            <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
-
-        <!-- ── Special Steps (wide horizontal card — e.g. toner with special notes) ── -->
-        <?php if (!empty($special_steps)) : ?>
-        <div class="scr-special-steps">
-            <?php foreach ($special_steps as $sp) : ?>
-            <div class="scr-step-special">
-                <div class="scr-special-img-col">
-                    <div class="scr-step-num-wrap">
-                        <span class="scr-step-pill">STEP <?php echo esc_html($sp['num']); ?></span>
-                    </div>
-                    <div class="scr-special-img-wrap">
+            <!-- ── Normal Steps Row (3, 4, or 4-of-5) ── -->
+            <?php if (!empty($normal_steps)) : ?>
+            <div class="scr-steps scr-steps--count-<?php echo count($normal_steps); ?>">
+                <?php foreach ($normal_steps as $step) : ?>
+                <div class="scr-step">
+                    <div class="scr-img-wrap">
                         <img
-                            src="<?php echo esc_url($sp['image']); ?>"
-                            alt="<?php echo esc_attr($sp['product_name']); ?>"
+                            src="<?php echo esc_url($step['image']); ?>"
+                            alt="<?php echo esc_attr($step['product_name']); ?>"
                             class="scr-img"
                             loading="lazy"
                         />
                     </div>
-                </div>
-                <div class="scr-special-text-col">
-                    <p class="scr-timing"><?php echo esc_html($sp['timing']); ?></p>
-                    <p class="scr-instruction"><?php echo esc_html($sp['instruction']); ?></p>
-                    <?php if (!empty($sp['description'])) : ?>
-                    <div class="scr-special-desc">
-                        <?php foreach (explode("\n", $sp['description']) as $line) : ?>
-                            <?php if (trim($line) !== '') : ?>
-                            <p><?php echo esc_html(trim($line)); ?></p>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
+                    <div class="scr-step-meta">
+                        <p class="scr-timing"><?php echo esc_html($step['timing']); ?></p>
+                        <p class="scr-instruction"><?php echo esc_html($step['instruction']); ?></p>
                     </div>
-                    <?php endif; ?>
                 </div>
-            </div>
-            <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
-
-        <!-- ── Footer Notes (per-concern configurable) ── -->
-        <div class="scr-footer-notes">
-            <div class="scr-notes-left">
-                <?php foreach ($active_routine['footer_notes'] as $note) : ?>
-                <p class="scr-note"><?php echo wp_kses_post($note); ?></p>
                 <?php endforeach; ?>
             </div>
-            <div class="scr-tagline-wrap">
-                <span class="scr-tagline">BEAUTY IS YOUR'S AT AFFORDABLE <span class="scr-heart">&#9829;</span></span>
-            </div>
-        </div>
+            <?php endif; ?>
 
+            <!-- ── Special Steps (e.g. Toner step 5) ── -->
+            <?php if (!empty($special_steps)) : ?>
+            <div class="scr-special-steps">
+                <?php foreach ($special_steps as $sp) : ?>
+                <div class="scr-step-special">
+                    <div class="scr-special-img-col">
+                        <div class="scr-special-img-wrap">
+                            <img
+                                src="<?php echo esc_url($sp['image']); ?>"
+                                alt="<?php echo esc_attr($sp['product_name']); ?>"
+                                class="scr-img"
+                                loading="lazy"
+                            />
+                        </div>
+                    </div>
+                    <div class="scr-special-text-col">
+                        <p class="scr-timing"><?php echo esc_html($sp['timing']); ?></p>
+                        <p class="scr-instruction"><?php echo esc_html($sp['instruction']); ?></p>
+                        <?php if (!empty($sp['description'])) : ?>
+                        <div class="scr-special-desc">
+                            <?php foreach (explode("\n", $sp['description']) as $line) : ?>
+                                <?php if (trim($line) !== '') : ?>
+                                <p><?php echo esc_html(trim($line)); ?></p>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <!-- ── Footer Notes (Inside Box) ── -->
+            <div class="scr-footer-notes">
+                <div class="scr-notes-left">
+                    <?php if (!empty($active_routine['footer_notes'])) : ?>
+                        <?php foreach ($active_routine['footer_notes'] as $note) : ?>
+                        <p class="scr-note"><?php echo wp_kses_post($note); ?></p>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <div class="scr-tagline-wrap">
+                    <span class="scr-tagline">BEAUTY IS YOUR'S AT AFFORDABLE <span class="scr-heart">&#9829;</span></span>
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 <?php endif; ?>
