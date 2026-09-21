@@ -73,11 +73,11 @@ $faqs_right = array(
                 <span style="font-weight:500;">Email Us:</span>
                 <span style="color:#8B6B4A;">hello@ratpaccheck.com</span>
             </a>
-            <a href="tel:+919876543210" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#fff;border:1px solid #E8E3DB;border-radius:9999px;font-family:'Adobe Hebrew','Noto Serif',Georgia,serif;font-size:14px;color:#1A1A1A;text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:all 0.3s;">
+            <a href="tel:+917382176403" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#fff;border:1px solid #E8E3DB;border-radius:9999px;font-family:'Adobe Hebrew','Noto Serif',Georgia,serif;font-size:14px;color:#1A1A1A;text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:all 0.3s;">
                 <span style="font-weight:500;">Call Us:</span>
-                <span style="color:#8B6B4A;">+91 98765 43210</span>
+                <span style="color:#8B6B4A;">+91 73821 76403</span>
             </a>
-            <a href="#" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#fff;border:1px solid #E8E3DB;border-radius:9999px;font-family:'Adobe Hebrew','Noto Serif',Georgia,serif;font-size:14px;color:#1A1A1A;text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:all 0.3s;">
+            <a href="https://wa.me/917382176403" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:#fff;border:1px solid #E8E3DB;border-radius:9999px;font-family:'Adobe Hebrew','Noto Serif',Georgia,serif;font-size:14px;color:#1A1A1A;text-decoration:none;box-shadow:0 1px 4px rgba(0,0,0,0.06);transition:all 0.3s;">
                 <span style="font-weight:500;">WhatsApp:</span>
                 <span style="color:#8B6B4A;">Chat Now</span>
             </a>
