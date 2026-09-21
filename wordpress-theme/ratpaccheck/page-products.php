@@ -547,13 +547,7 @@ if ($active_routine) {
 
             <!-- ── Header Inside Box ── -->
             <div class="scr-header">
-                <div class="scr-brand-row">
-                    <span class="scr-brand-logo">RatpacCheck<span class="scr-brand-dot">.</span></span>
-                    <span class="scr-brand-tagline">we <strong>CARE</strong> about your <strong>SKIN</strong></span>
-                </div>
-                <div class="scr-heading-col">
-                    <h2 class="scr-title">SKIN CARE ROUTINE</h2>
-                </div>
+                <h2 class="scr-title">SKIN CARE ROUTINE</h2>
             </div>
 
             <!-- ── Normal Steps Row (3, 4, or 4-of-5) ── -->
