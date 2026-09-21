@@ -198,8 +198,14 @@ if (!defined('ABSPATH')) {
         </div>
     </header>
 
+    <?php
+    $is_home_view = (function_exists('is_front_page') && is_front_page()) ||
+                    (function_exists('is_home') && is_home()) ||
+                    (trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') === '');
+    if ($is_home_view) :
+    ?>
     <!-- ═══════════════════════════════════════════════════════════════
-         ONE-TIME INTERNATIONAL ORDERS NOTIFICATION (Near WhatsApp / Navbar)
+         ONE-TIME INTERNATIONAL ORDERS NOTIFICATION (Home Page Only)
          ═══════════════════════════════════════════════════════════════ -->
     <div id="international-orders-popup" class="hidden" role="dialog" aria-modal="false" aria-labelledby="intl-popup-title">
         <div class="intl-popup-card">
@@ -225,28 +231,50 @@ if (!defined('ABSPATH')) {
     </div>
     <script>
     (function() {
+        var KEY = 'ratpaccheck_international_orders_popup_seen';
         function initIntlPopup() {
             var popup = document.getElementById('international-orders-popup');
             if (!popup) return;
 
-            // Clear any lingering localStorage flags from previous versions
             try {
-                localStorage.removeItem('ratpaccheck_international_orders_popup_seen');
-            } catch (e) {}
+                var urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('reset_popup') === '1' || urlParams.get('test_popup') === '1') {
+                    localStorage.removeItem(KEY);
+                }
+                if (localStorage.getItem(KEY)) {
+                    return;
+                }
+            } catch (e) {
+                return;
+            }
+
+            var autoDismissTimer = null;
 
             setTimeout(function() {
                 popup.style.display = 'block';
                 popup.classList.remove('hidden');
                 popup.classList.add('intl-popup-animate');
-            }, 300);
+
+                // Mark seen so it only appears once
+                try {
+                    localStorage.setItem(KEY, 'true');
+                } catch (e) {}
+
+                // Automatically disappear after 8 seconds
+                autoDismissTimer = setTimeout(dismiss, 8000);
+            }, 400);
 
             function dismiss() {
+                if (autoDismissTimer) clearTimeout(autoDismissTimer);
+                try {
+                    localStorage.setItem(KEY, 'true');
+                } catch (e) {}
                 popup.style.opacity = '0';
                 popup.style.transform = 'translateY(-6px)';
-                popup.style.transition = 'all 0.25s ease';
+                popup.style.transition = 'all 0.35s ease';
                 setTimeout(function() {
                     popup.style.display = 'none';
-                }, 260);
+                }, 360);
             }
 
             var closeBtn = document.getElementById('intl-popup-close');
@@ -272,6 +300,7 @@ if (!defined('ABSPATH')) {
         }
     })();
     </script>
+    <?php endif; ?>
 
     <!-- ══════════════════════════════════════════
          DESKTOP MEGA MENU DROPDOWN (100% Vercel Match)

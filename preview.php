@@ -79,6 +79,17 @@ if (!function_exists('language_attributes')) {
         echo 'lang="en"';
     }
 }
+if (!function_exists('is_front_page')) {
+    function is_front_page() {
+        $path = trim(urldecode(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH)), '/');
+        return ($path === '' || $path === 'index.php');
+    }
+}
+if (!function_exists('is_home')) {
+    function is_home() {
+        return is_front_page();
+    }
+}
 if (!function_exists('bloginfo')) {
     function bloginfo($show = '') {
         if ($show === 'charset') echo 'UTF-8';
