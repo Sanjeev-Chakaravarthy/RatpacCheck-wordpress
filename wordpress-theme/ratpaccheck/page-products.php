@@ -256,13 +256,13 @@ $concern_routines = array(
         ),
     ),
 
-    // ── TAN ── 4 steps ─────────────────────────────────────────────────
+    // ── TAN ── 5 steps ─────────────────────────────────────────────────
     'tan' => array(
         'label'        => 'Tan',
         'subtitle'     => 'Sun Tan, UV-Induced Darkening, Dull & Uneven Skin',
         'footer_notes' => array(
             'Suitable for <strong>ALL SKIN TYPES</strong>.',
-            'Use <strong>Sunscreen daily</strong> for best de-tan results',
+            'Gentle Formula even suitable for <strong>BEGINNERS</strong>',
         ),
         'steps' => array(
             array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
@@ -273,6 +273,9 @@ $concern_routines = array(
                   'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
             array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen (must — prevents re-tanning)',
                   'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
+            array('num'=>5,'timing'=>'PM','instruction'=>'Step 5 : Exfoliating Toner (Weekly)',
+                  'description'=>"Apply toner Weekly twice or thrice only at night.\nAfter toner applied, use Our Multi Layer Hydrating Serum Strictly. No other serums.",
+                  'product_name'=>'6% Glycolic + Mulberry Exfoliating Toner','image'=>'/images/Mulberry%20(Exfoliating%20Toner).jpeg','special'=>true),
         ),
     ),
 
@@ -299,23 +302,21 @@ $concern_routines = array(
         ),
     ),
 
-    // ── OILINESS ── 4 steps ────────────────────────────────────────────
+    // ── OILINESS ── 3 steps (Same as Acne) ─────────────────────────────
     'oiliness' => array(
         'label'        => 'Oiliness',
-        'subtitle'     => 'Excess Sebum, Oily & Shiny Skin, Enlarged Pores',
+        'subtitle'     => 'Acne, Pimples, Very Lighter Dark Spots',
         'footer_notes' => array(
             'Suitable for <strong>ALL SKIN TYPES</strong>.',
-            'Non-comedogenic formula — <strong>will not clog pores</strong>',
+            'Gentle Formula even suitable for <strong>BEGINNERS</strong>',
         ),
         'steps' => array(
-            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face to remove excess oil.',
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
                   'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
-            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply oil-control serum & gently massage.',
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply serum a few drops on skin & gently massage.',
                   'product_name'=>'5% Multi-Functional Face Serum','image'=>'/images/Multi-functional%20(Face%20serum%205%25).jpeg','special'=>false),
-            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Lightweight Moisturizer',
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer (optional)',
                   'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
-            array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen (non-comedogenic — AM only)',
-                  'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
         ),
     ),
 
