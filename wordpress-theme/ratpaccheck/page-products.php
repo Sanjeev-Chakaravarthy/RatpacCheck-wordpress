@@ -571,9 +571,13 @@ if ($active_routine) {
                         </div>
                     <?php endif; ?>
 
+                </div>
+
+            </div>
+
 <?php if ($active_routine) : ?>
-                    <!-- ── Skin Care Routine Card (Under products) ── -->
-                    <div class="scr-box mt-4 mb-8" aria-label="Skin Care Routine">
+            <!-- ── Skin Care Routine Card (Full-width under products & sidebar) ── -->
+            <div class="scr-box mt-8 mb-4 w-full" aria-label="Skin Care Routine">
 
             <!-- ── Header Inside Box ── -->
             <div class="scr-header">
@@ -648,12 +652,9 @@ if ($active_routine) {
                     <span class="scr-tagline">BEAUTY IS YOUR'S AT AFFORDABLE <span class="scr-heart">&#9829;</span></span>
                 </div>
             </div>
-                    </div>
+            </div>
 <?php endif; ?>
 
-                </div>
-
-            </div>
         </div>
 
     </div>

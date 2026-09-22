@@ -247,7 +247,7 @@ if ($path === '' || $path === 'index.php') {
 } elseif (preg_match('#^collections/([^/]+)#', $path, $m)) {
     $_GET['category'] = $m[1];
     require __DIR__ . '/wordpress-theme/ratpaccheck/page-collections.php';
-} elseif ($path === 'about' || $path === 'about/') {
+} elseif ($path === 'about' || $path === 'about/' || $path === 'about-us' || $path === 'about-us/') {
     require __DIR__ . '/wordpress-theme/ratpaccheck/page-about.php';
 } elseif ($path === 'customer-help' || $path === 'customer-help/') {
     require __DIR__ . '/wordpress-theme/ratpaccheck/page-customer-help.php';
