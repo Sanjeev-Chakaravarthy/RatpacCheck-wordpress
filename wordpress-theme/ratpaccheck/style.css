@@ -4,7 +4,7 @@ Theme URI: https://ratpaccheck.com
 Author: RatpacCheck Creative & Engineering Team
 Author URI: https://ratpaccheck.com
 Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
-Version: 1.1.0
+Version: 1.3.0
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -970,12 +970,20 @@ a.touch-button:hover {
 .rpc-myaccount-page {
   background-color: #F6F1EA;
   min-height: calc(100vh - 200px);
+  padding: 40px 20px 60px;
+}
+
+.rpc-myaccount-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .rpc-account-portal {
   width: 100% !important;
-  max-width: 1240px !important;
+  max-width: 1200px !important;
   margin: 0 auto !important;
+  padding: 0 !important;
 }
 
 /* 3. Luxury Customer Welcome Banner */
@@ -1763,14 +1771,14 @@ fieldset legend {
 
 /* 12. Logged-Out Split Authentication Page */
 .rpc-auth-page-container {
-  max-width: 980px !important;
-  margin: 0 auto !important;
-  padding: 1rem 0 3rem !important;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 2rem;
 }
 
 .rpc-auth-page-header {
-  text-align: center !important;
-  margin-bottom: 2.5rem !important;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .rpc-auth-badge {
@@ -1789,12 +1797,12 @@ fieldset legend {
 }
 
 .rpc-auth-title {
-  font-family: 'Metropolis', sans-serif !important;
-  font-size: 2rem !important;
-  font-weight: 700 !important;
-  color: #1A1A1A !important;
-  margin: 0 0 10px 0 !important;
-  letter-spacing: -0.01em !important;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
 }
 
 .rpc-auth-subtitle {
@@ -1823,12 +1831,12 @@ fieldset legend {
 }
 
 .rpc-auth-col {
-  background: #FFFFFF !important;
-  border: 1px solid #E8E3DB !important;
-  border-radius: 16px !important;
-  padding: 32px 36px !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
-  box-sizing: border-box !important;
+  background: #FFFFFF;
+  border: 1px solid #E8E3DB;
+  border-radius: 16px;
+  padding: 28px 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
 }
 
 .rpc-auth-col-header {
@@ -1900,11 +1908,11 @@ fieldset legend {
 
 .rpc-pw-notice,
 .rpc-privacy-policy-text {
-  font-family: 'Adobe Hebrew', Georgia, serif !important;
-  font-size: 12.5px !important;
-  color: #666666 !important;
-  line-height: 1.5 !important;
-  margin: 12px 0 !important;
+  font-family: 'Adobe Hebrew', Georgia, serif;
+  font-size: 12.5px;
+  color: #666666;
+  line-height: 1.5;
+  margin: 10px 0 14px;
 }
 
 /* 13. Cart Coupon Section */
@@ -1915,6 +1923,110 @@ fieldset legend {
   padding: 12px;
 }
 
+/* =====================================================
+   AUTH FORM INPUTS – Login & Register on My Account
+   ===================================================== */
 
+/* Form row margins */
+.rpc-auth-col .woocommerce-form-row,
+.rpc-auth-col .form-row {
+  display: block;
+  margin: 0 0 16px;
+  padding: 0;
+}
 
+.rpc-auth-col .woocommerce-form-row label,
+.rpc-auth-col .form-row label {
+  display: block;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4A4A4A;
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+}
 
+/* Inputs */
+.rpc-auth-col .woocommerce-Input--text,
+.rpc-auth-col input[type="text"],
+.rpc-auth-col input[type="email"],
+.rpc-auth-col input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 14px;
+  color: #1A1A1A;
+  background: #FAFAF8;
+  border: 1.5px solid #E0DAD1;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+
+.rpc-auth-col .woocommerce-Input--text:focus,
+.rpc-auth-col input[type="text"]:focus,
+.rpc-auth-col input[type="email"]:focus,
+.rpc-auth-col input[type="password"]:focus {
+  border-color: #1A1A1A;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08);
+  background: #FFFFFF;
+}
+
+/* Submit row */
+.rpc-submit-row {
+  margin: 20px 0 0 !important;
+  padding: 0 !important;
+}
+
+/* Checkbox row */
+.rpc-form-row-actions .woocommerce-form__label-for-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 12.5px;
+  color: #4A4A4A;
+  cursor: pointer;
+  user-select: none;
+}
+
+.rpc-form-row-actions input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: #1A1A1A;
+  cursor: pointer;
+}
+
+/* Required asterisk */
+.rpc-auth-col .required {
+  color: #C9A84C;
+}
+
+/* WooCommerce notices inside the account portal */
+.rpc-account-notices .woocommerce-message,
+.rpc-account-notices .woocommerce-error,
+.rpc-account-notices .woocommerce-info,
+.woocommerce-notices-wrapper .woocommerce-message,
+.woocommerce-notices-wrapper .woocommerce-error,
+.woocommerce-notices-wrapper .woocommerce-info {
+  border-radius: 10px;
+  margin-bottom: 16px;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 13.5px;
+}
+
+/* Responsive: stack columns on small screens */
+@media (max-width: 767px) {
+  .rpc-auth-columns {
+    grid-template-columns: 1fr !important;
+  }
+  .rpc-auth-col {
+    padding: 22px 20px;
+  }
+  .rpc-auth-page-container {
+    padding: 0;
+  }
+}

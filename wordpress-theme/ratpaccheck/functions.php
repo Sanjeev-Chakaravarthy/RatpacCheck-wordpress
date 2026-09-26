@@ -207,7 +207,7 @@ add_action('save_post_ratpac_product', 'ratpaccheck_save_product_meta');
  * Enqueue scripts and styles.
  */
 function ratpaccheck_scripts() {
-    $theme_version = '1.1.0';
+    $theme_version = '1.3.0';
 
     // Enqueue Google Fonts (Noto Serif & Instrument Sans)
     wp_enqueue_style('ratpaccheck-fonts', 'https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap', array(), null);
