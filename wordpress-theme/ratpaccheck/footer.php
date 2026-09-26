@@ -214,15 +214,15 @@ if (!defined('ABSPATH')) {
     </div>
 
     <!-- Slide-In Auth (Login & Register) Drawer -->
-    <div id="auth-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-none" aria-label="Account Access">
+    <div id="auth-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300" aria-label="Account Access">
         <!-- Backdrop -->
-        <div id="auth-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-xs opacity-0 transition-opacity duration-300"></div>
+        <div id="auth-backdrop" class="absolute inset-0 bg-black/45 transition-opacity duration-300"></div>
 
-        <!-- Drawer Panel (Compact 380px Luxury Sidebar) -->
-        <div class="rpc-auth-drawer-panel absolute top-0 right-0 h-full bg-[#F6F1EA] shadow-2xl flex flex-col z-10 overflow-y-auto">
+        <!-- Drawer Panel (Sleek 420px Luxury Sidebar) -->
+        <div class="rpc-auth-drawer-panel absolute top-0 right-0 h-full w-[420px] max-w-[100vw] bg-[#F6F1EA] shadow-2xl flex flex-col z-10 overflow-y-auto transform translate-x-full transition-transform duration-300 ease-out">
             
             <!-- Luxury Header -->
-            <div class="flex items-center justify-between px-6 py-4 bg-white border-b border-[#E8E3DB]">
+            <div class="flex items-center justify-between px-6 py-4 bg-white border-b border-[#E8E3DB] flex-shrink-0">
                 <div>
                     <span class="font-metropolis font-bold text-lg text-[#1A1A1A] block leading-tight tracking-tight">
                         RatpacCheck<span class="text-[#C9A84C]">.</span>
@@ -237,120 +237,164 @@ if (!defined('ABSPATH')) {
             </div>
 
             <!-- Segmented Tab Switcher (50/50 Equal Width) -->
-            <div class="px-6 pt-4 pb-2">
+            <div class="px-6 pt-5 pb-1 flex-shrink-0">
                 <div class="flex bg-[#EFEAE2] rounded-xl p-1 gap-1">
-                    <button type="button" id="auth-tab-btn-login" class="flex-1 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all bg-[#1A1A1A] text-white shadow-xs">
+                    <button type="button" id="auth-tab-btn-login" class="flex-1 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg transition-all bg-[#1A1A1A] text-white shadow-xs">
                         Sign In
                     </button>
-                    <button type="button" id="auth-tab-btn-register" class="flex-1 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all text-[#666666] hover:text-[#1A1A1A]">
+                    <button type="button" id="auth-tab-btn-register" class="flex-1 py-2.5 text-xs font-bold uppercase tracking-wider rounded-lg transition-all text-[#666666] hover:text-[#1A1A1A]">
                         Create Account
                     </button>
                 </div>
             </div>
 
-            <!-- Tab Contents Container -->
-            <div class="p-6 flex-grow flex flex-col justify-between">
+            <!-- Tab Contents & In-Flow Perks -->
+            <div class="px-6 py-4 flex-grow flex flex-col gap-5">
                 
-                <div>
-                    <!-- Notice Container -->
-                    <div id="auth-drawer-notice" class="hidden mb-4 p-3.5 rounded-lg text-xs font-metropolis leading-relaxed"></div>
+                <!-- Notice Container -->
+                <div id="auth-drawer-notice" class="hidden p-3.5 rounded-lg text-xs font-metropolis leading-relaxed"></div>
 
-                    <!-- 1. Sign In Form -->
-                    <div id="auth-panel-login" class="space-y-3.5">
-                        <form method="post" action="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : wp_login_url()); ?>" class="space-y-3.5" id="rpc-login-form">
-                            <div>
-                                <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1" for="rpc_user_login">
-                                    Username or Email <span class="text-[#C9A84C]">*</span>
-                                </label>
-                                <input type="text" name="username" id="rpc_user_login" required autocomplete="username" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="Enter your email or username" />
-                            </div>
-
-                            <div>
-                                <div class="flex items-center justify-between mb-1">
-                                    <label class="text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider" for="rpc_user_password">
-                                        Password <span class="text-[#C9A84C]">*</span>
-                                    </label>
-                                    <a href="<?php echo esc_url(function_exists('wp_lostpassword_url') ? wp_lostpassword_url() : home_url('/lost-password')); ?>" class="text-[11px] text-[#8B6B4A] hover:underline font-semibold">
-                                        Forgot?
-                                    </a>
-                                </div>
-                                <input type="password" name="password" id="rpc_user_password" required autocomplete="current-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="••••••••" />
-                            </div>
-
-                            <div class="flex items-center justify-between pt-0.5">
-                                <label class="flex items-center gap-2 cursor-pointer text-xs text-[#555555]">
-                                    <input type="checkbox" name="rememberme" value="forever" class="rounded border-gray-300 text-black focus:ring-black" />
-                                    <span>Remember me</span>
-                                </label>
-                            </div>
-
-                            <?php wp_nonce_field('woocommerce-login', 'woocommerce-login-nonce'); ?>
-                            <input type="hidden" name="login" value="Log in" />
-                            <input type="hidden" name="redirect" value="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : home_url('/')); ?>" />
-
-                            <button type="submit" name="login" value="Log in" class="w-full bg-[#1A1A1A] hover:bg-[#2C1810] text-white font-metropolis font-bold text-xs uppercase tracking-widest py-3 rounded-lg transition-all shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2">
-                                <span>Sign In</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                            </button>
-                        </form>
+                <!-- 1. Sign In Form -->
+                <div id="auth-panel-login" class="space-y-4">
+                    <div class="rpc-drawer-intro">
+                        <h3 class="font-metropolis font-bold text-base text-[#1A1A1A]">Sign In to Your Routine</h3>
+                        <p class="text-xs text-[#777] font-adobe mt-0.5">Welcome back — access orders, regimen &amp; member perks.</p>
                     </div>
 
-                    <!-- 2. Create Account Form (Exact same size and structure as Sign In) -->
-                    <div id="auth-panel-register" class="space-y-3.5 hidden">
-                        <form method="post" action="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : wp_registration_url()); ?>" class="space-y-3.5" id="rpc-register-form">
-                            <div>
-                                <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1" for="rpc_reg_email">
-                                    Email Address <span class="text-[#C9A84C]">*</span>
+                    <form method="post" action="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : wp_login_url()); ?>" class="space-y-3.5" id="rpc-login-form">
+                        <div>
+                            <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1" for="rpc_user_login">
+                                Username or Email <span class="text-[#C9A84C]">*</span>
+                            </label>
+                            <input type="text" name="username" id="rpc_user_login" required autocomplete="username" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="Enter your email or username" />
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider" for="rpc_user_password">
+                                    Password <span class="text-[#C9A84C]">*</span>
                                 </label>
-                                <input type="email" name="email" id="rpc_reg_email" required autocomplete="email" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="your@email.com" />
+                                <a href="<?php echo esc_url(function_exists('wp_lostpassword_url') ? wp_lostpassword_url() : home_url('/lost-password')); ?>" class="text-[11px] text-[#8B6B4A] hover:underline font-semibold">
+                                    Forgot?
+                                </a>
                             </div>
+                            <input type="password" name="password" id="rpc_user_password" required autocomplete="current-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="••••••••" />
+                        </div>
 
-                            <div>
-                                <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1" for="rpc_reg_password">
-                                    Create Password <span class="text-[#C9A84C]">*</span>
-                                </label>
-                                <input type="password" name="password" id="rpc_reg_password" required autocomplete="new-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="Create a strong password" />
-                            </div>
+                        <div class="flex items-center justify-between pt-0.5">
+                            <label class="flex items-center gap-2 cursor-pointer text-xs text-[#555555]">
+                                <input type="checkbox" name="rememberme" value="forever" class="rounded border-gray-300 text-black focus:ring-black" />
+                                <span>Remember me</span>
+                            </label>
+                        </div>
 
-                            <div class="pt-0.5">
-                                <p class="text-[11px] text-[#777777] font-adobe leading-tight">
-                                    By signing up you agree to our <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" target="_blank" class="text-[#8B6B4A] underline font-semibold">Privacy Policy</a>.
-                                </p>
-                            </div>
+                        <?php wp_nonce_field('woocommerce-login', 'woocommerce-login-nonce'); ?>
+                        <input type="hidden" name="login" value="Log in" />
+                        <input type="hidden" name="redirect" value="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : home_url('/')); ?>" />
 
-                            <?php wp_nonce_field('woocommerce-register', 'woocommerce-register-nonce'); ?>
-                            <input type="hidden" name="register" value="Register" />
+                        <button type="submit" name="login" value="Log in" class="w-full bg-[#1A1A1A] hover:bg-[#2C1810] text-white font-metropolis font-bold text-xs uppercase tracking-widest py-3.5 rounded-lg transition-all shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2">
+                            <span>Sign In</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
 
-                            <button type="submit" name="register" value="Register" class="w-full bg-[#1A1A1A] hover:bg-[#2C1810] text-white font-metropolis font-bold text-xs uppercase tracking-widest py-3 rounded-lg transition-all shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2">
-                                <span>Create Account</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                            </button>
-                        </form>
-                    </div>
+                        <p class="rpc-auth-switch-prompt">
+                            Don't have an account? <button type="button" class="rpc-link-switch rpc-drawer-to-register">Create an account</button>
+                        </p>
+
+                        <div class="rpc-auth-divider">
+                            <span>or continue with</span>
+                        </div>
+
+                        <button type="button" class="rpc-btn-google rpc-google-auth-trigger" aria-label="Continue with Google">
+                            <svg class="rpc-google-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.97 0 12s.45 3.84 1.25 5.42l4.03-3.15z"/>
+                                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                            </svg>
+                            <span>Continue with Google</span>
+                        </button>
+                    </form>
                 </div>
 
-                <!-- Clean Compact Member Perks (Proportional to Drawer) -->
-                <div class="mt-6 pt-4 border-t border-[#E8E3DB]">
-                    <div class="flex items-center gap-1.5 mb-2.5">
-                        <svg class="w-3.5 h-3.5 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1l2.928 6.072 6.072.928-4.5 4.386 1.062 6.614L10 15.828l-5.562 3.172 1.062-6.614L1 8l6.072-.928L10 1z" clip-rule="evenodd"></path></svg>
-                        <p class="text-[10px] font-bold text-[#8C847C] tracking-widest uppercase m-0">Member Privileges</p>
+                <!-- 2. Create Account Form -->
+                <div id="auth-panel-register" class="space-y-4 hidden">
+                    <div class="rpc-drawer-intro">
+                        <h3 class="font-metropolis font-bold text-base text-[#1A1A1A]">Create Your Account</h3>
+                        <p class="text-xs text-[#777] font-adobe mt-0.5">Unlock member perks, saved routines &amp; express checkout.</p>
                     </div>
-                    <div class="grid grid-cols-2 gap-2 text-[11px] text-[#555555]">
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-[#8B6B4A] font-bold">&check;</span>
+
+                    <form method="post" action="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : wp_registration_url()); ?>" class="space-y-3.5" id="rpc-register-form">
+                        <div>
+                            <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1" for="rpc_reg_email">
+                                Email Address <span class="text-[#C9A84C]">*</span>
+                            </label>
+                            <input type="email" name="email" id="rpc_reg_email" required autocomplete="email" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="your@email.com" />
+                        </div>
+
+                        <div>
+                            <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1" for="rpc_reg_password">
+                                Create Password <span class="text-[#C9A84C]">*</span>
+                            </label>
+                            <input type="password" name="password" id="rpc_reg_password" required autocomplete="new-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="Create a strong password" />
+                        </div>
+
+                        <div class="pt-0.5">
+                            <p class="text-[11px] text-[#777777] font-adobe leading-tight">
+                                By signing up you agree to our <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" target="_blank" class="text-[#8B6B4A] underline font-semibold">Privacy Policy</a>.
+                            </p>
+                        </div>
+
+                        <?php wp_nonce_field('woocommerce-register', 'woocommerce-register-nonce'); ?>
+                        <input type="hidden" name="register" value="Register" />
+
+                        <button type="submit" name="register" value="Register" class="w-full bg-[#1A1A1A] hover:bg-[#2C1810] text-white font-metropolis font-bold text-xs uppercase tracking-widest py-3.5 rounded-lg transition-all shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2">
+                            <span>Create Account</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                        </button>
+
+                        <p class="rpc-auth-switch-prompt">
+                            Already have an account? <button type="button" class="rpc-link-switch rpc-drawer-to-login">Sign in</button>
+                        </p>
+
+                        <div class="rpc-auth-divider">
+                            <span>or continue with</span>
+                        </div>
+
+                        <button type="button" class="rpc-btn-google rpc-google-auth-trigger" aria-label="Continue with Google">
+                            <svg class="rpc-google-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.97 0 12s.45 3.84 1.25 5.42l4.03-3.15z"/>
+                                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                            </svg>
+                            <span>Continue with Google</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Integrated Luxury Member Benefits Card (In-Flow, No Empty Desert) -->
+                <div class="rpc-drawer-perks">
+                    <div class="rpc-drawer-perks-header">
+                        <svg class="w-3.5 h-3.5 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1l2.928 6.072 6.072.928-4.5 4.386 1.062 6.614L10 15.828l-5.562 3.172 1.062-6.614L1 8l6.072-.928L10 1z" clip-rule="evenodd"></path></svg>
+                        <span>BEAUTY MEMBER PRIVILEGES</span>
+                    </div>
+                    <div class="rpc-drawer-perks-grid">
+                        <div class="rpc-perk-item">
+                            <span class="rpc-perk-icon">✓</span>
                             <span>Track live orders</span>
                         </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-[#8B6B4A] font-bold">&check;</span>
-                            <span>Exclusive discounts</span>
+                        <div class="rpc-perk-item">
+                            <span class="rpc-perk-icon">✓</span>
+                            <span>Exclusive member discounts</span>
                         </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-[#8B6B4A] font-bold">&check;</span>
-                            <span>Saved addresses</span>
+                        <div class="rpc-perk-item">
+                            <span class="rpc-perk-icon">✓</span>
+                            <span>Saved addresses &amp; express pay</span>
                         </div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="text-[#8B6B4A] font-bold">&check;</span>
-                            <span>Personal routine</span>
+                        <div class="rpc-perk-item">
+                            <span class="rpc-perk-icon">✓</span>
+                            <span>Personal routine builder</span>
                         </div>
                     </div>
                 </div>

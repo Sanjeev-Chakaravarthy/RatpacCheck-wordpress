@@ -126,6 +126,26 @@ $start_tab = ( isset( $_GET['action'] ) && $_GET['action'] === 'register' ) ? 'r
                     </button>
                 </p>
 
+                <?php if ( $registration_enabled ) : ?>
+                <p class="rpc-auth-switch-prompt">
+                    Don't have an account? <button type="button" class="rpc-link-switch rpc-to-register">Create an account</button>
+                </p>
+                <?php endif; ?>
+
+                <div class="rpc-auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button type="button" class="rpc-btn-google rpc-google-auth-trigger" aria-label="Continue with Google">
+                    <svg class="rpc-google-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.97 0 12s.45 3.84 1.25 5.42l4.03-3.15z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+
                 <?php do_action( 'woocommerce_login_form_end' ); ?>
             </form>
         </div><!-- #rpc-page-panel-login -->
@@ -209,6 +229,24 @@ $start_tab = ( isset( $_GET['action'] ) && $_GET['action'] === 'register' ) ? 'r
                     </button>
                 </p>
 
+                <p class="rpc-auth-switch-prompt">
+                    Already have an account? <button type="button" class="rpc-link-switch rpc-to-login">Sign in</button>
+                </p>
+
+                <div class="rpc-auth-divider">
+                    <span>or continue with</span>
+                </div>
+
+                <button type="button" class="rpc-btn-google rpc-google-auth-trigger" aria-label="Continue with Google">
+                    <svg class="rpc-google-icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+                        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                        <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.97 0 12s.45 3.84 1.25 5.42l4.03-3.15z"/>
+                        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+
                 <?php do_action( 'woocommerce_register_form_end' ); ?>
             </form>
         </div><!-- #rpc-page-panel-register -->
@@ -225,28 +263,49 @@ $start_tab = ( isset( $_GET['action'] ) && $_GET['action'] === 'register' ) ? 'r
         var loginPanel = document.getElementById('rpc-page-panel-login');
         var regPanel = document.getElementById('rpc-page-panel-register');
 
-        if (!loginTab || !regTab || !loginPanel || !regPanel) return;
-
         function showLogin() {
-            loginTab.classList.add('active');
-            loginTab.setAttribute('aria-selected', 'true');
-            regTab.classList.remove('active');
-            regTab.setAttribute('aria-selected', 'false');
-            loginPanel.classList.remove('rpc-tab-hidden');
-            regPanel.classList.add('rpc-tab-hidden');
+            if (loginTab) {
+                loginTab.classList.add('active');
+                loginTab.setAttribute('aria-selected', 'true');
+            }
+            if (regTab) {
+                regTab.classList.remove('active');
+                regTab.setAttribute('aria-selected', 'false');
+            }
+            if (loginPanel) loginPanel.classList.remove('rpc-tab-hidden');
+            if (regPanel) regPanel.classList.add('rpc-tab-hidden');
         }
 
         function showRegister() {
-            regTab.classList.add('active');
-            regTab.setAttribute('aria-selected', 'true');
-            loginTab.classList.remove('active');
-            loginTab.setAttribute('aria-selected', 'false');
-            regPanel.classList.remove('rpc-tab-hidden');
-            loginPanel.classList.add('rpc-tab-hidden');
+            if (regTab) {
+                regTab.classList.add('active');
+                regTab.setAttribute('aria-selected', 'true');
+            }
+            if (loginTab) {
+                loginTab.classList.remove('active');
+                loginTab.setAttribute('aria-selected', 'false');
+            }
+            if (regPanel) regPanel.classList.remove('rpc-tab-hidden');
+            if (loginPanel) loginPanel.classList.add('rpc-tab-hidden');
         }
 
-        loginTab.addEventListener('click', showLogin);
-        regTab.addEventListener('click', showRegister);
+        if (loginTab) loginTab.addEventListener('click', showLogin);
+        if (regTab) regTab.addEventListener('click', showRegister);
+
+        // Sub-links inside forms ("Don't have an account? Create an account")
+        document.querySelectorAll('.rpc-to-register').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showRegister();
+            });
+        });
+
+        document.querySelectorAll('.rpc-to-login').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                showLogin();
+            });
+        });
 
         // Auto-switch if URL has hash #register or search ?action=register
         if (window.location.hash === '#register' || window.location.search.indexOf('action=register') !== -1) {

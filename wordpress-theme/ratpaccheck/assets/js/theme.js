@@ -152,21 +152,23 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             switchToLogin();
         }
-        authDrawer.classList.remove('translate-x-full');
-        authDrawer.classList.remove('pointer-events-none');
-        if (authBackdrop) {
-            authBackdrop.classList.remove('opacity-0');
-        }
+        authDrawer.classList.remove('pointer-events-none', 'opacity-0');
+        authDrawer.classList.add('auth-drawer-open');
+        const panel = authDrawer.querySelector('.rpc-auth-drawer-panel');
+        if (panel) panel.classList.remove('translate-x-full');
         document.body.style.overflow = 'hidden';
     }
 
     function closeAuthDrawer() {
         if (!authDrawer) return;
-        authDrawer.classList.add('translate-x-full');
-        authDrawer.classList.add('pointer-events-none');
-        if (authBackdrop) {
-            authBackdrop.classList.add('opacity-0');
-        }
+        const panel = authDrawer.querySelector('.rpc-auth-drawer-panel');
+        if (panel) panel.classList.add('translate-x-full');
+        authDrawer.classList.remove('auth-drawer-open');
+        setTimeout(() => {
+            if (!authDrawer.classList.contains('auth-drawer-open')) {
+                authDrawer.classList.add('pointer-events-none', 'opacity-0');
+            }
+        }, 250);
         document.body.style.overflow = '';
     }
 
@@ -200,6 +202,55 @@ document.addEventListener('DOMContentLoaded', () => {
     if (authBackdrop) authBackdrop.addEventListener('click', closeAuthDrawer);
     if (authTabBtnLogin) authTabBtnLogin.addEventListener('click', switchToLogin);
     if (authTabBtnRegister) authTabBtnRegister.addEventListener('click', switchToRegister);
+
+    // In-drawer switch buttons ("Don't have an account? Create an account")
+    document.querySelectorAll('.rpc-drawer-to-register').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToRegister();
+        });
+    });
+
+    document.querySelectorAll('.rpc-drawer-to-login').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            switchToLogin();
+        });
+    });
+
+    // Google Auth Trigger Handler
+    document.querySelectorAll('.rpc-google-auth-trigger').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (window.RatpacCheckData && window.RatpacCheckData.googleAuthUrl) {
+                window.location.href = window.RatpacCheckData.googleAuthUrl;
+                return;
+            }
+            const existingToast = document.querySelector('.rpc-auth-toast');
+            if (existingToast) existingToast.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'rpc-auth-toast';
+            toast.innerHTML = `
+                <div class="rpc-toast-inner">
+                    <svg class="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.16 0 9.97 0 12s.45 3.84 1.25 5.42l4.03-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+                    <div class="rpc-toast-text">
+                        <strong>Google One-Click Sign In</strong>
+                        <span>Connecting with Google authentication. You can also sign in directly with your email credentials.</span>
+                    </div>
+                    <button type="button" class="rpc-toast-x" aria-label="Close">&times;</button>
+                </div>
+            `;
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('visible'));
+            const dismiss = () => {
+                toast.classList.remove('visible');
+                setTimeout(() => toast.remove(), 250);
+            };
+            toast.querySelector('.rpc-toast-x').addEventListener('click', dismiss);
+            setTimeout(dismiss, 5000);
+        });
+    });
 
     // ── Cart Coupon Handler ──
     const couponInput = document.getElementById('cart-coupon-code');

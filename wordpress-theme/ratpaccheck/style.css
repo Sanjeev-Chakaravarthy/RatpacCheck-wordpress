@@ -4,7 +4,7 @@ Theme URI: https://ratpaccheck.com
 Author: RatpacCheck Creative & Engineering Team
 Author URI: https://ratpaccheck.com
 Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
-Version: 1.3.0
+Version: 1.3.1
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -925,18 +925,24 @@ a.touch-button:hover {
    ========================================================================== */
 #auth-drawer {
   z-index: 99999;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
 }
 
-#auth-drawer.translate-x-full {
-  transform: translateX(100%);
+#auth-drawer:not(.auth-drawer-open) {
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden;
 }
 
-#auth-drawer:not(.translate-x-full) {
-  transform: translateX(0);
+#auth-drawer.auth-drawer-open {
+  pointer-events: auto !important;
+  opacity: 1 !important;
+  visibility: visible;
 }
 
 #auth-backdrop {
-  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #auth-drawer input:focus {
@@ -1830,16 +1836,25 @@ fieldset legend {
   }
 }
 
-/* Auth Drawer Panel (Strict 380px compact width) */
+/* Auth Drawer Panel (Generous 420px luxury width matching Cart Drawer) */
 .rpc-auth-drawer-panel {
-  width: 380px !important;
+  width: 420px !important;
   max-width: 100vw !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  will-change: transform;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12) !important;
 }
+
+#auth-drawer.auth-drawer-open .rpc-auth-drawer-panel {
+  transform: translateX(0) !important;
+}
+
 @media (max-width: 480px) {
   .rpc-auth-drawer-panel {
     width: 100vw !important;
   }
 }
+
 
 /* Unified Compact Auth Card on My Account Page (Same width for Login & Register) */
 .rpc-auth-card {
@@ -2133,3 +2148,234 @@ fieldset legend {
     padding: 0;
   }
 }
+
+/* =====================================================
+   PREMIUM AUTH EXTENSIONS: Google Button, Switcher, Perks, Toast
+   ===================================================== */
+
+/* Subtle Auth Switch Prompt ("Don't have an account? Create an account") */
+.rpc-auth-switch-prompt {
+  text-align: center !important;
+  margin: 15px 0 10px 0 !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12px !important;
+  color: #666666 !important;
+  line-height: 1.5 !important;
+}
+
+.rpc-link-switch {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin-left: 3px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  cursor: pointer !important;
+  transition: color 0.15s ease !important;
+}
+
+.rpc-link-switch:hover {
+  color: #8B6B4A !important;
+}
+
+/* Luxury Divider ("or continue with") */
+.rpc-auth-divider {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 14px 0 !important;
+  position: relative !important;
+  text-align: center !important;
+}
+
+.rpc-auth-divider::before,
+.rpc-auth-divider::after {
+  content: "" !important;
+  flex: 1 !important;
+  height: 1px !important;
+  background: #E8E3DB !important;
+}
+
+.rpc-auth-divider span {
+  padding: 0 12px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #8C847C !important;
+  background: transparent !important;
+}
+
+/* Premium Google Auth Button */
+.rpc-btn-google {
+  width: 100% !important;
+  height: 44px !important;
+  background: #FFFFFF !important;
+  color: #1A1A1A !important;
+  border: 1px solid #D8D2C7 !important;
+  border-radius: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+  box-sizing: border-box !important;
+}
+
+.rpc-btn-google:hover {
+  background: #FAF8F5 !important;
+  border-color: #1A1A1A !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07) !important;
+}
+
+.rpc-btn-google:active {
+  transform: scale(0.99) !important;
+}
+
+.rpc-google-icon {
+  width: 18px !important;
+  height: 18px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Auth Drawer In-Flow Perks (Eliminates Congestion & Empty Void) */
+.rpc-drawer-intro {
+  margin-bottom: 2px !important;
+}
+
+.rpc-drawer-intro h3 {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 !important;
+}
+
+.rpc-drawer-intro p {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 12.5px !important;
+  color: #777777 !important;
+  margin: 2px 0 0 0 !important;
+}
+
+.rpc-drawer-perks {
+  background: #FFFFFF !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  margin-top: 4px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
+}
+
+.rpc-drawer-perks-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #4A4A4A !important;
+  margin-bottom: 10px !important;
+}
+
+.rpc-drawer-perks-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 8px 12px !important;
+}
+
+.rpc-perk-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11px !important;
+  color: #555555 !important;
+  font-weight: 500 !important;
+}
+
+.rpc-perk-icon {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #2E7D32 !important;
+}
+
+/* Auth Toast Notification */
+.rpc-auth-toast {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 100000 !important;
+  max-width: 360px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #1A1A1A !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  padding: 14px 16px !important;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  pointer-events: none;
+}
+
+.rpc-auth-toast.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
+}
+
+.rpc-toast-inner {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+}
+
+.rpc-toast-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  flex: 1 !important;
+}
+
+.rpc-toast-text strong {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+}
+
+.rpc-toast-text span {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 12px !important;
+  color: #666666 !important;
+  line-height: 1.4 !important;
+}
+
+.rpc-toast-x {
+  background: none !important;
+  border: none !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  color: #999999 !important;
+  cursor: pointer !important;
+  padding: 0 4px !important;
+}
+
+.rpc-toast-x:hover {
+  color: #1A1A1A !important;
+}
+

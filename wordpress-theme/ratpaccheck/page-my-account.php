@@ -28,7 +28,13 @@ get_header();
         // The core WooCommerce my-account content
         if ( function_exists( 'wc_get_template' ) ) {
             if ( ! is_user_logged_in() ) {
-                wc_get_template( 'myaccount/form-login.php' );
+                if ( function_exists( 'is_wc_endpoint_url' ) && is_wc_endpoint_url( 'lost-password' ) ) {
+                    wc_get_template( 'myaccount/form-lost-password.php' );
+                } elseif ( function_exists( 'is_wc_endpoint_url' ) && is_wc_endpoint_url() ) {
+                    do_action( 'woocommerce_account_content' );
+                } else {
+                    wc_get_template( 'myaccount/form-login.php' );
+                }
             } else {
                 wc_get_template( 'myaccount/my-account.php' );
             }
