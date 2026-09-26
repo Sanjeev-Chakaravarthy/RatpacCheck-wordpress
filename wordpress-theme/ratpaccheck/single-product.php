@@ -27,9 +27,9 @@ if ($product_id > 0) {
     $product = ratpaccheck_get_product_by_id($product_id);
 }
 
-// If accessed as a WordPress CPT post (/product-item/slug/) without explicit product_id
-if (!$product && isset($post) && is_object($post) && isset($post->post_type) && $post->post_type === 'ratpac_product') {
-    $meta_product_id = get_post_meta($post->ID, '_product_id', true);
+// If accessed as a WordPress CPT post (/product-item/slug/) or WooCommerce product (/product/slug/) without explicit product_id
+if (!$product && isset($post) && is_object($post) && isset($post->post_type) && ($post->post_type === 'ratpac_product' || $post->post_type === 'product')) {
+    $meta_product_id = get_post_meta($post->ID, '_ratpac_legacy_id', true) ?: get_post_meta($post->ID, '_product_id', true);
     if ($meta_product_id) {
         $product = ratpaccheck_get_product_by_id(intval($meta_product_id));
     }
@@ -44,15 +44,28 @@ if (!$product && isset($post) && is_object($post) && isset($post->post_type) && 
             }
         }
     }
-    // If it's a user-created database CPT not in static catalog, construct product array from post meta
+    // If it's a user-created database product not in static catalog, construct product array from WooCommerce / post meta
     if (!$product) {
-        $price = get_post_meta($post->ID, '_price', true);
-        $original_price = get_post_meta($post->ID, '_original_price', true);
-        $subtitle = get_post_meta($post->ID, '_subtitle', true);
-        $badge = get_post_meta($post->ID, '_badge', true);
-        $rating = get_post_meta($post->ID, '_rating', true) ?: '4.8';
-        $reviews = get_post_meta($post->ID, '_reviews', true) ?: '120';
+        $wc_p = function_exists('wc_get_product') ? wc_get_product($post->ID) : null;
+        
+        $price = $wc_p ? $wc_p->get_price() : get_post_meta($post->ID, '_price', true);
+        $original_price = $wc_p ? $wc_p->get_regular_price() : get_post_meta($post->ID, '_original_price', true);
+        $subtitle = get_post_meta($post->ID, '_ratpac_subtitle', true) ?: get_post_meta($post->ID, '_subtitle', true);
+        $badge = get_post_meta($post->ID, '_ratpac_badge', true) ?: get_post_meta($post->ID, '_badge', true);
+        $rating = get_post_meta($post->ID, '_ratpac_rating', true) ?: (get_post_meta($post->ID, '_rating', true) ?: '4.8');
+        $reviews = get_post_meta($post->ID, '_ratpac_rating_count', true) ?: (get_post_meta($post->ID, '_reviews', true) ?: '120');
         $thumb_url = get_the_post_thumbnail_url($post->ID, 'full') ?: '';
+
+        $gallery_urls = array();
+        if ($thumb_url) $gallery_urls[] = $thumb_url;
+        if ($wc_p && method_exists($wc_p, 'get_gallery_image_ids')) {
+            foreach ($wc_p->get_gallery_image_ids() as $gid) {
+                $g_url = wp_get_attachment_image_url($gid, 'full');
+                if ($g_url) $gallery_urls[] = $g_url;
+            }
+        }
+
+        $is_in_stock = $wc_p ? $wc_p->is_in_stock() : true;
 
         $product = array(
             'id'            => $post->ID,
@@ -61,13 +74,13 @@ if (!$product && isset($post) && is_object($post) && isset($post->post_type) && 
             'price'         => $price ? intval($price) : 499,
             'originalPrice' => $original_price ? intval($original_price) : 699,
             'image'         => $thumb_url,
-            'images'        => $thumb_url ? array($thumb_url) : array(),
+            'images'        => !empty($gallery_urls) ? $gallery_urls : ($thumb_url ? array($thumb_url) : array()),
             'rating'        => floatval($rating),
-            'reviews'       => intval($reviews),
+            'reviews'       => intval(str_replace(',', '', $reviews)),
             'badge'         => $badge ?: '',
             'category'      => 'Skin',
             'type'          => 'Treatment',
-            'inStock'       => true,
+            'inStock'       => $is_in_stock,
             'description'   => apply_filters('the_content', $post->post_content),
         );
     }

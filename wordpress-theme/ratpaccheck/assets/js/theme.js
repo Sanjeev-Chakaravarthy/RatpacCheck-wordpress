@@ -73,8 +73,143 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cartCheckoutBtn) {
         cartCheckoutBtn.addEventListener('click', () => {
             closeCart();
-            const checkoutUrl = (window.RatpacCheckData && window.RatpacCheckData.homeUrl) ? (window.RatpacCheckData.homeUrl + 'checkout/') : '/checkout/';
+            const checkoutUrl = (window.RatpacCheckData && window.RatpacCheckData.checkoutUrl) ? window.RatpacCheckData.checkoutUrl : ((window.RatpacCheckData && window.RatpacCheckData.homeUrl) ? (window.RatpacCheckData.homeUrl + 'checkout/') : '/checkout/');
             window.location.href = checkoutUrl;
+        });
+    }
+
+    // ── Auth Slide-in Drawer ──
+    const authDrawer = document.getElementById('auth-drawer');
+    const authBackdrop = document.getElementById('auth-backdrop');
+    const authDrawerClose = document.getElementById('auth-drawer-close');
+    const authDrawerTrigger = document.getElementById('auth-drawer-trigger');
+    const authTabBtnLogin = document.getElementById('auth-tab-btn-login');
+    const authTabBtnRegister = document.getElementById('auth-tab-btn-register');
+    const authPanelLogin = document.getElementById('auth-panel-login');
+    const authPanelRegister = document.getElementById('auth-panel-register');
+
+    function openAuthDrawer(initialTab) {
+        if (!authDrawer) return;
+        if (initialTab === 'register') {
+            switchToRegister();
+        } else {
+            switchToLogin();
+        }
+        authDrawer.classList.remove('translate-x-full');
+        authDrawer.classList.remove('pointer-events-none');
+        if (authBackdrop) {
+            authBackdrop.classList.remove('opacity-0');
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeAuthDrawer() {
+        if (!authDrawer) return;
+        authDrawer.classList.add('translate-x-full');
+        authDrawer.classList.add('pointer-events-none');
+        if (authBackdrop) {
+            authBackdrop.classList.add('opacity-0');
+        }
+        document.body.style.overflow = '';
+    }
+
+    function switchToLogin() {
+        if (!authPanelLogin || !authPanelRegister) return;
+        authPanelLogin.classList.remove('hidden');
+        authPanelRegister.classList.add('hidden');
+        if (authTabBtnLogin && authTabBtnRegister) {
+            authTabBtnLogin.classList.add('bg-[#1A1A1A]', 'text-white', 'shadow-xs');
+            authTabBtnLogin.classList.remove('text-[#666666]');
+            authTabBtnRegister.classList.remove('bg-[#1A1A1A]', 'text-white', 'shadow-xs');
+            authTabBtnRegister.classList.add('text-[#666666]');
+        }
+    }
+
+    function switchToRegister() {
+        if (!authPanelLogin || !authPanelRegister) return;
+        authPanelLogin.classList.add('hidden');
+        authPanelRegister.classList.remove('hidden');
+        if (authTabBtnLogin && authTabBtnRegister) {
+            authTabBtnRegister.classList.add('bg-[#1A1A1A]', 'text-white', 'shadow-xs');
+            authTabBtnRegister.classList.remove('text-[#666666]');
+            authTabBtnLogin.classList.remove('bg-[#1A1A1A]', 'text-white', 'shadow-xs');
+            authTabBtnLogin.classList.add('text-[#666666]');
+        }
+    }
+
+    if (authDrawerTrigger) authDrawerTrigger.addEventListener('click', () => openAuthDrawer('login'));
+    document.querySelectorAll('.mobile-auth-trigger').forEach(btn => btn.addEventListener('click', () => openAuthDrawer('login')));
+    if (authDrawerClose) authDrawerClose.addEventListener('click', closeAuthDrawer);
+    if (authBackdrop) authBackdrop.addEventListener('click', closeAuthDrawer);
+    if (authTabBtnLogin) authTabBtnLogin.addEventListener('click', switchToLogin);
+    if (authTabBtnRegister) authTabBtnRegister.addEventListener('click', switchToRegister);
+
+    // ── Cart Coupon Handler ──
+    const couponInput = document.getElementById('cart-coupon-code');
+    const applyCouponBtn = document.getElementById('cart-apply-coupon-btn');
+    const couponNotice = document.getElementById('cart-coupon-notice');
+    const discountRow = document.getElementById('cart-discount-row');
+    const discountAmount = document.getElementById('cart-discount-amount');
+
+    if (applyCouponBtn && couponInput) {
+        applyCouponBtn.addEventListener('click', function() {
+            const code = couponInput.value.trim();
+            if (!code) return;
+            
+            if (window.RatpacCheckData && window.RatpacCheckData.wcActive && window.RatpacCheckData.ajaxUrl) {
+                applyCouponBtn.disabled = true;
+                applyCouponBtn.textContent = '...';
+
+                const formData = new FormData();
+                formData.append('action', 'ratpaccheck_apply_coupon');
+                formData.append('security', window.RatpacCheckData.cartNonce);
+                formData.append('coupon_code', code);
+
+                fetch(window.RatpacCheckData.ajaxUrl, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(r => r.json())
+                .then(res => {
+                    applyCouponBtn.disabled = false;
+                    applyCouponBtn.textContent = 'Apply';
+                    if (couponNotice) {
+                        couponNotice.classList.remove('hidden', 'text-red-600', 'text-green-700');
+                        if (res.success) {
+                            couponNotice.classList.add('text-green-700');
+                            couponNotice.textContent = res.data.success_message || 'Coupon applied!';
+                            couponInput.value = '';
+                            if (res.data.has_discount && discountRow && discountAmount) {
+                                discountRow.classList.remove('hidden');
+                                discountAmount.textContent = '-' + res.data.discount_total;
+                            }
+                            if (cartSubtotalPrice) cartSubtotalPrice.textContent = res.data.total;
+                        } else {
+                            couponNotice.classList.add('text-red-600');
+                            couponNotice.textContent = res.data.message || 'Invalid coupon';
+                        }
+                    }
+                })
+                .catch(() => {
+                    applyCouponBtn.disabled = false;
+                    applyCouponBtn.textContent = 'Apply';
+                });
+            } else {
+                // Client-side fallback
+                if (code.toUpperCase() === 'FIRST10' || code.toUpperCase() === 'BEAUTY10') {
+                    if (couponNotice) {
+                        couponNotice.classList.remove('hidden', 'text-red-600');
+                        couponNotice.classList.add('text-green-700');
+                        couponNotice.textContent = 'Coupon applied: 10% OFF!';
+                    }
+                } else {
+                    if (couponNotice) {
+                        couponNotice.classList.remove('hidden', 'text-green-700');
+                        couponNotice.classList.add('text-red-600');
+                        couponNotice.textContent = 'Invalid coupon code';
+                    }
+                }
+            }
         });
     }
 
@@ -96,10 +231,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 cart.push({ id, name, price, originalPrice, image, subtitle, quantity: quantityToAdd });
             }
             saveCart();
+            renderCartUI();
             openCart();
+
+            // Background sync with WooCommerce session if active
+            if (window.RatpacCheckData && window.RatpacCheckData.wcActive && window.RatpacCheckData.ajaxUrl) {
+                const fd = new FormData();
+                fd.append('action', 'ratpaccheck_add_to_cart');
+                fd.append('security', window.RatpacCheckData.cartNonce);
+                fd.append('product_id', id);
+                fd.append('quantity', quantityToAdd);
+                fetch(window.RatpacCheckData.ajaxUrl, { method: 'POST', body: fd }).catch(() => {});
+            }
         },
         openCart: openCart,
         closeCart: closeCart,
+        openAuth: openAuthDrawer,
+        closeAuth: closeAuthDrawer,
         getCart: function() { return cart; }
     };
 

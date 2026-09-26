@@ -14,6 +14,14 @@ if (!defined('ABSPATH')) {
 // ── Include Master Product Data & Helpers ──
 require_once get_template_directory() . '/inc/products-data.php';
 
+// ── Include WooCommerce & Modern Authentication Modules ──
+require_once get_template_directory() . '/inc/admin-login.php';
+require_once get_template_directory() . '/inc/woocommerce-setup.php';
+require_once get_template_directory() . '/inc/woocommerce-meta.php';
+require_once get_template_directory() . '/inc/woocommerce-importer.php';
+require_once get_template_directory() . '/inc/woocommerce-account.php';
+require_once get_template_directory() . '/inc/woocommerce-cart.php';
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  */
@@ -199,7 +207,7 @@ add_action('save_post_ratpac_product', 'ratpaccheck_save_product_meta');
  * Enqueue scripts and styles.
  */
 function ratpaccheck_scripts() {
-    $theme_version = '1.0.3';
+    $theme_version = '1.1.0';
 
     // Enqueue Google Fonts (Noto Serif & Instrument Sans)
     wp_enqueue_style('ratpaccheck-fonts', 'https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap', array(), null);
@@ -215,9 +223,15 @@ function ratpaccheck_scripts() {
 
     // Pass data to JS
     wp_localize_script('ratpaccheck-theme', 'RatpacCheckData', array(
-        'homeUrl'   => home_url('/'),
-        'themeUrl'  => get_template_directory_uri(),
+        'homeUrl'     => home_url('/'),
+        'themeUrl'    => get_template_directory_uri(),
         'allProducts' => ratpaccheck_get_all_products(),
+        'ajaxUrl'     => admin_url('admin-ajax.php'),
+        'cartNonce'   => wp_create_nonce('ratpaccheck_cart_nonce'),
+        'wcActive'    => class_exists('WooCommerce'),
+        'isLoggedIn'  => is_user_logged_in(),
+        'accountUrl'  => function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : home_url('/my-account/'),
+        'checkoutUrl' => function_exists('wc_get_checkout_url') ? wc_get_checkout_url() : home_url('/checkout/'),
     ));
 }
 add_action('wp_enqueue_scripts', 'ratpaccheck_scripts');

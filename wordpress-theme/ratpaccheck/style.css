@@ -4,7 +4,7 @@ Theme URI: https://ratpaccheck.com
 Author: RatpacCheck Creative & Engineering Team
 Author URI: https://ratpaccheck.com
 Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
-Version: 1.0.3
+Version: 1.1.0
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -919,6 +919,424 @@ a.touch-button:hover {
 .intl-popup-animate {
   animation: intlPopupEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ==========================================================================
+   SLIDE-OUT AUTH DRAWER (LOGIN & REGISTRATION)
+   ========================================================================== */
+#auth-drawer {
+  z-index: 99999;
+}
+
+#auth-drawer.translate-x-full {
+  transform: translateX(100%);
+}
+
+#auth-drawer:not(.translate-x-full) {
+  transform: translateX(0);
+}
+
+#auth-backdrop {
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#auth-drawer input:focus {
+  border-color: #E8799A !important;
+  box-shadow: 0 0 0 3px rgba(232, 121, 154, 0.15) !important;
+}
+
+/* ==========================================================================
+   WOOCOMMERCE LUXURY PORTAL & MY ACCOUNT REDESIGN
+   ========================================================================== */
+.rpc-account-portal {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.rpc-account-banner {
+  background: #FFFFFF;
+  border: 1px solid #E8E3DB;
+  box-shadow: 0 4px 20px -2px rgba(26, 26, 26, 0.04);
+}
+
+.rpc-avatar-circle {
+  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
+  color: #E8799A;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  letter-spacing: -0.02em;
+}
+
+.rpc-account-nav {
+  position: sticky;
+  top: 100px;
+}
+
+.rpc-account-nav-item a {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rpc-account-nav-item a:hover {
+  transform: translateX(2px);
+}
+
+.rpc-account-content {
+  background: #FFFFFF;
+  border: 1px solid #E8E3DB;
+  box-shadow: 0 4px 20px -2px rgba(26, 26, 26, 0.04);
+  min-height: 480px;
+}
+
+/* Stat Cards in Dashboard */
+.rpc-dashboard-cards .bg-\[\#F6F1EA\] {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.rpc-dashboard-cards .bg-\[\#F6F1EA\]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* WooCommerce Orders Table */
+table.woocommerce-orders-table,
+table.woocommerce-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #E8E3DB;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+table.woocommerce-orders-table th,
+table.woocommerce-table th {
+  background-color: #F6F1EA;
+  color: #4A4A4A;
+  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #E8E3DB;
+}
+
+table.woocommerce-orders-table td,
+table.woocommerce-table td {
+  padding: 16px 18px;
+  color: #1A1A1A;
+  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13.5px;
+  border-bottom: 1px solid #F0ECE6;
+  vertical-align: middle;
+}
+
+table.woocommerce-orders-table tr:last-child td,
+table.woocommerce-table tr:last-child td {
+  border-bottom: none;
+}
+
+table.woocommerce-orders-table tr:hover td {
+  background-color: #FAFAF8;
+}
+
+/* Order Status Badges */
+.woocommerce-orders-table__cell-order-status {
+  text-transform: capitalize;
+}
+
+/* Action Buttons inside Orders Table */
+.woocommerce-orders-table__cell-order-actions a.woocommerce-button,
+.woocommerce-orders-table__cell-order-actions a.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 7px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-right: 6px;
+}
+
+.woocommerce-orders-table__cell-order-actions a.woocommerce-button:hover,
+.woocommerce-orders-table__cell-order-actions a.button:hover {
+  background-color: #E8799A;
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+/* WooCommerce Addresses Cards */
+.woocommerce-Addresses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.woocommerce-Address {
+  background: #FAFAF8;
+  border: 1px solid #E8E3DB;
+  border-radius: 14px;
+  padding: 22px;
+  transition: border-color 0.2s ease;
+}
+
+.woocommerce-Address:hover {
+  border-color: #D5CFC7;
+}
+
+.woocommerce-Address-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E8E3DB;
+}
+
+.woocommerce-Address-title h3 {
+  font-family: 'Metropolis', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.woocommerce-Address-title a.edit {
+  font-family: 'Metropolis', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8B6B4A;
+  text-decoration: none;
+}
+
+.woocommerce-Address-title a.edit:hover {
+  text-decoration: underline;
+  color: #E8799A;
+}
+
+.woocommerce-Address address {
+  font-style: normal;
+  font-family: 'Adobe Hebrew', Georgia, serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* WooCommerce Standard Forms (Edit Account & Address Fields) */
+.woocommerce-EditAccountForm,
+.woocommerce-address-fields,
+form.login,
+form.register {
+  max-width: 680px;
+}
+
+.woocommerce-form-row,
+.woocommerce-EditAccountForm p.form-row,
+.woocommerce-address-fields p.form-row {
+  margin-bottom: 18px;
+}
+
+.woocommerce-EditAccountForm label,
+.woocommerce-address-fields label,
+form.login label,
+form.register label {
+  display: block;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #4A4A4A;
+  margin-bottom: 6px;
+}
+
+.woocommerce-input-wrapper {
+  display: block;
+  width: 100%;
+}
+
+.woocommerce-input-wrapper input.input-text,
+.woocommerce-input-wrapper select,
+.woocommerce-input-wrapper textarea,
+.woocommerce-EditAccountForm input.input-text,
+form.login input.input-text,
+form.register input.input-text {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid #D5CFC7;
+  border-radius: 12px;
+  padding: 11px 16px;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 13.5px;
+  color: #1A1A1A;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.woocommerce-input-wrapper input.input-text:focus,
+.woocommerce-input-wrapper select:focus,
+.woocommerce-input-wrapper textarea:focus,
+.woocommerce-EditAccountForm input.input-text:focus,
+form.login input.input-text:focus,
+form.register input.input-text:focus {
+  outline: none;
+  border-color: #E8799A;
+  box-shadow: 0 0 0 3px rgba(232, 121, 154, 0.15);
+}
+
+fieldset {
+  border: 1px solid #E8E3DB;
+  border-radius: 14px;
+  padding: 20px;
+  margin: 24px 0;
+  background-color: #FAFAF8;
+}
+
+fieldset legend {
+  font-family: 'Metropolis', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1A1A1A;
+  padding: 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Buttons in WooCommerce */
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce a.button.wc-forward,
+.woocommerce-Button.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 13px 26px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce a.button.wc-forward:hover,
+.woocommerce-Button.button:hover {
+  background-color: #E8799A !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(232, 121, 154, 0.3);
+}
+
+/* Notices and Messages */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  list-style: none;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-family: 'Metropolis', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.woocommerce-message {
+  background-color: #F0FDF4;
+  border: 1px solid #BBF7D0;
+  color: #166534;
+}
+
+.woocommerce-message a.button {
+  background-color: #166534 !important;
+  color: #FFFFFF !important;
+  font-size: 11px;
+  padding: 6px 14px;
+}
+
+.woocommerce-info {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #334155;
+}
+
+.woocommerce-error {
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #991B1B;
+}
+
+/* Logged-Out / My Account Split Screen */
+.col2-set#customer_login {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: 960px;
+  margin: 3rem auto;
+}
+
+.col2-set#customer_login .col-1,
+.col2-set#customer_login .col-2 {
+  background: #FFFFFF;
+  border: 1px solid #E8E3DB;
+  border-radius: 20px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.col2-set#customer_login h2 {
+  font-family: 'Metropolis', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1A1A1A;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #F6F1EA;
+  position: relative;
+}
+
+.col2-set#customer_login h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #E8799A;
+}
+
+/* Cart Coupon Section */
+#cart-coupon-box {
+  background: #FAFAF8;
+  border: 1px solid #EFEAE3;
+  border-radius: 12px;
+  padding: 12px;
+}
+
 
 
 

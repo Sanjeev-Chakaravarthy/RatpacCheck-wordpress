@@ -124,13 +124,27 @@ if (!defined('ABSPATH')) {
                         <circle cx="11" cy="11" r="8"></circle>
                     </svg>
                 </button>
-                <a class="flex items-center gap-1.5 font-metropolis" href="<?php echo esc_url(home_url('/track-order/')); ?>" style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:#1A1A1A;text-decoration:none;transition:color 0.2s">
-                    <svg aria-hidden="true" class="lucide lucide-user" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                    <span>Login</span>
-                </a>
+                <?php if (is_user_logged_in()) : 
+                    $current_user = wp_get_current_user();
+                    $display_name = !empty($current_user->first_name) ? $current_user->first_name : $current_user->display_name;
+                    $account_url  = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : home_url('/my-account/');
+                ?>
+                    <a class="flex items-center gap-1.5 font-metropolis hover:text-[#E8799A] transition-colors" href="<?php echo esc_url($account_url); ?>" style="font-size:13px;font-weight:500;letter-spacing:0.04em;color:#1A1A1A;text-decoration:none;" title="<?php esc_attr_e('My Account', 'ratpaccheck'); ?>">
+                        <svg aria-hidden="true" class="lucide lucide-user" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span><?php echo esc_html($display_name); ?></span>
+                    </a>
+                <?php else : ?>
+                    <button type="button" id="auth-drawer-trigger" class="flex items-center gap-1.5 font-metropolis hover:text-[#E8799A] transition-colors" style="background:none;border:none;cursor:pointer;font-size:13px;font-weight:500;letter-spacing:0.04em;color:#1A1A1A;padding:4px;" title="<?php esc_attr_e('Login / Register', 'ratpaccheck'); ?>">
+                        <svg aria-hidden="true" class="lucide lucide-user" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <span>Login</span>
+                    </button>
+                <?php endif; ?>
                 <button type="button" id="cart-drawer-trigger" style="background:none;border:none;cursor:pointer;color:#1A1A1A;position:relative;display:flex;align-items:center;transition:color 0.2s;padding:4px" aria-label="Open cart">
                     <svg aria-hidden="true" class="lucide lucide-shopping-cart w-5 h-5 sm:w-[19px] sm:h-[19px]" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="8" cy="21" r="1"></circle>
@@ -165,12 +179,23 @@ if (!defined('ABSPATH')) {
                             <circle cx="11" cy="11" r="8"></circle>
                         </svg>
                     </button>
-                    <a href="<?php echo esc_url(home_url('/track-order/')); ?>" style="color:#1A1A1A;display:flex;align-items:center;padding:4px" title="Login">
-                        <svg aria-hidden="true" class="lucide lucide-user" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="12" cy="7" r="4"></circle>
-                        </svg>
-                    </a>
+                    <?php if (is_user_logged_in()) : 
+                        $account_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : home_url('/my-account/');
+                    ?>
+                        <a href="<?php echo esc_url($account_url); ?>" style="color:#1A1A1A;display:flex;align-items:center;padding:4px" title="<?php esc_attr_e('My Account', 'ratpaccheck'); ?>">
+                            <svg aria-hidden="true" class="lucide lucide-user" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </a>
+                    <?php else : ?>
+                        <button type="button" class="mobile-auth-trigger" style="background:none;border:none;cursor:pointer;color:#1A1A1A;display:flex;align-items:center;padding:4px" title="<?php esc_attr_e('Login / Register', 'ratpaccheck'); ?>">
+                            <svg aria-hidden="true" class="lucide lucide-user" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </button>
+                    <?php endif; ?>
                     <button type="button" class="mobile-cart-trigger" style="background:none;border:none;cursor:pointer;color:#1A1A1A;position:relative;display:flex;align-items:center;padding:4px" aria-label="Open cart">
                         <svg aria-hidden="true" class="lucide lucide-shopping-cart" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="8" cy="21" r="1"></circle>
