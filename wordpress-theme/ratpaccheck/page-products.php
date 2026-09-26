@@ -56,6 +56,8 @@ $heading_map = array(
     'hyperpigmentation' => 'Brightening / Hyperpigmentation / Melasma / Tan',
     'melasma' => 'Brightening / Hyperpigmentation / Melasma / Tan',
     'tan' => 'Brightening / Hyperpigmentation / Melasma / Tan',
+    'uneven tone' => 'Brightening / Hyperpigmentation / Melasma / Tan',
+    'uneven tone or pigmentation' => 'Brightening / Hyperpigmentation / Melasma / Tan',
     'dehydrated skin' => 'Dehydrated Skin',
     'hairfall' => 'Hairfall',
     'dandruff' => 'Dandruff',
@@ -95,7 +97,7 @@ foreach ($all_products as $p) {
                 if (in_array('acne', $p_concerns_lower) || in_array('oiliness', $p_concerns_lower)) {
                     $matched_concern = true;
                 }
-            } elseif (in_array($active_concern, array('brightening', 'brightening skin', 'hyperpigmentation', 'melasma', 'tan'))) {
+            } elseif (in_array($active_concern, array('brightening', 'brightening skin', 'hyperpigmentation', 'melasma', 'tan', 'uneven tone', 'uneven tone or pigmentation'))) {
                 if (in_array('brightening skin', $p_concerns_lower) || in_array('hyperpigmentation', $p_concerns_lower) || in_array('melasma', $p_concerns_lower) || in_array('tan', $p_concerns_lower)) {
                     $matched_concern = true;
                 }
@@ -162,7 +164,7 @@ usort($filtered_products, function($a, $b) use ($product_order) {
 $product_count = count($filtered_products);
 
 // Visible concerns for current category
-$skin_concerns = array("Acne", "Hyperpigmentation", "Dark Spots", "Melasma", "Tan", "Brightening Skin", "Oiliness", "Dehydrated Skin");
+$skin_concerns = array("Acne", "Hyperpigmentation", "Uneven Tone", "Dark Spots", "Melasma", "Tan", "Brightening Skin", "Oiliness", "Dehydrated Skin");
 $hair_concerns = array("Hairfall", "Dandruff");
 $visible_concerns = ($selected_category === 'Hair') ? $hair_concerns : ($selected_category === 'Skin' ? $skin_concerns : array_merge($skin_concerns, $hair_concerns));
 $type_options = array("Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen");
@@ -173,6 +175,29 @@ $type_options = array("Cleanser", "Toner", "Serum", "Moisturizer", "Sunscreen");
 // footer_notes[] is per-concern configurable.
 // ══════════════════════════════════════════════════════════════════════════
 $concern_routines = array(
+
+    // ── UNEVEN TONE ── 5 steps ─────────────────────────────────────────
+    'uneven tone' => array(
+        'label'        => 'Uneven Tone',
+        'subtitle'     => 'Brighten Skin, Melasma, Hyperpigmentation, Uneven Tone',
+        'footer_notes' => array(
+            'Suitable for <strong>ALL SKIN TYPES</strong>.',
+            'Gentle Formula even suitable for <strong>BEGINNERS</strong>',
+        ),
+        'steps' => array(
+            array('num'=>1,'timing'=>'AM, PM','instruction'=>'Step 1 : Wash Your Face',
+                  'product_name'=>'Hydrating Face Cleanser','image'=>'/images/Hydrating%20face%20cleanser.jpeg','special'=>false),
+            array('num'=>2,'timing'=>'AM, PM','instruction'=>'Step 2 : Apply serum a few drops on skin & gently massage.',
+                  'product_name'=>'Deep Glow Face Serum','image'=>'/images/Deep%20glow%20(Face%20serum).jpeg','special'=>false),
+            array('num'=>3,'timing'=>'AM, PM','instruction'=>'Step 3 : Moisturizer',
+                  'product_name'=>'Light Weight Moisturiser','image'=>'/images/Light%20weight%20moisturiser.jpeg','special'=>false),
+            array('num'=>4,'timing'=>'AM','instruction'=>'Step 4 : Sunscreen',
+                  'product_name'=>'Multi-Functional Sunscreen 50+','image'=>'/images/Multi-functional%20Sunscreen%2050%2B.jpeg','special'=>false),
+            array('num'=>5,'timing'=>'PM','instruction'=>'Step 5 : Exfoliating Toner (Weekly)',
+                  'description'=>"Apply toner Weekly twice or thrice only at night.\nAfter toner applied, use Our Multi Layer Hydrating Serum Strictly. No other serums.",
+                  'product_name'=>'6% Glycolic + Mulberry Exfoliating Toner','image'=>'/images/Mulberry%20(Exfoliating%20Toner).jpeg','special'=>true),
+        ),
+    ),
 
     // ── ACNE ── 3 steps ────────────────────────────────────────────────
     'acne' => array(
@@ -407,7 +432,7 @@ if ($active_routine) {
                                 </button>
                                 <div id="mobile-concern-content" class="mt-2.5 flex flex-col gap-2 hidden">
                                     <?php foreach ($visible_concerns as $opt) : ?>
-                                        <?php $is_checked = in_array($opt, $selected_concerns); ?>
+                                        <?php $is_checked = in_array(strtolower($opt), array_map('strtolower', $selected_concerns)); ?>
                                         <label class="flex items-center gap-2.5 cursor-pointer font-adobe text-[13px] text-[#3D3532]">
                                             <input type="checkbox" class="w-4 h-4 cursor-pointer accent-[#1A1A1A]" <?php echo $is_checked ? 'checked' : ''; ?> onchange="window.location.href='<?php echo $is_checked ? esc_url(home_url('/products' . ($selected_category ? '?concern=' . $selected_category : ''))) : esc_url(home_url('/products?concern=' . urlencode($opt))); ?>'">
                                             <span><?php echo esc_html($opt); ?></span>
@@ -478,11 +503,11 @@ if ($active_routine) {
                         <div style="border-bottom:1px solid #E8E3DB;padding-bottom:16px;margin-bottom:16px;">
                             <button type="button" class="flex items-center justify-between w-full text-left font-adobe font-bold text-[13px] tracking-[0.06em] uppercase text-[#1A1A1A] filter-section-toggle" data-target="desktop-concern-list">
                                 <span>Concern</span>
-                                <svg class="w-4 h-4 transition-transform duration-200 <?php echo !empty($selected_concerns) ? 'transform rotate-180' : ''; ?>" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                                <svg class="w-4 h-4 transition-transform duration-200 transform rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                             </button>
-                            <div id="desktop-concern-list" class="mt-3 flex flex-col gap-2 <?php echo empty($selected_concerns) ? 'hidden' : ''; ?>">
+                            <div id="desktop-concern-list" class="mt-3 flex flex-col gap-2">
                                 <?php foreach ($visible_concerns as $opt) : ?>
-                                    <?php $is_checked = in_array($opt, $selected_concerns); ?>
+                                    <?php $is_checked = in_array(strtolower($opt), array_map('strtolower', $selected_concerns)); ?>
                                     <label class="flex items-center gap-2.5 cursor-pointer font-adobe text-[13px] text-[#3D3532]">
                                         <input type="checkbox" class="w-4 h-4 cursor-pointer accent-[#1A1A1A]" <?php echo $is_checked ? 'checked' : ''; ?> onchange="window.location.href='<?php echo $is_checked ? esc_url(home_url('/products' . ($selected_category ? '?concern=' . $selected_category : ''))) : esc_url(home_url('/products?concern=' . urlencode($opt))); ?>'">
                                         <span><?php echo esc_html($opt); ?></span>

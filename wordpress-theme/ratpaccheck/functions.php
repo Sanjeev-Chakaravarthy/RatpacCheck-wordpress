@@ -279,8 +279,8 @@ function ratpaccheck_render_product_card($product, $extra_classes = '') {
 
     ob_start();
     ?>
-    <a class="block w-full h-full" href="<?php echo esc_url($url); ?>" style="text-decoration:none;color:inherit;">
-        <div class="group product-card h-full card-padding <?php echo esc_attr($extra_classes); ?>" style="cursor:pointer;width:100%;" data-product-id="<?php echo esc_attr($id); ?>">
+    <div class="group product-card h-full card-padding flex flex-col justify-between <?php echo esc_attr($extra_classes); ?>" style="width:100%;" data-product-id="<?php echo esc_attr($id); ?>">
+        <a class="block w-full flex-1" href="<?php echo esc_url($url); ?>" style="text-decoration:none;color:inherit;cursor:pointer;">
             <!-- Square Image Frame -->
             <div class="square-media-frame">
                 <img alt="<?php echo esc_attr($name); ?>" class="square-media group-hover:scale-110" src="<?php echo esc_url($image); ?>" loading="lazy" style="position:absolute;height:100%;width:100%;inset:0;color:transparent;transition:opacity 0.35s;opacity:1;" />
@@ -296,7 +296,7 @@ function ratpaccheck_render_product_card($product, $extra_classes = '') {
             <!-- Card Info Stack -->
             <div class="product-card-stack">
                 <div style="display:flex;flex-direction:column;gap:4px;">
-                    <h3 class="product-card-title" style="position:relative;display:inline-block;cursor:pointer;">
+                    <h3 class="product-card-title" style="position:relative;display:inline-block;">
                         <?php echo $name; ?>
                         <span style="position:absolute;left:0;bottom:-2px;height:1px;background-color:#1A1A1A;width:0%;transition:width 0.3s;"></span>
                     </h3>
@@ -320,25 +320,25 @@ function ratpaccheck_render_product_card($product, $extra_classes = '') {
                         <?php endif; ?>
                     </div>
                 </div>
-                <!-- Add to Cart Button -->
-                <button
-                    type="button"
-                    class="btn-add-to-cart"
-                    style="margin-top:10px;width:100%;padding:12px 0;background-color:#1A1A1A;color:#fff;border:none;border-radius:12px;font-family:Metropolis,'Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:0.03em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background-color 0.2s;"
-                    data-id="<?php echo esc_attr($id); ?>"
-                    data-name="<?php echo esc_attr($name); ?>"
-                    data-price="<?php echo esc_attr($price); ?>"
-                    data-original-price="<?php echo esc_attr($original_price); ?>"
-                    data-image="<?php echo esc_url($image); ?>"
-                    data-subtitle="<?php echo esc_attr($subtitle); ?>"
-                    onclick="event.preventDefault();event.stopPropagation();"
-                >
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
-                    Add to Cart
-                </button>
             </div>
-        </div>
-    </a>
+        </a>
+        <!-- Add to Cart Button Outside <a> -->
+        <button
+            type="button"
+            class="btn-add-to-cart"
+            style="margin-top:10px;width:100%;padding:12px 0;background-color:#1A1A1A;color:#fff;border:none;border-radius:12px;font-family:Metropolis,'Helvetica Neue',Arial,sans-serif;font-size:13px;font-weight:600;letter-spacing:0.03em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background-color 0.2s;"
+            data-id="<?php echo esc_attr($id); ?>"
+            data-name="<?php echo esc_attr($name); ?>"
+            data-price="<?php echo esc_attr($price); ?>"
+            data-original-price="<?php echo esc_attr($original_price); ?>"
+            data-image="<?php echo esc_url($image); ?>"
+            data-subtitle="<?php echo esc_attr($subtitle); ?>"
+            onclick="event.stopPropagation();if(window.ratpaccheck_handle_add_to_cart){window.ratpaccheck_handle_add_to_cart(event,this);}"
+        >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
+            <span>Add to Cart</span>
+        </button>
+    </div>
     <?php
     return ob_get_clean();
 }

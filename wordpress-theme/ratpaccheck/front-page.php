@@ -237,11 +237,11 @@ Serum</h1>
 
         <div class="relative w-full" id="concerns-slider-wrap">
             <!-- Left Arrow -->
-            <button type="button" id="concerns-prev" aria-label="Previous" class="hidden md:flex absolute slider-arrow left-arrow z-20" style="left: -16px; top: 40%; background: rgba(255,255,255,0.85); color: #333; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <button type="button" id="concerns-prev" aria-label="Previous" class="hidden md:flex absolute slider-arrow left-arrow z-20 hover:scale-105 active:scale-95 transition-all" style="left: -16px; top: 40%; background: rgba(255,255,255,0.92); color: #1a1a1a; cursor: pointer; width: 42px; height: 42px; border-radius: 50%; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.06);">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
             </button>
             <!-- Right Arrow -->
-            <button type="button" id="concerns-next" aria-label="Next" class="hidden md:flex absolute slider-arrow right-arrow z-20" style="right: -16px; top: 40%; background: rgba(255,255,255,0.85); color: #333; cursor: pointer; width: 40px; height: 40px; border-radius: 50%; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <button type="button" id="concerns-next" aria-label="Next" class="hidden md:flex absolute slider-arrow right-arrow z-20 hover:scale-105 active:scale-95 transition-all" style="right: -16px; top: 40%; background: rgba(255,255,255,0.92); color: #1a1a1a; cursor: pointer; width: 42px; height: 42px; border-radius: 50%; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.12); border: 1px solid rgba(0,0,0,0.06);">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
             </button>
 
@@ -260,8 +260,8 @@ Serum</h1>
             );
             $watermarks = array('Brightening Skin', 'Melasma', 'Tan', 'Hyperpigmentation');
             ?>
-            <div id="concerns-track-container" class="concerns-slider overflow-x-auto overflow-y-hidden px-4 pb-1 -mb-1 scroll-smooth scrollbar-hide snap-x snap-mandatory md:overflow-hidden md:pb-0 md:mb-0 md:px-0">
-                <div id="concerns-track" class="flex gap-3 transition-transform duration-500 ease-out md:w-full md:gap-[16px]">
+            <div id="concerns-track-container" class="concerns-slider overflow-x-auto overflow-y-hidden px-4 pb-1 -mb-1 scroll-smooth scrollbar-hide snap-x snap-mandatory md:overflow-x-auto md:pb-0 md:mb-0 md:px-0 md:snap-none" style="scrollbar-width: none; -ms-overflow-style: none;">
+                <div id="concerns-track" class="flex gap-3 transition-transform duration-500 ease-out md:gap-[16px]">
                     <?php foreach ($home_concerns as $cname => $cimg) : 
                         $is_wm = in_array($cname, $watermarks, true);
                     ?>
@@ -402,7 +402,7 @@ Serum</h1>
                                 data-original-price="<?php echo esc_attr($poriginal); ?>"
                                 data-image="<?php echo esc_url($pimage); ?>"
                                 data-subtitle="<?php echo esc_attr($psubtitle); ?>"
-                                onclick="event.stopPropagation();"
+                                onclick="event.stopPropagation();if(window.ratpaccheck_handle_add_to_cart){window.ratpaccheck_handle_add_to_cart(event,this);}"
                             >
                                 <svg aria-hidden="true" class="lucide lucide-shopping-bag" fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="15"><path d="M16 10a4 4 0 0 1-8 0"></path><path d="M3.103 6.034h17.794"></path><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z"></path></svg>
                                 <span>Add to Cart</span>
