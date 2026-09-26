@@ -14,13 +14,14 @@ if ( ! $notices ) {
     return;
 }
 ?>
-<div class="rpc-woocommerce-notice rpc-notice-success" role="alert" tabindex="-1">
+<div class="rpc-woocommerce-notice rpc-notice-success woocommerce-message" role="alert" tabindex="-1">
     <div class="rpc-notice-icon-box" aria-hidden="true">
-        <svg class="rpc-notice-svg" width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        <svg class="rpc-notice-svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
         </svg>
     </div>
-    <ul class="rpc-notice-content woocommerce-message">
+    <ul class="rpc-notice-content">
         <?php foreach ( $notices as $notice ) : ?>
             <li<?php echo wc_get_notice_data_attr( $notice ); ?>>
                 <?php echo wc_kses_notice( $notice['notice'] ); ?>

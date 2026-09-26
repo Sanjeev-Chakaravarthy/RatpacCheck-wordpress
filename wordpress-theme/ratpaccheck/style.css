@@ -4,7 +4,7 @@ Theme URI: https://ratpaccheck.com
 Author: RatpacCheck Creative & Engineering Team
 Author URI: https://ratpaccheck.com
 Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
-Version: 1.3.3
+Version: 1.3.4
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -1315,18 +1315,48 @@ a.touch-button:hover {
   box-shadow: none !important;
 }
 
+/* Neutralize any inner lists/elements so they never create nested box borders */
+.rpc-woocommerce-notice ul,
+.rpc-notice-content,
+.rpc-notice-content.woocommerce-info,
+.rpc-notice-content.woocommerce-error,
+.rpc-notice-content.woocommerce-message,
+.woocommerce-info ul,
+.woocommerce-error ul,
+.woocommerce-message ul {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  flex: 1 1 auto !important;
+  list-style: none !important;
+}
+
 /* Luxury Notice Card Structure */
-.rpc-woocommerce-notice {
+.rpc-woocommerce-notice,
+.woocommerce-notices-wrapper > .woocommerce-info,
+.woocommerce-notices-wrapper > .woocommerce-message,
+.woocommerce-notices-wrapper > .woocommerce-error,
+.woocommerce-MyAccount-content > .woocommerce-info,
+.woocommerce-MyAccount-content > .woocommerce-message,
+.woocommerce-MyAccount-content > .woocommerce-error,
+.woocommerce-info:not(.rpc-notice-content):not(ul),
+.woocommerce-message:not(.rpc-notice-content):not(ul),
+.woocommerce-error:not(.rpc-notice-content):not(ul) {
   display: flex !important;
-  align-items: flex-start !important;
-  gap: 12px !important;
-  padding: 13px 16px !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  padding: 16px 22px !important;
   border-radius: 12px !important;
-  margin: 0 0 18px 0 !important;
+  margin: 0 0 24px 0 !important;
   width: 100% !important;
   box-sizing: border-box !important;
   outline: none !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03) !important;
 }
 
 .rpc-notice-icon-box {
@@ -1334,22 +1364,42 @@ a.touch-button:hover {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  margin-top: 1px !important;
+  width: 24px !important;
+  height: 24px !important;
+  margin: 0 !important;
+}
+
+.rpc-notice-icon-box svg,
+.rpc-notice-svg {
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
 }
 
 .rpc-notice-content {
-  flex: 1 !important;
+  flex: 1 1 auto !important;
   list-style: none !important;
   margin: 0 !important;
   padding: 0 !important;
+  min-width: 0 !important;
 }
 
-.rpc-notice-content li {
+.rpc-notice-content li,
+.woocommerce-info:not(.rpc-woocommerce-notice) li,
+.woocommerce-message:not(.rpc-woocommerce-notice) li,
+.woocommerce-error:not(.rpc-woocommerce-notice) li {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 16px !important;
+  width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
   font-family: 'Metropolis', sans-serif !important;
-  font-size: 12.5px !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
   line-height: 1.5 !important;
   color: inherit !important;
 }
@@ -1359,19 +1409,18 @@ a.touch-button:hover {
   margin-right: 4px !important;
 }
 
-.rpc-notice-content a {
+.rpc-notice-content a:not(.button):not(.woocommerce-Button) {
   color: inherit !important;
   text-decoration: underline !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
 }
 
 /* Variant: Error */
 .rpc-notice-error,
-.woocommerce-error {
-  background-color: #FEF2F2 !important;
-  border: 1px solid #FECACA !important;
+.woocommerce-error:not(.rpc-notice-content):not(ul) {
+  background-color: #FEF7F7 !important;
+  border: 1px solid #FCDAD7 !important;
   color: #991B1B !important;
-  border-radius: 12px !important;
 }
 
 .rpc-notice-error .rpc-notice-icon-box {
@@ -1380,51 +1429,99 @@ a.touch-button:hover {
 
 /* Variant: Success */
 .rpc-notice-success,
-.woocommerce-message {
-  background-color: #F0FDF4 !important;
-  border: 1px solid #BBF7D0 !important;
-  color: #166534 !important;
-  border-radius: 12px !important;
+.woocommerce-message:not(.rpc-notice-content):not(ul) {
+  background-color: #F6FBF7 !important;
+  border: 1px solid #D1EAD7 !important;
+  color: #14532D !important;
 }
 
 .rpc-notice-success .rpc-notice-icon-box {
   color: #16A34A !important;
 }
 
-/* Variant: Info */
+/* Variant: Info / Empty State */
 .rpc-notice-info,
-.woocommerce-info {
-  background-color: #F8FAFC !important;
-  border: 1px solid #E2E8F0 !important;
-  color: #334155 !important;
-  border-radius: 12px !important;
+.woocommerce-info:not(.rpc-notice-content):not(ul) {
+  background-color: #FAF8F5 !important;
+  border: 1px solid #E8E2D9 !important;
+  color: #2D2926 !important;
 }
 
 .rpc-notice-info .rpc-notice-icon-box {
-  color: #475569 !important;
+  color: #8B6B4A !important;
 }
 
+/* Notice Action Buttons (e.g. BROWSE PRODUCTS, VIEW CART) */
 .woocommerce-message a.button,
 .woocommerce-info a.button,
-.woocommerce-error a.button {
-  float: none !important;
+.woocommerce-error a.button,
+.rpc-woocommerce-notice a.button,
+.rpc-notice-content li a.button,
+.woocommerce-Button.button {
   order: 2 !important;
-  margin: 0 !important;
-  white-space: nowrap !important;
-  border-radius: 6px !important;
-  padding: 7px 16px !important;
-  font-size: 11.5px !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  float: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 38px !important;
+  padding: 0 20px !important;
+  border-radius: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.06em !important;
+  letter-spacing: 0.08em !important;
   background-color: #1A1A1A !important;
   color: #FFFFFF !important;
   text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  line-height: 1 !important;
 }
 
 .woocommerce-message a.button:hover,
-.woocommerce-info a.button:hover {
-  background-color: #2C1810 !important;
+.woocommerce-info a.button:hover,
+.woocommerce-error a.button:hover,
+.rpc-woocommerce-notice a.button:hover,
+.rpc-notice-content li a.button:hover,
+.woocommerce-Button.button:hover {
+  background-color: #8B6B4A !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(139, 107, 74, 0.25) !important;
+}
+
+@media (max-width: 640px) {
+  .rpc-woocommerce-notice,
+  .woocommerce-info:not(.rpc-notice-content):not(ul),
+  .woocommerce-message:not(.rpc-notice-content):not(ul),
+  .woocommerce-error:not(.rpc-notice-content):not(ul) {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    padding: 14px 16px !important;
+  }
+
+  .rpc-notice-content li {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+
+  .woocommerce-message a.button,
+  .woocommerce-info a.button,
+  .woocommerce-error a.button,
+  .rpc-woocommerce-notice a.button,
+  .rpc-notice-content li a.button,
+  .woocommerce-Button.button {
+    margin-left: 0 !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
 }
 
 /* 8. Dashboard Overview & Cards */
