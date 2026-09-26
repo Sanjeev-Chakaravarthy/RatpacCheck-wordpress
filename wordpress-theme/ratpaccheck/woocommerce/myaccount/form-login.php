@@ -14,7 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $registration_enabled = ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) );
-$start_tab = ( isset( $_GET['action'] ) && $_GET['action'] === 'register' ) ? 'register' : 'login';
+$start_tab = 'login';
+if ( isset( $_POST['register'] ) || ( isset( $_GET['action'] ) && $_GET['action'] === 'register' ) ) {
+    $start_tab = 'register';
+}
 ?>
 
 <div class="rpc-auth-page-container">
@@ -215,6 +218,12 @@ $start_tab = ( isset( $_GET['action'] ) && $_GET['action'] === 'register' ) ? 'r
                 <?php endif; ?>
 
                 <?php do_action( 'woocommerce_register_form' ); ?>
+
+                <div class="rpc-drawer-policy-box">
+                    <p class="rpc-drawer-policy-text">
+                        By signing up you agree to our <a href="<?php echo esc_url( home_url( '/privacy-policy' ) ); ?>" target="_blank" class="rpc-policy-link">Privacy Policy</a>.
+                    </p>
+                </div>
 
                 <p class="woocommerce-form-row form-row rpc-submit-row">
                     <?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>

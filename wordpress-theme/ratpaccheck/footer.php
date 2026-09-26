@@ -339,9 +339,9 @@ if (!defined('ABSPATH')) {
                             <input type="password" name="password" id="rpc_reg_password" required autocomplete="new-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="Create a strong password" />
                         </div>
 
-                        <div class="pt-0.5">
-                            <p class="text-[11px] text-[#777777] font-adobe leading-tight">
-                                By signing up you agree to our <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" target="_blank" class="text-[#8B6B4A] underline font-semibold">Privacy Policy</a>.
+                        <div class="rpc-drawer-policy-box">
+                            <p class="rpc-drawer-policy-text">
+                                By signing up you agree to our <a href="<?php echo esc_url(home_url('/privacy-policy')); ?>" target="_blank" class="rpc-policy-link">Privacy Policy</a>.
                             </p>
                         </div>
 

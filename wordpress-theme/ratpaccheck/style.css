@@ -4,7 +4,7 @@ Theme URI: https://ratpaccheck.com
 Author: RatpacCheck Creative & Engineering Team
 Author URI: https://ratpaccheck.com
 Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
-Version: 1.3.1
+Version: 1.3.2
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -1285,44 +1285,123 @@ a.touch-button:hover {
 .woocommerce-notices-wrapper {
   width: 100% !important;
   margin-bottom: 20px !important;
+  outline: none !important;
 }
 
+/* Constrain notices on My Account auth page to cleanly match the 440px card */
+.rpc-myaccount-page .woocommerce-notices-wrapper {
+  max-width: 440px !important;
+  margin: 0 auto 20px auto !important;
+}
+
+/* Neutralize legacy WooCommerce ::before icons completely (prevents text overlap) */
+.woocommerce-error::before,
+.woocommerce-info::before,
+.woocommerce-message::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Remove default focus blue outline ring */
+.woocommerce-error,
 .woocommerce-message,
 .woocommerce-info,
-.woocommerce-error {
-  list-style: none !important;
-  padding: 14px 20px !important;
-  border-radius: 10px !important;
-  font-family: 'Metropolis', sans-serif !important;
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  margin: 0 0 20px 0 !important;
+.rpc-woocommerce-notice,
+.woocommerce-error:focus,
+.woocommerce-message:focus,
+.woocommerce-info:focus,
+.rpc-woocommerce-notice:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Luxury Notice Card Structure */
+.rpc-woocommerce-notice {
   display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  flex-wrap: wrap !important;
+  align-items: flex-start !important;
   gap: 12px !important;
+  padding: 13px 16px !important;
+  border-radius: 12px !important;
+  margin: 0 0 18px 0 !important;
   width: 100% !important;
   box-sizing: border-box !important;
-  float: none !important;
+  outline: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
-.woocommerce-message {
-  background-color: #F0FDF4 !important;
-  border: 1px solid #BBF7D0 !important;
-  color: #166534 !important;
+.rpc-notice-icon-box {
+  flex-shrink: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 1px !important;
 }
 
-.woocommerce-info {
-  background-color: #F8FAFC !important;
-  border: 1px solid #E2E8F0 !important;
-  color: #334155 !important;
+.rpc-notice-content {
+  flex: 1 !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
+.rpc-notice-content li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12.5px !important;
+  line-height: 1.5 !important;
+  color: inherit !important;
+}
+
+.rpc-notice-content li strong {
+  font-weight: 700 !important;
+  margin-right: 4px !important;
+}
+
+.rpc-notice-content a {
+  color: inherit !important;
+  text-decoration: underline !important;
+  font-weight: 700 !important;
+}
+
+/* Variant: Error */
+.rpc-notice-error,
 .woocommerce-error {
   background-color: #FEF2F2 !important;
   border: 1px solid #FECACA !important;
   color: #991B1B !important;
+  border-radius: 12px !important;
+}
+
+.rpc-notice-error .rpc-notice-icon-box {
+  color: #DC2626 !important;
+}
+
+/* Variant: Success */
+.rpc-notice-success,
+.woocommerce-message {
+  background-color: #F0FDF4 !important;
+  border: 1px solid #BBF7D0 !important;
+  color: #166534 !important;
+  border-radius: 12px !important;
+}
+
+.rpc-notice-success .rpc-notice-icon-box {
+  color: #16A34A !important;
+}
+
+/* Variant: Info */
+.rpc-notice-info,
+.woocommerce-info {
+  background-color: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #334155 !important;
+  border-radius: 12px !important;
+}
+
+.rpc-notice-info .rpc-notice-icon-box {
+  color: #475569 !important;
 }
 
 .woocommerce-message a.button,
@@ -2378,4 +2457,38 @@ fieldset legend {
 .rpc-toast-x:hover {
   color: #1A1A1A !important;
 }
+
+/* De-congested Luxury Privacy Policy Notice */
+.rpc-drawer-policy-box {
+  margin: 14px 0 16px 0 !important;
+  text-align: center !important;
+  padding: 0 4px !important;
+  box-sizing: border-box !important;
+}
+
+.rpc-drawer-policy-text {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11.5px !important;
+  color: #777777 !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+.rpc-policy-link {
+  color: #8B6B4A !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+  font-weight: 600 !important;
+  transition: color 0.15s ease !important;
+}
+
+.rpc-policy-link:hover {
+  color: #1A1A1A !important;
+}
+
+/* Hide redundant bulky WooCommerce default privacy policy block in auth card */
+.rpc-auth-card .woocommerce-privacy-policy-text {
+  display: none !important;
+}
+
 
