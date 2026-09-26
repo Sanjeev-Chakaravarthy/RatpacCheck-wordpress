@@ -48,7 +48,7 @@ if (empty($launch_products)) {
             <div class="absolute left-[5%] bottom-[12%] z-10 flex items-center gap-2" style="font-family: 'Instrument Sans', sans-serif;">
                 <a href="<?php echo esc_url(home_url('/products/?concern=acne&category=skin')); ?>" class="bg-black text-white text-[7px] px-2 py-1 rounded-[2px] leading-none font-semibold">Shop now</a>
                 <a href="<?php echo esc_url(home_url('/products/')); ?>" class="border border-gray-300 bg-white text-gray-700 text-[7px] px-2 py-1 rounded-[2px] leading-none font-semibold">Buy in store</a>
-            </div>
+            </div> 
         </div>
         <!-- Slide 2 -->
         <div class="hero-slide w-full h-[220px] pt-2 flex-shrink-0 snap-center relative bg-white overflow-hidden">

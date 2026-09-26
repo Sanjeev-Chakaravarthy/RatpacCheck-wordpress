@@ -216,29 +216,33 @@ if (!defined('ABSPATH')) {
     <!-- Slide-In Auth (Login & Register) Drawer -->
     <div id="auth-drawer" class="fixed inset-0 z-50 transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-none" aria-label="Account Access">
         <!-- Backdrop -->
-        <div id="auth-backdrop" class="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        <div id="auth-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-xs opacity-0 transition-opacity duration-300"></div>
 
         <!-- Drawer Panel -->
         <div class="absolute top-0 right-0 w-[440px] max-w-[100vw] h-full bg-[#F6F1EA] shadow-2xl flex flex-col z-10 overflow-y-auto">
             
-            <!-- Header -->
-            <div class="flex items-center justify-between px-6 py-5 bg-white border-b border-[#EDEBE7]">
+            <!-- Luxury Header -->
+            <div class="flex items-center justify-between px-6 py-5 bg-white border-b border-[#E8E3DB]">
                 <div>
-                    <span class="font-metropolis font-bold text-lg text-[#E8799A] block leading-tight">RatpacCheck.</span>
-                    <span class="font-metropolis text-[9px] text-[#8C847C] uppercase tracking-wider">we CARE about your SKIN &amp; HAIR</span>
+                    <span class="font-metropolis font-bold text-xl text-[#1A1A1A] block leading-tight tracking-tight">
+                        RatpacCheck<span class="text-[#C9A84C]">.</span>
+                    </span>
+                    <span class="font-metropolis text-[9px] font-semibold text-[#8C847C] uppercase tracking-widest block mt-0.5">
+                        Haircare &amp; Skincare Science
+                    </span>
                 </div>
-                <button type="button" id="auth-drawer-close" class="p-1.5 text-gray-400 hover:text-black transition-colors rounded-full hover:bg-gray-100" aria-label="Close Account Panel">
+                <button type="button" id="auth-drawer-close" class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-black transition-colors rounded-full hover:bg-[#F6F1EA]" aria-label="Close Account Panel">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
 
-            <!-- Tab Switcher -->
-            <div class="px-6 pt-5 pb-3">
-                <div class="flex bg-white rounded-xl p-1 border border-[#E8E3DB] shadow-xs">
-                    <button type="button" id="auth-tab-btn-login" class="flex-1 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all bg-[#1A1A1A] text-white shadow-xs">
+            <!-- Segmented Tab Switcher -->
+            <div class="px-6 pt-5 pb-2">
+                <div class="flex bg-[#EFEAE2] rounded-xl p-1 gap-1">
+                    <button type="button" id="auth-tab-btn-login" class="flex-1 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all bg-[#1A1A1A] text-white shadow-xs">
                         Sign In
                     </button>
-                    <button type="button" id="auth-tab-btn-register" class="flex-1 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all text-[#666666] hover:text-[#1A1A1A]">
+                    <button type="button" id="auth-tab-btn-register" class="flex-1 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-lg transition-all text-[#666666] hover:text-[#1A1A1A]">
                         Create Account
                     </button>
                 </div>
@@ -248,7 +252,7 @@ if (!defined('ABSPATH')) {
             <div class="p-6 flex-grow flex flex-col justify-between">
                 
                 <!-- Notice Container -->
-                <div id="auth-drawer-notice" class="hidden mb-4 p-3 rounded-xl text-xs font-metropolis leading-relaxed"></div>
+                <div id="auth-drawer-notice" class="hidden mb-4 p-3.5 rounded-lg text-xs font-metropolis leading-relaxed"></div>
 
                 <!-- 1. Sign In Form -->
                 <div id="auth-panel-login" class="space-y-4">
@@ -257,7 +261,7 @@ if (!defined('ABSPATH')) {
                             <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1.5" for="rpc_user_login">
                                 Username or Email Address <span class="text-red-500">*</span>
                             </label>
-                            <input type="text" name="username" id="rpc_user_login" required autocomplete="username" class="w-full bg-white border border-[#D5CFC7] focus:border-[#E8799A] rounded-xl px-4 py-3 text-sm text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#E8799A]/20 transition-all" placeholder="Enter your email or username" />
+                            <input type="text" name="username" id="rpc_user_login" required autocomplete="username" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-4 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="Enter your email or username" />
                         </div>
 
                         <div>
@@ -265,15 +269,15 @@ if (!defined('ABSPATH')) {
                                 <label class="text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider" for="rpc_user_password">
                                     Password <span class="text-red-500">*</span>
                                 </label>
-                                <a href="<?php echo esc_url(function_exists('wp_lostpassword_url') ? wp_lostpassword_url() : home_url('/lost-password')); ?>" class="text-[11px] text-[#8B6B4A] hover:underline font-medium">
+                                <a href="<?php echo esc_url(function_exists('wp_lostpassword_url') ? wp_lostpassword_url() : home_url('/lost-password')); ?>" class="text-[11px] text-[#8B6B4A] hover:underline font-semibold">
                                     Forgot Password?
                                 </a>
                             </div>
-                            <input type="password" name="password" id="rpc_user_password" required autocomplete="current-password" class="w-full bg-white border border-[#D5CFC7] focus:border-[#E8799A] rounded-xl px-4 py-3 text-sm text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#E8799A]/20 transition-all" placeholder="••••••••" />
+                            <input type="password" name="password" id="rpc_user_password" required autocomplete="current-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-4 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="••••••••" />
                         </div>
 
                         <div class="flex items-center justify-between pt-1">
-                            <label class="flex items-center gap-2 cursor-pointer text-xs text-[#666666]">
+                            <label class="flex items-center gap-2 cursor-pointer text-xs text-[#555555]">
                                 <input type="checkbox" name="rememberme" value="forever" class="rounded border-gray-300 text-black focus:ring-black" />
                                 <span>Remember me</span>
                             </label>
@@ -283,7 +287,7 @@ if (!defined('ABSPATH')) {
                         <input type="hidden" name="login" value="Log in" />
                         <input type="hidden" name="redirect" value="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('myaccount') : home_url('/')); ?>" />
 
-                        <button type="submit" name="login" value="Log in" class="w-full bg-[#1A1A1A] hover:bg-[#E8799A] text-white font-metropolis font-semibold text-xs uppercase tracking-widest py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-[0.99] flex items-center justify-center gap-2">
+                        <button type="submit" name="login" value="Log in" class="w-full bg-[#1A1A1A] hover:bg-[#2C1810] text-white font-metropolis font-bold text-xs uppercase tracking-widest py-3.5 rounded-lg transition-all shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2">
                             <span>Sign In</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </button>
@@ -297,49 +301,54 @@ if (!defined('ABSPATH')) {
                             <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1.5" for="rpc_reg_email">
                                 Email Address <span class="text-red-500">*</span>
                             </label>
-                            <input type="email" name="email" id="rpc_reg_email" required autocomplete="email" class="w-full bg-white border border-[#D5CFC7] focus:border-[#E8799A] rounded-xl px-4 py-3 text-sm text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#E8799A]/20 transition-all" placeholder="your@email.com" />
+                            <input type="email" name="email" id="rpc_reg_email" required autocomplete="email" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-4 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="your@email.com" />
                         </div>
 
                         <div>
                             <label class="block text-[11px] font-bold text-[#4A4A4A] uppercase tracking-wider mb-1.5" for="rpc_reg_password">
                                 Create Password <span class="text-red-500">*</span>
                             </label>
-                            <input type="password" name="password" id="rpc_reg_password" required autocomplete="new-password" class="w-full bg-white border border-[#D5CFC7] focus:border-[#E8799A] rounded-xl px-4 py-3 text-sm text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#E8799A]/20 transition-all" placeholder="Create a strong password" />
+                            <input type="password" name="password" id="rpc_reg_password" required autocomplete="new-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-4 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="Create a strong password" />
                         </div>
 
-                        <p class="text-[11px] text-[#777] font-adobe leading-relaxed">
+                        <p class="text-[11px] text-[#666666] font-adobe leading-relaxed">
                             Your personal data will be used to support your experience throughout this website, to manage access to your account, and for purposes described in our privacy policy.
                         </p>
 
                         <?php wp_nonce_field('woocommerce-register', 'woocommerce-register-nonce'); ?>
                         <input type="hidden" name="register" value="Register" />
 
-                        <button type="submit" name="register" value="Register" class="w-full bg-[#1A1A1A] hover:bg-[#E8799A] text-white font-metropolis font-semibold text-xs uppercase tracking-widest py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-[0.99] flex items-center justify-center gap-2">
+                        <button type="submit" name="register" value="Register" class="w-full bg-[#1A1A1A] hover:bg-[#2C1810] text-white font-metropolis font-bold text-xs uppercase tracking-widest py-3.5 rounded-lg transition-all shadow-sm hover:shadow-md active:scale-[0.99] flex items-center justify-center gap-2">
                             <span>Create Account</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                         </button>
                     </form>
                 </div>
 
-                <!-- Footer Benefits -->
+                <!-- Footer Member Privileges Card -->
                 <div class="mt-8 pt-6 border-t border-[#E8E3DB] space-y-3">
-                    <p class="text-[10px] font-bold text-[#8C847C] tracking-widest uppercase">Member Privileges</p>
-                    <div class="grid grid-cols-2 gap-2 text-xs text-[#555]">
-                        <div class="flex items-center gap-2">
-                            <span class="text-[#8B6B4A]">&#10003;</span>
-                            <span>Track live orders</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[#8B6B4A]">&#10003;</span>
-                            <span>Exclusive discounts</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[#8B6B4A]">&#10003;</span>
-                            <span>Saved addresses</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[#8B6B4A]">&#10003;</span>
-                            <span>Personalized routine</span>
+                    <div class="flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-[#C9A84C]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1l2.928 6.072 6.072.928-4.5 4.386 1.062 6.614L10 15.828l-5.562 3.172 1.062-6.614L1 8l6.072-.928L10 1z" clip-rule="evenodd"></path></svg>
+                        <p class="text-[10px] font-bold text-[#8C847C] tracking-widest uppercase m-0">Member Privileges</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-[#E8E3DB] shadow-xs">
+                        <div class="grid grid-cols-2 gap-2.5 text-xs text-[#4A4A4A]">
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-full bg-[#FAF7F2] text-[#8B6B4A] flex items-center justify-center text-[10px] font-bold flex-shrink-0">&check;</span>
+                                <span>Track live orders</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-full bg-[#FAF7F2] text-[#8B6B4A] flex items-center justify-center text-[10px] font-bold flex-shrink-0">&check;</span>
+                                <span>Exclusive discounts</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-full bg-[#FAF7F2] text-[#8B6B4A] flex items-center justify-center text-[10px] font-bold flex-shrink-0">&check;</span>
+                                <span>Saved addresses</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-4 h-4 rounded-full bg-[#FAF7F2] text-[#8B6B4A] flex items-center justify-center text-[10px] font-bold flex-shrink-0">&check;</span>
+                                <span>Personal routine</span>
+                            </div>
                         </div>
                     </div>
                 </div>

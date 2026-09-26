@@ -940,229 +940,745 @@ a.touch-button:hover {
 }
 
 #auth-drawer input:focus {
-  border-color: #E8799A !important;
-  box-shadow: 0 0 0 3px rgba(232, 121, 154, 0.15) !important;
+  border-color: #1A1A1A !important;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08) !important;
 }
 
 /* ==========================================================================
    WOOCOMMERCE LUXURY PORTAL & MY ACCOUNT REDESIGN
    ========================================================================== */
-.rpc-account-portal {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+
+/* 1. Neutralize Default WooCommerce Floats, Clearfixes & Margins */
+.woocommerce-account .woocommerce-MyAccount-navigation,
+.woocommerce-account .woocommerce-MyAccount-content,
+.woocommerce-account .woocommerce-notices-wrapper {
+  float: none !important;
+  width: 100% !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
 }
 
+.woocommerce-account .woocommerce-MyAccount-content::before,
+.woocommerce-account .woocommerce-MyAccount-content::after,
+.woocommerce-account .woocommerce::before,
+.woocommerce-account .woocommerce::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* 2. Page & Portal Container */
+.rpc-myaccount-page {
+  background-color: #F6F1EA;
+  min-height: calc(100vh - 200px);
+}
+
+.rpc-account-portal {
+  width: 100% !important;
+  max-width: 1240px !important;
+  margin: 0 auto !important;
+}
+
+/* 3. Luxury Customer Welcome Banner */
 .rpc-account-banner {
-  background: #FFFFFF;
-  border: 1px solid #E8E3DB;
-  box-shadow: 0 4px 20px -2px rgba(26, 26, 26, 0.04);
+  background: #FFFFFF !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 16px !important;
+  padding: 22px 28px !important;
+  box-shadow: 0 2px 12px rgba(26, 26, 26, 0.03) !important;
+  margin-bottom: 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+@media (min-width: 640px) {
+  .rpc-account-banner {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+
+.rpc-banner-user {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
 }
 
 .rpc-avatar-circle {
-  background: linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 100%);
-  color: #E8799A;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  letter-spacing: -0.02em;
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  background: #1A1A1A !important;
+  color: #C9A84C !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
 }
 
+.rpc-banner-title-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
+
+.rpc-user-name {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
+}
+
+.rpc-member-badge {
+  display: inline-block !important;
+  background: #F6F1EA !important;
+  color: #8B6B4A !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  padding: 3px 10px !important;
+  border-radius: 9999px !important;
+  border: 1px solid #E8E3DB !important;
+}
+
+.rpc-user-meta {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12.5px !important;
+  color: #8C847C !important;
+  margin: 4px 0 0 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+
+.rpc-meta-bullet {
+  color: #C5BFB8 !important;
+}
+
+.rpc-banner-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.rpc-btn-browse {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 9px 18px !important;
+  background: #F6F1EA !important;
+  color: #1A1A1A !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.rpc-btn-browse:hover {
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  border-color: #1A1A1A !important;
+}
+
+.rpc-btn-logout {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  padding: 9px 16px !important;
+  background: transparent !important;
+  color: #8C847C !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.rpc-btn-logout:hover {
+  background: #FEE2E2 !important;
+  color: #DC2626 !important;
+  border-color: #FECACA !important;
+}
+
+/* 4. Portal 2-Column Responsive Grid */
+.rpc-account-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 24px !important;
+  width: 100% !important;
+}
+
+@media (min-width: 900px) {
+  .rpc-account-grid {
+    display: grid !important;
+    grid-template-columns: 260px minmax(0, 1fr) !important;
+    gap: 28px !important;
+    align-items: start !important;
+  }
+}
+
+.rpc-account-nav-wrap {
+  width: 100% !important;
+}
+
+.rpc-account-content-wrap {
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* 5. Account Navigation Sidebar Card */
 .rpc-account-nav {
-  position: sticky;
-  top: 100px;
+  background: #FFFFFF !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 16px !important;
+  padding: 16px !important;
+  box-shadow: 0 2px 12px rgba(26, 26, 26, 0.03) !important;
+  position: sticky !important;
+  top: 96px !important;
 }
 
-.rpc-account-nav-item a {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+.rpc-nav-heading {
+  padding: 6px 12px 12px !important;
+  border-bottom: 1px solid #F0ECE6 !important;
+  margin-bottom: 10px !important;
 }
 
-.rpc-account-nav-item a:hover {
-  transform: translateX(2px);
+.rpc-nav-heading span {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  color: #8C847C !important;
+  display: block !important;
 }
 
+.rpc-nav-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+}
+
+.rpc-nav-item {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.rpc-nav-link {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 11px 14px !important;
+  border-radius: 10px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #4A4A4A !important;
+  text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.rpc-nav-link:hover {
+  background-color: #F6F1EA !important;
+  color: #1A1A1A !important;
+  transform: translateX(2px) !important;
+}
+
+.rpc-nav-link.is-active,
+.rpc-nav-link.active,
+.rpc-nav-item.is-active .rpc-nav-link {
+  background-color: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+.rpc-nav-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  color: #8C847C !important;
+  transition: color 0.2s ease !important;
+}
+
+.rpc-nav-link:hover .rpc-nav-icon {
+  color: #1A1A1A !important;
+}
+
+.rpc-nav-link.is-active .rpc-nav-icon,
+.rpc-nav-link.active .rpc-nav-icon,
+.rpc-nav-item.is-active .rpc-nav-icon {
+  color: #C9A84C !important;
+}
+
+.rpc-nav-label {
+  flex-grow: 1 !important;
+}
+
+.rpc-nav-dot {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  background-color: #C9A84C !important;
+  flex-shrink: 0 !important;
+}
+
+/* 6. Account Content Area Card */
 .rpc-account-content {
-  background: #FFFFFF;
-  border: 1px solid #E8E3DB;
-  box-shadow: 0 4px 20px -2px rgba(26, 26, 26, 0.04);
-  min-height: 480px;
+  background: #FFFFFF !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 16px !important;
+  padding: 30px 34px !important;
+  box-shadow: 0 2px 12px rgba(26, 26, 26, 0.03) !important;
+  min-height: 480px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-/* Stat Cards in Dashboard */
-.rpc-dashboard-cards .bg-\[\#F6F1EA\] {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+@media (max-width: 640px) {
+  .rpc-account-content {
+    padding: 20px 18px !important;
+  }
 }
 
-.rpc-dashboard-cards .bg-\[\#F6F1EA\]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+/* 7. Full-Width Clean Notices */
+.rpc-account-notices,
+.woocommerce-notices-wrapper {
+  width: 100% !important;
+  margin-bottom: 20px !important;
 }
 
-/* WooCommerce Orders Table */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  list-style: none !important;
+  padding: 14px 20px !important;
+  border-radius: 10px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  margin: 0 0 20px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  float: none !important;
+}
+
+.woocommerce-message {
+  background-color: #F0FDF4 !important;
+  border: 1px solid #BBF7D0 !important;
+  color: #166534 !important;
+}
+
+.woocommerce-info {
+  background-color: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  color: #334155 !important;
+}
+
+.woocommerce-error {
+  background-color: #FEF2F2 !important;
+  border: 1px solid #FECACA !important;
+  color: #991B1B !important;
+}
+
+.woocommerce-message a.button,
+.woocommerce-info a.button,
+.woocommerce-error a.button {
+  float: none !important;
+  order: 2 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  border-radius: 6px !important;
+  padding: 7px 16px !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  background-color: #1A1A1A !important;
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+}
+
+.woocommerce-message a.button:hover,
+.woocommerce-info a.button:hover {
+  background-color: #2C1810 !important;
+}
+
+/* 8. Dashboard Overview & Cards */
+.rpc-dashboard-intro {
+  margin-bottom: 28px !important;
+  padding-bottom: 20px !important;
+  border-bottom: 1px solid #F0ECE6 !important;
+}
+
+.rpc-dash-heading {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 0 8px 0 !important;
+}
+
+.rpc-dash-lead {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 15px !important;
+  line-height: 1.7 !important;
+  color: #555555 !important;
+  margin: 0 !important;
+}
+
+.rpc-dashboard-cards {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 16px !important;
+  margin-bottom: 28px !important;
+}
+
+.rpc-stat-card {
+  background: #FAF7F2 !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 12px !important;
+  padding: 18px 20px !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 14px !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+
+.rpc-stat-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04) !important;
+  border-color: #D8D2C7 !important;
+}
+
+.rpc-stat-icon-wrap {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 10px !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E8E3DB !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03) !important;
+}
+
+.rpc-stat-info {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+}
+
+.rpc-stat-tag {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: #8C847C !important;
+}
+
+.rpc-stat-number {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+}
+
+.rpc-stat-sub {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  color: #8C847C !important;
+}
+
+.rpc-stat-link {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  color: #8B6B4A !important;
+  text-decoration: none !important;
+  margin-top: 4px !important;
+}
+
+.rpc-stat-link:hover {
+  text-decoration: underline !important;
+  color: #1A1A1A !important;
+}
+
+.rpc-support-card {
+  background: #FDFBF8 !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 12px !important;
+  padding: 22px 24px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+}
+
+@media (min-width: 640px) {
+  .rpc-support-card {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+}
+
+.rpc-support-text h4 {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 0 4px 0 !important;
+}
+
+.rpc-support-text p {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+  color: #666666 !important;
+  margin: 0 !important;
+}
+
+.rpc-support-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+.rpc-btn-outline-dark {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+  border: 1px solid #1A1A1A !important;
+  background: transparent !important;
+  color: #1A1A1A !important;
+  border-radius: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.rpc-btn-outline-dark:hover {
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+}
+
+.rpc-btn-solid-dark {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 16px !important;
+  border: 1px solid #1A1A1A !important;
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  border-radius: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.rpc-btn-solid-dark:hover {
+  background: #2C1810 !important;
+  border-color: #2C1810 !important;
+}
+
+/* 9. Orders Table & Actions */
 table.woocommerce-orders-table,
 table.woocommerce-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  border: 1px solid #E8E3DB;
-  border-radius: 14px;
-  overflow: hidden;
-  margin-bottom: 2rem;
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  margin-bottom: 2rem !important;
 }
 
 table.woocommerce-orders-table th,
 table.woocommerce-table th {
-  background-color: #F6F1EA;
-  color: #4A4A4A;
-  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 14px 18px;
-  text-align: left;
-  border-bottom: 1px solid #E8E3DB;
+  background-color: #F6F1EA !important;
+  color: #4A4A4A !important;
+  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 14px 18px !important;
+  text-align: left !important;
+  border-bottom: 1px solid #E8E3DB !important;
 }
 
 table.woocommerce-orders-table td,
 table.woocommerce-table td {
-  padding: 16px 18px;
-  color: #1A1A1A;
-  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 13.5px;
-  border-bottom: 1px solid #F0ECE6;
-  vertical-align: middle;
+  padding: 16px 18px !important;
+  color: #1A1A1A !important;
+  font-family: 'Metropolis', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 13.5px !important;
+  border-bottom: 1px solid #F0ECE6 !important;
+  vertical-align: middle !important;
 }
 
 table.woocommerce-orders-table tr:last-child td,
 table.woocommerce-table tr:last-child td {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 table.woocommerce-orders-table tr:hover td {
-  background-color: #FAFAF8;
+  background-color: #FAFAF8 !important;
 }
 
-/* Order Status Badges */
-.woocommerce-orders-table__cell-order-status {
-  text-transform: capitalize;
-}
-
-/* Action Buttons inside Orders Table */
 .woocommerce-orders-table__cell-order-actions a.woocommerce-button,
 .woocommerce-orders-table__cell-order-actions a.button {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background-color: #1A1A1A;
-  color: #FFFFFF;
-  font-family: 'Metropolis', sans-serif;
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 7px 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  margin-right: 6px;
+  display: inline-flex !important;
+  align-items: center !important;
+  background-color: #1A1A1A !important;
+  color: #FFFFFF !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  padding: 7px 14px !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
 }
 
 .woocommerce-orders-table__cell-order-actions a.woocommerce-button:hover,
 .woocommerce-orders-table__cell-order-actions a.button:hover {
-  background-color: #E8799A;
-  color: #FFFFFF;
-  transform: translateY(-1px);
+  background-color: #2C1810 !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px) !important;
 }
 
-/* WooCommerce Addresses Cards */
+/* 10. Addresses Management */
 .woocommerce-Addresses {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
+  margin-top: 1.5rem !important;
 }
 
 .woocommerce-Address {
-  background: #FAFAF8;
-  border: 1px solid #E8E3DB;
-  border-radius: 14px;
-  padding: 22px;
-  transition: border-color 0.2s ease;
+  background: #FAFAF8 !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 14px !important;
+  padding: 22px !important;
+  transition: border-color 0.2s ease !important;
 }
 
 .woocommerce-Address:hover {
-  border-color: #D5CFC7;
+  border-color: #D5CFC7 !important;
 }
 
 .woocommerce-Address-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #E8E3DB;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin-bottom: 14px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid #E8E3DB !important;
 }
 
 .woocommerce-Address-title h3 {
-  font-family: 'Metropolis', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: #1A1A1A;
-  margin: 0;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 !important;
 }
 
 .woocommerce-Address-title a.edit {
-  font-family: 'Metropolis', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: #8B6B4A;
-  text-decoration: none;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #8B6B4A !important;
+  text-decoration: none !important;
 }
 
 .woocommerce-Address-title a.edit:hover {
-  text-decoration: underline;
-  color: #E8799A;
+  text-decoration: underline !important;
+  color: #1A1A1A !important;
 }
 
 .woocommerce-Address address {
-  font-style: normal;
-  font-family: 'Adobe Hebrew', Georgia, serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #555555;
+  font-style: normal !important;
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: #555555 !important;
 }
 
-/* WooCommerce Standard Forms (Edit Account & Address Fields) */
+/* 11. Forms (Edit Account & Address Fields) */
 .woocommerce-EditAccountForm,
 .woocommerce-address-fields,
 form.login,
 form.register {
-  max-width: 680px;
+  max-width: 680px !important;
 }
 
 .woocommerce-form-row,
 .woocommerce-EditAccountForm p.form-row,
 .woocommerce-address-fields p.form-row {
-  margin-bottom: 18px;
+  margin-bottom: 18px !important;
 }
 
 .woocommerce-EditAccountForm label,
 .woocommerce-address-fields label,
 form.login label,
 form.register label {
-  display: block;
-  font-family: 'Metropolis', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #4A4A4A;
-  margin-bottom: 6px;
+  display: block !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  color: #4A4A4A !important;
+  margin-bottom: 6px !important;
 }
 
 .woocommerce-input-wrapper {
-  display: block;
-  width: 100%;
+  display: block !important;
+  width: 100% !important;
 }
 
 .woocommerce-input-wrapper input.input-text,
@@ -1171,16 +1687,16 @@ form.register label {
 .woocommerce-EditAccountForm input.input-text,
 form.login input.input-text,
 form.register input.input-text {
-  width: 100%;
-  background: #FFFFFF;
-  border: 1px solid #D5CFC7;
-  border-radius: 12px;
-  padding: 11px 16px;
-  font-family: 'Metropolis', sans-serif;
-  font-size: 13.5px;
-  color: #1A1A1A;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
+  width: 100% !important;
+  background: #FFFFFF !important;
+  border: 1px solid #D8D2C7 !important;
+  border-radius: 8px !important;
+  padding: 10px 14px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 13.5px !important;
+  color: #1A1A1A !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
 }
 
 .woocommerce-input-wrapper input.input-text:focus,
@@ -1189,147 +1705,209 @@ form.register input.input-text {
 .woocommerce-EditAccountForm input.input-text:focus,
 form.login input.input-text:focus,
 form.register input.input-text:focus {
-  outline: none;
-  border-color: #E8799A;
-  box-shadow: 0 0 0 3px rgba(232, 121, 154, 0.15);
+  outline: none !important;
+  border-color: #1A1A1A !important;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08) !important;
 }
 
 fieldset {
-  border: 1px solid #E8E3DB;
-  border-radius: 14px;
-  padding: 20px;
-  margin: 24px 0;
-  background-color: #FAFAF8;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin: 24px 0 !important;
+  background-color: #FAFAF8 !important;
 }
 
 fieldset legend {
-  font-family: 'Metropolis', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #1A1A1A;
-  padding: 0 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  padding: 0 10px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
 }
 
-/* Buttons in WooCommerce */
 .woocommerce button.button,
 .woocommerce input.button,
 .woocommerce a.button.wc-forward,
 .woocommerce-Button.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   background-color: #1A1A1A !important;
   color: #FFFFFF !important;
-  font-family: 'Metropolis', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 13px 26px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 12px 24px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
 }
 
 .woocommerce button.button:hover,
 .woocommerce input.button:hover,
 .woocommerce a.button.wc-forward:hover,
 .woocommerce-Button.button:hover {
-  background-color: #E8799A !important;
+  background-color: #2C1810 !important;
   color: #FFFFFF !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(232, 121, 154, 0.3);
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* Notices and Messages */
-.woocommerce-message,
-.woocommerce-info,
-.woocommerce-error {
-  list-style: none;
-  padding: 14px 20px;
-  border-radius: 12px;
-  font-family: 'Metropolis', sans-serif;
-  font-size: 13px;
-  line-height: 1.5;
-  margin: 0 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
+/* 12. Logged-Out Split Authentication Page */
+.rpc-auth-page-container {
+  max-width: 980px !important;
+  margin: 0 auto !important;
+  padding: 1rem 0 3rem !important;
 }
 
-.woocommerce-message {
-  background-color: #F0FDF4;
-  border: 1px solid #BBF7D0;
-  color: #166534;
+.rpc-auth-page-header {
+  text-align: center !important;
+  margin-bottom: 2.5rem !important;
 }
 
-.woocommerce-message a.button {
-  background-color: #166534 !important;
+.rpc-auth-badge {
+  display: inline-block !important;
+  background: #FFFFFF !important;
+  color: #8B6B4A !important;
+  border: 1px solid #E8E3DB !important;
+  padding: 3px 12px !important;
+  border-radius: 9999px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 12px !important;
+}
+
+.rpc-auth-title {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 0 10px 0 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.rpc-auth-subtitle {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 15px !important;
+  color: #666666 !important;
+  max-width: 520px !important;
+  margin: 0 auto !important;
+  line-height: 1.6 !important;
+}
+
+.rpc-auth-columns {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 28px !important;
+}
+
+@media (min-width: 768px) {
+  .rpc-auth-columns.rpc-has-register {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .rpc-auth-columns.rpc-login-only {
+    max-width: 480px !important;
+    margin: 0 auto !important;
+  }
+}
+
+.rpc-auth-col {
+  background: #FFFFFF !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 16px !important;
+  padding: 32px 36px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+  box-sizing: border-box !important;
+}
+
+.rpc-auth-col-header {
+  margin-bottom: 22px !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid #F0ECE6 !important;
+}
+
+.rpc-auth-col-header h2 {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 0 6px 0 !important;
+}
+
+.rpc-auth-col-header p {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12px !important;
+  color: #8C847C !important;
+  margin: 0 !important;
+}
+
+.rpc-btn-primary-wide {
+  width: 100% !important;
+  height: 46px !important;
+  background: #1A1A1A !important;
   color: #FFFFFF !important;
-  font-size: 11px;
-  padding: 6px 14px;
+  border: none !important;
+  border-radius: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
 }
 
-.woocommerce-info {
-  background-color: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  color: #334155;
+.rpc-btn-primary-wide:hover {
+  background: #2C1810 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
 }
 
-.woocommerce-error {
-  background-color: #FEF2F2;
-  border: 1px solid #FECACA;
-  color: #991B1B;
+.rpc-form-row-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 12px 0 18px 0 !important;
 }
 
-/* Logged-Out / My Account Split Screen */
-.col2-set#customer_login {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  max-width: 960px;
-  margin: 3rem auto;
+.rpc-lost-pw-link {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #8B6B4A !important;
+  text-decoration: none !important;
 }
 
-.col2-set#customer_login .col-1,
-.col2-set#customer_login .col-2 {
-  background: #FFFFFF;
-  border: 1px solid #E8E3DB;
-  border-radius: 20px;
-  padding: 32px 36px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+.rpc-lost-pw-link:hover {
+  text-decoration: underline !important;
 }
 
-.col2-set#customer_login h2 {
-  font-family: 'Metropolis', sans-serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #1A1A1A;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #F6F1EA;
-  position: relative;
+.rpc-pw-notice,
+.rpc-privacy-policy-text {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 12.5px !important;
+  color: #666666 !important;
+  line-height: 1.5 !important;
+  margin: 12px 0 !important;
 }
 
-.col2-set#customer_login h2::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background-color: #E8799A;
-}
-
-/* Cart Coupon Section */
+/* 13. Cart Coupon Section */
 #cart-coupon-box {
   background: #FAFAF8;
   border: 1px solid #EFEAE3;
