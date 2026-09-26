@@ -1830,6 +1830,89 @@ fieldset legend {
   }
 }
 
+/* Auth Drawer Panel (Strict 380px compact width) */
+.rpc-auth-drawer-panel {
+  width: 380px !important;
+  max-width: 100vw !important;
+}
+@media (max-width: 480px) {
+  .rpc-auth-drawer-panel {
+    width: 100vw !important;
+  }
+}
+
+/* Unified Compact Auth Card on My Account Page (Same width for Login & Register) */
+.rpc-auth-card {
+  max-width: 440px !important;
+  margin: 0 auto !important;
+  background: #FFFFFF !important;
+  border: 1px solid #E8E3DB !important;
+  border-radius: 16px !important;
+  padding: 28px 30px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
+  box-sizing: border-box !important;
+}
+
+.rpc-auth-card-tabs {
+  display: flex !important;
+  background: #EFEAE2 !important;
+  border-radius: 12px !important;
+  padding: 4px !important;
+  gap: 4px !important;
+  margin-bottom: 22px !important;
+}
+
+.rpc-card-tab-btn {
+  flex: 1 !important;
+  padding: 9px 16px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.06em !important;
+  border-radius: 9px !important;
+  border: none !important;
+  background: transparent !important;
+  color: #666666 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.rpc-card-tab-btn.active {
+  background: #1A1A1A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.rpc-auth-card-panel {
+  display: block;
+}
+
+.rpc-tab-hidden {
+  display: none !important;
+}
+
+.rpc-auth-panel-heading {
+  margin-bottom: 20px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid #F0ECE6 !important;
+}
+
+.rpc-auth-panel-heading h2 {
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1A1A1A !important;
+  margin: 0 0 4px 0 !important;
+}
+
+.rpc-auth-panel-heading p {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 13.5px !important;
+  color: #8C847C !important;
+  margin: 0 !important;
+}
+
 .rpc-auth-col {
   background: #FFFFFF;
   border: 1px solid #E8E3DB;
@@ -1928,6 +2011,8 @@ fieldset legend {
    ===================================================== */
 
 /* Form row margins */
+.rpc-auth-card .woocommerce-form-row,
+.rpc-auth-card .form-row,
 .rpc-auth-col .woocommerce-form-row,
 .rpc-auth-col .form-row {
   display: block;
@@ -1935,6 +2020,8 @@ fieldset legend {
   padding: 0;
 }
 
+.rpc-auth-card .woocommerce-form-row label,
+.rpc-auth-card .form-row label,
 .rpc-auth-col .woocommerce-form-row label,
 .rpc-auth-col .form-row label {
   display: block;
@@ -1947,6 +2034,10 @@ fieldset legend {
 }
 
 /* Inputs */
+.rpc-auth-card .woocommerce-Input--text,
+.rpc-auth-card input[type="text"],
+.rpc-auth-card input[type="email"],
+.rpc-auth-card input[type="password"],
 .rpc-auth-col .woocommerce-Input--text,
 .rpc-auth-col input[type="text"],
 .rpc-auth-col input[type="email"],
@@ -1966,6 +2057,10 @@ fieldset legend {
   -webkit-appearance: none;
 }
 
+.rpc-auth-card .woocommerce-Input--text:focus,
+.rpc-auth-card input[type="text"]:focus,
+.rpc-auth-card input[type="email"]:focus,
+.rpc-auth-card input[type="password"]:focus,
 .rpc-auth-col .woocommerce-Input--text:focus,
 .rpc-auth-col input[type="text"]:focus,
 .rpc-auth-col input[type="email"]:focus,

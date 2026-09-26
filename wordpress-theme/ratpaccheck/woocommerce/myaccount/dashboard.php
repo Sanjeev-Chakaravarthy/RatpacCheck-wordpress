@@ -8,6 +8,10 @@
 
 defined('ABSPATH') || exit;
 
+if ( ! is_user_logged_in() ) {
+    return;
+}
+
 $current_user = wp_get_current_user();
 $display_name = !empty($current_user->first_name) ? $current_user->first_name : $current_user->display_name;
 $order_count  = function_exists('ratpaccheck_get_customer_order_count') ? ratpaccheck_get_customer_order_count($current_user->ID) : 0;

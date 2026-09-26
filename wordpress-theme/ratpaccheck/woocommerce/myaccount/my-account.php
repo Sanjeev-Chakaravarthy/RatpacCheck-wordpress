@@ -10,6 +10,14 @@
 
 defined('ABSPATH') || exit;
 
+// Absolute safety guard: never display client portal to unauthenticated visitors
+if ( ! is_user_logged_in() ) {
+    if ( function_exists( 'wc_get_template' ) ) {
+        wc_get_template( 'myaccount/form-login.php' );
+    }
+    return;
+}
+
 $current_user = wp_get_current_user();
 $display_name = !empty($current_user->first_name) ? $current_user->first_name : $current_user->display_name;
 $initial      = strtoupper(substr($display_name, 0, 1));

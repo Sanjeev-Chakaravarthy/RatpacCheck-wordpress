@@ -8,6 +8,10 @@
 
 defined('ABSPATH') || exit;
 
+if ( ! is_user_logged_in() ) {
+    return;
+}
+
 $menu_items = function_exists('wc_get_account_menu_items') ? wc_get_account_menu_items() : array();
 ?>
 

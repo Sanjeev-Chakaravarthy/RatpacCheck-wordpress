@@ -99,3 +99,10 @@ function ratpaccheck_force_myaccount_template($template) {
     return $template;
 }
 add_filter('template_include', 'ratpaccheck_force_myaccount_template', 99);
+
+/**
+ * Ensure customer registration is enabled on My Account page
+ */
+add_filter('pre_option_woocommerce_enable_myaccount_registration', function() {
+    return 'yes';
+});
