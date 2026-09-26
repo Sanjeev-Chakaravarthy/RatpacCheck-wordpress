@@ -281,9 +281,9 @@ if (!defined('ABSPATH')) {
                             <input type="password" name="password" id="rpc_user_password" required autocomplete="current-password" class="w-full bg-white border border-[#D8D2C7] focus:border-[#1A1A1A] rounded-lg px-3.5 py-2.5 text-sm text-[#1A1A1A] focus:outline-none transition-all" placeholder="••••••••" />
                         </div>
 
-                        <div class="flex items-center justify-between pt-0.5">
-                            <label class="flex items-center gap-2 cursor-pointer text-xs text-[#555555]">
-                                <input type="checkbox" name="rememberme" value="forever" class="rounded border-gray-300 text-black focus:ring-black" />
+                        <div class="rpc-auth-remember-row">
+                            <label class="rpc-checkbox-label" for="rpc_rememberme">
+                                <input type="checkbox" name="rememberme" id="rpc_rememberme" value="forever" class="rpc-checkbox" />
                                 <span>Remember me</span>
                             </label>
                         </div>

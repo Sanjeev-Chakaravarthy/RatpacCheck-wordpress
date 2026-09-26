@@ -4,7 +4,7 @@ Theme URI: https://ratpaccheck.com
 Author: RatpacCheck Creative & Engineering Team
 Author URI: https://ratpaccheck.com
 Description: Premium science-backed haircare and skincare WordPress theme. Influencer-backed, high-performance clean beauty aesthetic featuring dynamic cart drawer, concerns catalog, and responsive layouts.
-Version: 1.3.2
+Version: 1.3.3
 Requires at least: 5.8
 Tested up to: 6.7
 Requires PHP: 7.4
@@ -2490,5 +2490,42 @@ fieldset legend {
 .rpc-auth-card .woocommerce-privacy-policy-text {
   display: none !important;
 }
+
+/* De-congested Remember Me Row in Auth Drawer */
+.rpc-auth-remember-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  margin: 16px 0 20px 0 !important;
+  padding: 0 !important;
+}
+
+.rpc-checkbox-label {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-family: 'Metropolis', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: #555555 !important;
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+.rpc-checkbox-label:hover {
+  color: #1A1A1A !important;
+}
+
+.rpc-checkbox {
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 4px !important;
+  border: 1.5px solid #C4BCB1 !important;
+  accent-color: #1A1A1A !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+}
+
 
 
