@@ -27,7 +27,11 @@ get_header();
 
         // The core WooCommerce my-account content
         if ( function_exists( 'wc_get_template' ) ) {
-            wc_get_template( 'myaccount/my-account.php' );
+            if ( ! is_user_logged_in() ) {
+                wc_get_template( 'myaccount/form-login.php' );
+            } else {
+                wc_get_template( 'myaccount/my-account.php' );
+            }
         } else {
             // Fallback: render page content (shortcode)
             while ( have_posts() ) {

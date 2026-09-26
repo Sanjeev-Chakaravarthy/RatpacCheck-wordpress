@@ -32,11 +32,7 @@ $registration_enabled = ( 'yes' === get_option( 'woocommerce_enable_myaccount_re
                 <p>Welcome back — enter your credentials below.</p>
             </div>
 
-            <form
-                class="woocommerce-form woocommerce-form-login login"
-                method="post"
-                action="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>"
-            >
+            <form class="woocommerce-form woocommerce-form-login login" method="post">
                 <?php do_action( 'woocommerce_login_form_start' ); ?>
 
                 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
