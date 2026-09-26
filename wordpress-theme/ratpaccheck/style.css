@@ -1990,12 +1990,20 @@ fieldset legend {
 }
 
 .rpc-pw-notice,
-.rpc-privacy-policy-text {
-  font-family: 'Adobe Hebrew', Georgia, serif;
-  font-size: 12.5px;
-  color: #666666;
-  line-height: 1.5;
-  margin: 10px 0 14px;
+.rpc-privacy-policy-text,
+.woocommerce-privacy-policy-text,
+.woocommerce-privacy-policy-text p {
+  font-family: 'Adobe Hebrew', Georgia, serif !important;
+  font-size: 11.5px !important;
+  color: #777777 !important;
+  line-height: 1.45 !important;
+  margin: 8px 0 12px !important;
+}
+
+.woocommerce-privacy-policy-text a {
+  color: #8B6B4A !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
 }
 
 /* 13. Cart Coupon Section */

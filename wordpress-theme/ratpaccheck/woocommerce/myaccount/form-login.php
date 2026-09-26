@@ -196,10 +196,6 @@ $start_tab = ( isset( $_GET['action'] ) && $_GET['action'] === 'register' ) ? 'r
 
                 <?php do_action( 'woocommerce_register_form' ); ?>
 
-                <p class="rpc-privacy-policy-text">
-                    By signing up you agree to our <a href="<?php echo esc_url( home_url('/privacy-policy') ); ?>" target="_blank">Privacy Policy</a>.
-                </p>
-
                 <p class="woocommerce-form-row form-row rpc-submit-row">
                     <?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
                     <button
